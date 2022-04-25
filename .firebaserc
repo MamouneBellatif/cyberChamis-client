@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "integrateur2022g5": {
+      "hosting": {
+        "l3m-pi-2022-client": [
+          "integrateur2022g5"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "integrateur2022g5"
+  }
+}
