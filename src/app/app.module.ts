@@ -29,7 +29,7 @@ import { AngularFireAuthModule } from'@angular/fire/compat/auth';
     provideStorage(() => getStorage()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
+    AngularFirestoreModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
