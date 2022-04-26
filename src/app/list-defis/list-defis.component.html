@@ -1,1 +1,13 @@
-<p>list-defis works!</p>
+<section class="ListDefis"
+         *ngIf="listDefisObs | async as DEFIS">
+         <h1>Défis</h1>
+    <tr>
+        <td>Défi</td>
+        <td>Titre</td>
+        <td>Auteur</td>
+        <td>Date de création</td>
+    </tr>
+    <tr *ngFor="let defi from DEFIS.chamis">
+        <app-defi></app-defi>
+    </tr>
+</section>

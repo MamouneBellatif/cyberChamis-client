@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Chami } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-chami',
@@ -7,6 +8,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChamiComponent implements OnInit {
+
+  @Input() chami!: Chami;
 
   constructor() { }
 

@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Defi } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-defi',
@@ -7,6 +8,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DefiComponent implements OnInit {
+
+  @Input() defi!: Defi;
 
   constructor() { }
 

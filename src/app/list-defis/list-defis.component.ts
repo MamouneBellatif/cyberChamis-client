@@ -1,4 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ListDefis } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-list-defis',
@@ -9,6 +11,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 export class ListDefisComponent implements OnInit {
 
   constructor() { }
+
+  readonly listDefisObs!: Observable<ListDefis>;
 
   ngOnInit(): void {
   }

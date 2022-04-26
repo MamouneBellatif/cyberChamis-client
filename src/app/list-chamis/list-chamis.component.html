@@ -1,1 +1,12 @@
-<p>list-chamis works!</p>
+<section class="ListChamis"
+         *ngIf="listChamisObs | async as CHAMIS">
+    <h1>Chamis</h1>
+    <tr>
+        <td>Auteur</td>
+        <td>Age</td>
+        <td>Défis créés</td>
+    </tr>
+    <tr *ngFor="let chami from CHAMIS.chamis">
+        <app-chami></app-chami>
+    </tr>
+</section>
