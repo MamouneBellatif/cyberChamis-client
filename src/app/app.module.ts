@@ -13,10 +13,18 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from'@angular/fire/compat/auth';
+import { ListChamisComponent } from './list-chamis/list-chamis.component';
+import { ChamiComponent } from './chami/chami.component';
+import { DefiComponent } from './defi/defi.component';
+import { ListDefisComponent } from './list-defis/list-defis.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListChamisComponent,
+    ChamiComponent,
+    DefiComponent,
+    ListDefisComponent
   ],
   imports: [
     BrowserModule,

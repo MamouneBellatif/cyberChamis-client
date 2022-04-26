@@ -39,5 +39,5 @@ export class AppComponent {
     
   logout(): void { 
     this.auth.signOut(); 
-  } 
+  }
 }
