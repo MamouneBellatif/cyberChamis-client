@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ListChamis } from '../cyberchamis.service';
+import { Chami } from '../cyberchamis.service';
 import { ListChamisService } from './list-chamis.service';
 
 @Component({
