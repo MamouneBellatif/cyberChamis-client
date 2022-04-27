@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export interface Chami {
   readonly login: string;
   readonly age: number;
-  readonly defisCrees: number;
+  readonly defis: ListDefis;
 }
 
 export interface ListChamis {
@@ -13,9 +13,9 @@ export interface ListChamis {
 export interface Defi {
   readonly id: string;
   readonly titre: string;
-  readonly auteur: Chami;
   readonly dateDeCreation: string; // techniquement dateDeCreation est une Date mais sera formattée à l'aide de la fonction formatDate qui retourne une chaine de caractères.
   readonly description: string;
+  readonly auteur: Chami;
 }
 
 export interface ListDefis {
@@ -48,4 +48,5 @@ export class CyberchamisService {
       ].join(':')
     );
   }
+  
 }
