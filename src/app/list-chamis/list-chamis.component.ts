@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ListChamis } from '../cyberchamis.service';
+import { ListChamisService } from './list-chamis.service';
 
 @Component({
   selector: 'app-list-chamis',
@@ -10,11 +11,14 @@ import { ListChamis } from '../cyberchamis.service';
 })
 export class ListChamisComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private lcService: ListChamisService) { }
 
   readonly listChamisObs!: Observable<ListChamis>;
 
   ngOnInit(): void {
+    // this.listChamisObs = this.lcService.getChamis();
+    // this.httpClient.get(this.chamisListUrl);
   }
 
 }

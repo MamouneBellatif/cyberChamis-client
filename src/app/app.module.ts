@@ -18,6 +18,8 @@ import { ChamiComponent } from './chami/chami.component';
 import { DefiComponent } from './defi/defi.component';
 import { ListDefisComponent } from './list-defis/list-defis.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { ListDefisComponent } from './list-defis/list-defis.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     LeafletModule,
@@ -37,7 +40,7 @@ import { ListDefisComponent } from './list-defis/list-defis.component';
     provideStorage(() => getStorage()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule 
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
