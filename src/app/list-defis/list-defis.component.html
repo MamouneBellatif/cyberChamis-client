@@ -1,13 +1,20 @@
 <section class="ListDefis"
-         *ngIf="listDefisObs | async as DEFIS">
+         *ngIf="listDefisObs | async as defis">
          <h1>Défis</h1>
-    <tr>
-        <td>Défi</td>
-        <td>Titre</td>
-        <td>Auteur</td>
-        <td>Date de création</td>
-    </tr>
-    <tr *ngFor="let defi from DEFIS.chamis">
-        <app-defi></app-defi>
-    </tr>
+<table>
+    <thead>
+        <th>Défi</th>
+        <th>Titre</th>
+        <th>Auteur</th>
+        <th>Date de création</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let defi of defis">
+            <td>{{defi.id}}</td>
+            <td>{{defi.titre}}</td>
+            <td>{{defi.auteur.login}}</td>
+            <td>{{parsedDateToString(defi.dateDeCreation)}}</td>
+        </tr>
+    </tbody>
+</table>
 </section>
