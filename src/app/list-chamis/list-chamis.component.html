@@ -2,13 +2,17 @@
          *ngIf="listChamisObs | async as chamis">
     <h1>Chamis</h1>
 <table>
-    <tr>
-        <td>Auteur</td>
-        <td>Age</td>
-        <td>Défis créés</td>
-    </tr>
-    <tr *ngFor="let chami of chamis">
-        <app-chami [chami]="chami"></app-chami>
-    </tr>
+    <thead>
+        <th>Auteur</th>
+        <th>Age</th>
+        <th>Défis créés</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let chami of chamis">
+            <td>{{chami.login}}</td>
+            <td>{{chami.age}}</td>
+            <td>{{chami.defis.length}}</td>
+        </tr>
+    </tbody>
 </table>
 </section>

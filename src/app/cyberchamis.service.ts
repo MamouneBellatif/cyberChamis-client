@@ -9,7 +9,7 @@ export interface Chami {
 export interface Defi {
   readonly id: string;
   readonly titre: string;
-  readonly dateDeCreation: Date;
+  readonly dateDeCreation: string;
   readonly description: string;
   readonly auteur: Chami;
 }
