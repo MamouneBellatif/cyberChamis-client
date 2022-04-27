@@ -3,23 +3,15 @@ import { Injectable } from '@angular/core';
 export interface Chami {
   readonly login: string;
   readonly age: number;
-  readonly defis: ListDefis;
-}
-
-export interface ListChamis {
-  readonly chamis: readonly Chami[];
+  readonly defis: Defi[];
 }
 
 export interface Defi {
   readonly id: string;
   readonly titre: string;
-  readonly dateDeCreation: string; // techniquement dateDeCreation est une Date mais sera formattée à l'aide de la fonction formatDate qui retourne une chaine de caractères.
+  readonly dateDeCreation: Date;
   readonly description: string;
   readonly auteur: Chami;
-}
-
-export interface ListDefis {
-  readonly defis: readonly Defi[];
 }
 
 @Injectable({
@@ -29,7 +21,7 @@ export class CyberchamisService {
 
   constructor() { }
 
-  format2Chiffres(num: number) : string {
+  /*format2Chiffres(num: number) : string {
     return num.toString().padStart(2, '0');
   }
 
@@ -47,6 +39,6 @@ export class CyberchamisService {
         this.format2Chiffres(date.getSeconds()),
       ].join(':')
     );
-  }
+  }*/
   
 }

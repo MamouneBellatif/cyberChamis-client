@@ -1,7 +1,8 @@
 import { JsonPipe } from '@angular/common';
+import { identifierName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { defaultStorageInstanceFactory } from '@angular/fire/storage/storage.module';
-import { Chami, Defi, ListChamis, ListDefis } from './cyberchamis.service';
+import { Chami, Defi} from './cyberchamis.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +11,35 @@ export class ParseurRequeteurService {
 
   constructor() { }
 
-  parseChamis(json: string) : ListChamis {
+  parseChamis(json: string) : Chami[] {
     return JSON.parse(json);
   }
 
-  parseDefis(json: string) : ListDefis {
-    return JSON.parse(json);
-  }
-
-  parseDefis2(json: string) : ListDefis {
+  parseDefis(json: string) : Defi[] {
     let defis = JSON.parse(json);
-    defis.map(defi => {
-      
+    let defis2: Defi[] = defis.map((defi: { 
+      id: string; 
+      titre: string; 
+      dateDeCreation: string; 
+      description: string; 
+      auteur: string; 
+    }) => {
+      return {
+        id: defi.id,
+        titre: defi.titre,
+        dateDeCreation: new Date(defi.dateDeCreation),
+        description: defi.description,
+        auteur: defi.auteur
+      }
     })
-    return defis;
+    return defis2;
   }
 
-  stringifyChamis(chamis: ListChamis) : string {
+  stringifyChamis(chamis: Chami[]) : string {
     return JSON.stringify(chamis);
   }
 
-  stringifyDefis(defis: ListDefis) : string {
+  stringifyDefis(defis: Defi[]) : string {
     return JSON.stringify(defis);
   }
 }
