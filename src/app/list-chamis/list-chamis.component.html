@@ -1,12 +1,14 @@
 <section class="ListChamis"
-         *ngIf="listChamisObs | async as CHAMIS">
+         *ngIf="listChamisObs | async as chamis">
     <h1>Chamis</h1>
+<table>
     <tr>
         <td>Auteur</td>
         <td>Age</td>
         <td>Défis créés</td>
     </tr>
-    <tr *ngFor="let chami from CHAMIS.chamis">
-        <app-chami></app-chami>
+    <tr *ngFor="let chami of chamis">
+        <app-chami [chami]="chami"></app-chami>
     </tr>
+</table>
 </section>

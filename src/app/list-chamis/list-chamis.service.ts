@@ -11,13 +11,17 @@ export class ListChamisService  {
 
   readonly listChamisObs!: Observable<any>;
 
-  private chamisListUrl = 'http://localhost:8080/api/chamis';
+  private chamisListUrl = 'http://projet-integrateur-g5.herokuapp.com/api/users/';
 
 
   constructor(private httpClient: HttpClient) { }
 
   getChamis(): Observable<Chami[]> {
     return this.httpClient.get<Chami[]>(this.chamisListUrl);
+  }
+
+  parseChamis(/*json: string*/) : Observable<Chami[]> {
+    return JSON.parse(this.chamisListUrl);
   }
 
 }
