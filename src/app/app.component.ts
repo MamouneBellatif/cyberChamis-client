@@ -3,6 +3,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'; 
 
 import firebase from 'firebase/compat/app'; 
+import { Chami, CyberchamisService } from './cyberchamis.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,8 +28,12 @@ export class AppComponent {
   layerCircle: Layer = circle([ 45.188529, 	5.724524 ], {radius: 500} )
 
   dataIconGoogle = 'assets/images/iconGoogle.png'; 
+
+  ccService: CyberchamisService;
     
-  constructor(public auth: AngularFireAuth) {} 
+  constructor(public auth: AngularFireAuth, ccService: CyberchamisService) {
+    this.ccService = ccService;
+  } 
     
   login(): void { 
     const provider = new firebase.auth.GoogleAuthProvider(); 
@@ -39,5 +45,23 @@ export class AppComponent {
     
   logout(): void { 
     this.auth.signOut(); 
+  }
+
+  getChamiByEmail(chamiEmail: string) : Observable<Chami> | null {
+    if(chamiEmail !== null) {
+      return this.ccService.getChamiByEmail(chamiEmail);
+    }
+    else {
+      return null;
+    }
+  }
+
+  addChami(chami: Chami) {
+    console.log("whatever");
+    return this.ccService.addChami(chami.login, chami);
+  }
+
+  parseAge(s: string): number{
+    return parseInt(s);
   }
 }
