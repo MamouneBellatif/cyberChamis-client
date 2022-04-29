@@ -1,24 +1,11 @@
 <div class="defi">
-    <tr>
-        <td>
-            <label class="texte">
-                {{defi.id}}
-            </label>
-        </td>
-        <td>
-            <label class="texte">
-                {{defi.titre}}
-            </label>
-        </td>
-        <td>
-            <label class="texte">
-                {{defi.auteur}}
-            </label>
-        </td>
-        <td>
-            <label class="texte">
-                {{defi.dateDeCreation}}
-            </label>
-        </td>
-    </tr>
+    <h3>
+        {{defi.id}} : {{defi.titre}}
+    </h3>
+    <p>
+        {{defi.description}}
+    </p>
+    <label class="texte">
+        Créé par {{defi.auteur.login}}, le {{parsedDateToString(defi.dateDeCreation)}}
+    </label>
 </div>

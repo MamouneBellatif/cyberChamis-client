@@ -16,4 +16,7 @@ export class DefiComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  parsedDateToString(stringDate: string) : string {
+    return new Date(stringDate).toLocaleString();
+  }
 }

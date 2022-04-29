@@ -25,24 +25,26 @@ export class CyberchamisService {
 
   constructor(private httpClient: HttpClient) { }
 
+  private url = 'http://localhost:8080/api/';
+
   addChami(userId: string, chami: Chami): Observable<Chami> {
-    return this.httpClient.post<Chami>('http://localhost:8080/api/chamis/'+userId, chami);
+    return this.httpClient.post<Chami>(this.url+'chamis/'+userId, chami);
   }
 
   addDefi(defiId:string, defi: Defi): Observable<Defi> {
-    return this.httpClient.post<Defi>('http://localhost:8080/api/defis/'+defiId, defi);
+    return this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi);
   }
 
   deleteChami(userId: string): Observable<unknown> {
-    return this.httpClient.delete('http://localhost:8080/api/chamis/'+userId);
+    return this.httpClient.delete(this.url+'chamis/'+userId);
   }
 
   deleteDefi(defiId: string): Observable<unknown> {
-    return this.httpClient.delete('http://localhost:8080/api/defis'+defiId);
+    return this.httpClient.delete(this.url+'defis'+defiId);
   }
 
   getChamiByEmail(chamiEmail: string): Observable<Chami> {
-    return this.httpClient.get<Chami>('http://localhost:8080/api/chamis/', {params:{email:chamiEmail}});
+    return this.httpClient.get<Chami>(this.url+'chamis/', {params:{email:chamiEmail}});
   }
 
 }

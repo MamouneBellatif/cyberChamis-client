@@ -10,7 +10,7 @@ export class ListChamisService  {
 
   readonly listChamisObs!: Observable<any>;
 
-  private chamisListUrl = 'http://projet-integrateur-g5.herokuapp.com/api/users/';
+  private chamisListUrl = 'http://localhost:8080/api/users/';
 
   constructor(private httpClient: HttpClient) { }
 

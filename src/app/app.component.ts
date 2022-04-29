@@ -13,6 +13,17 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush 
 })
 export class AppComponent {
+
+  private jouer: boolean = false;
+
+  getJouer(): boolean {
+    return this.jouer;
+  }
+
+  setJouer(jouer: boolean) {
+    this.jouer = jouer;
+  }
+
   options: MapOptions = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18,  attribution: '...' }),
@@ -57,7 +68,7 @@ export class AppComponent {
   }
 
   addChami(chami: Chami) {
-    console.log("whatever");
+    //console.log("whatever");
     return this.ccService.addChami(chami.login, chami);
   }
 

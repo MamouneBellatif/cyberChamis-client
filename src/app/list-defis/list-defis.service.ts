@@ -8,14 +8,17 @@ import { Defi } from '../cyberchamis.service';
 })
 export class ListDefisService {
 
-  readonly listDefisObs!: Observable<Defi[]>;
-
   private listDefisUrl = 'http://projet-integrateur-g5.herokuapp.com/api/defis/';
 
   constructor(private httpClient: HttpClient) { }
 
-  getDefis(): Observable<Defi[]> {
+  getDefisObs(): Observable<Defi[]> {
     return this.httpClient.get<Defi[]>(this.listDefisUrl);
+  }
+
+
+  selectDefi(defi: Defi): void {
+    
   }
 
 }
