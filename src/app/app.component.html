@@ -18,7 +18,7 @@
   <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
 
   <section *ngIf="user.email !== null"> 
-    <section *ngIf="getChamiByEmail(user.email) | async as chami; else chamiInexistant">
+    <section *ngIf="currentChami | async as chami; else chamiInexistant">
       Bienvenue {{chami.login}} !
     </section>
   </section>

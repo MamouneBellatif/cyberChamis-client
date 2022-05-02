@@ -45,7 +45,7 @@ export class CyberchamisService {
   }
 
   getChamiByEmail(chamiEmail: string, token: string): Observable<Chami> {
-    return this.httpClient.get<Chami>(this.url+'chamis/mail', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}});
+    return this.httpClient.get<Chami>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}});
   }
 
 }

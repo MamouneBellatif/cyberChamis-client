@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 export class AppComponent {
 
   private jouer: boolean = false;
+  currentChami: Observable<Chami>|null = null;
 
   getJouer(): boolean {
     return this.jouer;
@@ -52,6 +53,7 @@ export class AppComponent {
       prompt: 'select_account' 
     }); 
     this.auth.signInWithPopup(provider); 
+    this.auth.user.forEach(user=>this.currentChami = this.getChamiByEmail(user?.email||''));
     
   } 
 
@@ -74,14 +76,6 @@ export class AppComponent {
     })
   }
 
-  // getChamiByMail():Observable<Chami>{
-  //   return new Promise((resolve)=>
-  //   this.getToken().then((idToken)=>{
-  //     this.ccService.getChamiByEmail(this.auth.user.email, idToken).then(resolve=>{
-  //       resolve(chami);
-  //     });
-  //   }))
-  // }
 
   getChamiByEmail(chamiEmail: string) : Observable<Chami> | null {
     if(this.auth.user){
