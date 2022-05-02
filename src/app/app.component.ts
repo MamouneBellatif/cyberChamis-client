@@ -61,14 +61,46 @@ export class AppComponent {
       prompt: 'select_account' 
     }); 
     this.auth.signInWithPopup(provider); 
+    
   } 
+
     
   logout(): void { 
     this.auth.signOut(); 
   }
 
+
+  idToken!: string;
+
+  getToken():Promise<string>{
+    return new Promise((resolve) => {
+      this.auth.onAuthStateChanged(user => { if(user){
+        user.getIdToken().then(idToken => { this.idToken=idToken;
+        resolve(idToken);
+        });
+      }
+      });
+    })
+  }
+
+  // getChamiByMail():Observable<Chami>{
+  //   return new Promise((resolve)=>
+  //   this.getToken().then((idToken)=>{
+  //     this.ccService.getChamiByEmail(this.auth.user.email, idToken).then(resolve=>{
+  //       resolve(chami);
+  //     });
+  //   }))
+  // }
+
   getChamiByEmail(chamiEmail: string) : Observable<Chami> {
-    return this.ccService.getChamiByEmail(chamiEmail);
+    if(this.auth.user){
+      console.log("store token");
+       firebase.auth().currentUser?.getIdToken(true).then(function(idToken) {
+          localStorage.setItem("currentUserToken",JSON.stringify(idToken));
+        }
+        );
+      }
+      return this.ccService.getChamiByEmail(chamiEmail,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   addChami(chami: Chami) {

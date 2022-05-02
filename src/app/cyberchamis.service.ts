@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
 
@@ -43,8 +43,8 @@ export class CyberchamisService {
     return this.httpClient.delete(this.url+'defis'+defiId);
   }
 
-  getChamiByEmail(chamiEmail: string): Observable<Chami> {
-    return this.httpClient.get<Chami>(this.url+'chamis/', {params:{email:chamiEmail}});
+  getChamiByEmail(chamiEmail: string, token: string): Observable<Chami> {
+    return this.httpClient.get<Chami>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}});
   }
 
 }
