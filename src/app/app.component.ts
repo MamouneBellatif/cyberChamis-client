@@ -54,6 +54,15 @@ export class AppComponent implements OnInit{
     
   constructor(public auth: AngularFireAuth, ccService: CyberchamisService) {
     this.ccService = ccService;
+    this.auth.authState.subscribe(
+      user => {
+        user?.getIdTokenResult().then(idToken => { 
+          localStorage.setItem('currentUserToken', JSON.stringify(idToken))
+          }
+        )
+      }     
+
+    )
   } 
     
   login(): void { 
@@ -61,7 +70,9 @@ export class AppComponent implements OnInit{
     provider.setCustomParameters({ 
       prompt: 'select_account' 
     }); 
-    this.auth.signInWithPopup(provider); 
+    this.auth.signInWithPopup(provider).then( ()=>
+      this.auth.user.forEach(user=>this.currentChami = this.getChamiByEmail(user?.email||''))
+    );
     
   } 
 
@@ -87,13 +98,13 @@ export class AppComponent implements OnInit{
 
   getChamiByEmail(chamiEmail: string) : Observable<Chami> {
     if(this.auth.user){
-      console.log("store token");
+      //console.log("store token");
        firebase.auth().currentUser?.getIdToken(true).then(function(idToken) {
           localStorage.setItem("currentUserToken",JSON.stringify(idToken));
         }
-        );
-      }
-      return this.ccService.getChamiByEmail(chamiEmail,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+      );
+    }
+    return this.ccService.getChamiByEmail(chamiEmail,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   addChami(chami: Chami) {
@@ -104,9 +115,7 @@ export class AppComponent implements OnInit{
   parseAge(s: string): number{
     return parseInt(s);
   }
-
-  ngOnInit(){
-    this.auth.user.forEach(user=>this.currentChami = this.getChamiByEmail(user?.email||''));
-
+  ngOnInit(): void {
+    this.auth.user.forEach(user => this.currentChami = user !== null ? this.getChamiByEmail(user.email||''):null)
   }
 }

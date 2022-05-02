@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Chami } from '../cyberchamis.service';
+import { Chami, Defi } from '../cyberchamis.service';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -17,13 +17,12 @@ export class ListChamisService  {
   constructor(private httpClient: HttpClient) { }
 
   getChamis(): Observable<Chami[]> {
-        console.log(localStorage.getItem("currentUserToken"))
-let toto = this.httpClient.get<Chami[]>(this.chamisListUrl, 
+    let toto = this.httpClient.get<Chami[]>(this.chamisListUrl, 
         {headers: new HttpHeaders(
-          {Authorization: JSON.parse(localStorage.getItem("currentUserToken") || '{""}')})}
+          {Authorization: JSON.parse(localStorage.getItem("currentUserToken") || '{"":""}')})}
     );
-    console.log(toto)
     return toto;
   }
+
 
 }

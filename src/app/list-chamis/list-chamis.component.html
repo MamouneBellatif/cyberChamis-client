@@ -8,11 +8,8 @@
         <th>Défis créés</th>
     </thead>
     <tbody>
-        <tr *ngFor="let chami of chamis">
-            <td>{{chami.login}}</td>
-            <td>{{chami.age}}</td>
-            <td>{{chami.defis.length}}</td>
-        </tr>
+        <app-list-element-chami *ngFor="let chami of chamis" [chami]="chami" ></app-list-element-chami>
+        
     </tbody>
 </table>
 </section>

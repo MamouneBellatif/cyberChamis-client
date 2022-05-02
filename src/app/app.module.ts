@@ -23,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListElementChamiComponent } from './list-element-chami/list-element-chami.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ListChamisComponent,
     ChamiComponent,
     DefiComponent,
-    ListDefisComponent
+    ListDefisComponent,
+    ListElementChamiComponent
   ],
   imports: [
     BrowserModule,
