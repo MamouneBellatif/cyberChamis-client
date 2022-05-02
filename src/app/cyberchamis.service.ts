@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export interface Chami {
   readonly login: string;
@@ -25,7 +26,7 @@ export class CyberchamisService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private url = 'http://localhost:8080/api/';
+  private url = environment.apiUrl;
 
   addChami(userId: string, chami: Chami): Observable<Chami> {
     return this.httpClient.post<Chami>(this.url+'chamis/'+userId, chami);
@@ -44,7 +45,7 @@ export class CyberchamisService {
   }
 
   getChamiByEmail(chamiEmail: string, token: string): Observable<Chami> {
-    return this.httpClient.get<Chami>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}});
+    return this.httpClient.get<Chami>(this.url+'chamis/mail', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}});
   }
 
 }

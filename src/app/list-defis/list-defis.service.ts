@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Defi } from '../cyberchamis.service';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Defi } from '../cyberchamis.service';
 })
 export class ListDefisService {
 
-  private listDefisUrl = 'http://projet-integrateur-g5.herokuapp.com/api/defis/';
+  private listDefisUrl = environment.apiUrl+'defis/';
 
   constructor(private httpClient: HttpClient) { }
 

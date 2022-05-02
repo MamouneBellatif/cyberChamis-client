@@ -8,5 +8,6 @@ export const environment = {
     messagingSenderId: '872542552621',
     measurementId: 'G-2JV40MWP25',
   },
-  production: true
+  production: true,
+  apiUrl: 'https://projet-integrateur-g5.herokuapp.com/api/'
 };
