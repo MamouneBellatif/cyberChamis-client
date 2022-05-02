@@ -1,60 +1,64 @@
 <h1>Projet intégrateur L3 Miage 2022</h1>
 <h2>Bienvenue chez les chamis</h2>
-<button mat-raised-button color="primary">Ajouter des défis</button>
-<button mat-raised-button color="primary" (click)="setJouer(true)">Jouer aux défis</button>
+<button mat-raised-button color="primary" (click)="setJouer(false); setAjouter(true)">Ajouter des défis</button>
+<button mat-raised-button color="primary" (click)="setJouer(true); setAjouter(false)">Jouer aux défis</button>
 
 <section *ngIf="getJouer()">
   <app-list-defis></app-list-defis>
 </section>
 
-
-<!--
-<section *ngIf="auth.user | async as user; else showLogin">
-<div>
-  <img src="{{ user.photoURL }}" 
-       width="50px"
-  />
-  <h2>{{ user.displayName }}</h2>
-  <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
-
-  <section *ngIf="user.email !== null"> 
-    <section *ngIf="getChamiByEmail(user.email) | async as chami; else chamiInexistant">
-      Bienvenue {{chami.login}} !
-    </section>
+<section *ngIf="getAjouter()">
+  <section *ngIf="auth.user | async as user; else showLogin">
+    <div>
+      <img src="{{ user.photoURL }}" 
+           width="50px"
+      />
+      <h2>{{ user.displayName }}</h2>
+      <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
+    
+      <section *ngIf="user.email !== null"> 
+        <section *ngIf="getChamiByEmail(user.email) | async as chami; else chamiInexistant">
+          Bienvenue {{chami.login}} !
+        </section>
+      </section>
+    
+      <ng-template #chamiInexistant>
+        Créez votre profil de Chami 
+        <section *ngIf="user.email !== null">
+          <form (submit)="addChami({login: loginChami.value,
+                                    age: parseAge(ageChami.value),
+                                    defis: [],
+                                    email: user.email
+                                  }); loginChami.value=''; ageChami.value=''">
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Login</mat-label>
+              <input matInput #loginChami
+                              type="text"
+                              name="loginChami"
+                              placeholder="Votre login">
+            </mat-form-field>
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Age</mat-label>
+              <input matInput #ageChami
+                              type="number"
+                              name="age"
+                              placeholder="Votre âge">
+            </mat-form-field>                  
+            <button mat-raised-button color="primary" type="submit">Valider</button>
+          </form>
+        </section>
+        
+      </ng-template>
+    </div>
   </section>
 
-  <ng-template #chamiInexistant>
-    Créez votre profil de Chami 
-    <section *ngIf="user.email !== null">
-      <form (submit)="addChami({login: loginChami.value,
-                                age: parseAge(ageChami.value),
-                                defis: [],
-                                email: user.email
-                              }); loginChami.value=''; ageChami.value=''">
-        <mat-form-field class="example-form-field" appearance="fill">
-          <mat-label>Login</mat-label>
-          <input matInput #loginChami
-                          type="text"
-                          name="loginChami"
-                          placeholder="Votre login">
-        </mat-form-field>
-        <mat-form-field class="example-form-field" appearance="fill">
-          <mat-label>Age</mat-label>
-          <input matInput #ageChami
-                          type="number"
-                          name="age"
-                          placeholder="Votre âge">
-        </mat-form-field>                  
-        <button mat-raised-button color="primary" type="submit">Valider</button>
-      </form>
-    </section>
-    
+  <ng-template #showLogin>
+    <p>Veuillez vous authentifier.</p>
+    <button mat-stroked-button color="primary" (click)="login()">Login with Google</button>
   </ng-template>
-</div>
+</section>
 
-<app-list-chamis></app-list-chamis>
-<app-list-defis></app-list-defis>
-
+<!--
 <label>
   Afficher le cercle
   <input type="checkbox" [(ngModel)]="displayCircle" />
@@ -68,9 +72,4 @@
      <div *ngIf="displayCircle" [leafletLayer]="layerCircle"></div>
 </div>
 </section>
-
-<ng-template #showLogin>
-  <p>Veuillez vous authentifier.</p>
-  <button mat-stroked-button color="primary" (click)="login()">Login with Google</button>
-</ng-template>
 -->

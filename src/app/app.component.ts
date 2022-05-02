@@ -15,6 +15,7 @@ import { Observable } from 'rxjs';
 export class AppComponent {
 
   private jouer: boolean = false;
+  private ajouter: boolean = false;
 
   getJouer(): boolean {
     return this.jouer;
@@ -22,6 +23,14 @@ export class AppComponent {
 
   setJouer(jouer: boolean) {
     this.jouer = jouer;
+  }
+
+  getAjouter(): boolean {
+    return this.ajouter;
+  }
+
+  setAjouter(ajouter: boolean) {
+    this.ajouter = ajouter;
   }
 
   options: MapOptions = {
@@ -58,13 +67,8 @@ export class AppComponent {
     this.auth.signOut(); 
   }
 
-  getChamiByEmail(chamiEmail: string) : Observable<Chami> | null {
-    if(chamiEmail !== null) {
-      return this.ccService.getChamiByEmail(chamiEmail);
-    }
-    else {
-      return null;
-    }
+  getChamiByEmail(chamiEmail: string) : Observable<Chami> {
+    return this.ccService.getChamiByEmail(chamiEmail);
   }
 
   addChami(chami: Chami) {

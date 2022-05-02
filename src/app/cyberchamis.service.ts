@@ -25,7 +25,7 @@ export class CyberchamisService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private url = 'http://localhost:8080/api/';
+  private url = 'http://projet-integrateur-g5.herokuapp.com/api/';
 
   addChami(userId: string, chami: Chami): Observable<Chami> {
     return this.httpClient.post<Chami>(this.url+'chamis/'+userId, chami);
