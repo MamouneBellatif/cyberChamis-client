@@ -21,6 +21,7 @@ import { ListDefisComponent } from './list-defis/list-defis.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -46,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFirestoreModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
     BrowserAnimationsModule,
   ],
   providers: [],

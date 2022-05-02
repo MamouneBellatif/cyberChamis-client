@@ -16,6 +16,7 @@ export class AppComponent {
 
   private jouer: boolean = false;
   currentChami: Observable<Chami>|null = null;
+  private ajouter: boolean = false;
 
   getJouer(): boolean {
     return this.jouer;
@@ -23,6 +24,14 @@ export class AppComponent {
 
   setJouer(jouer: boolean) {
     this.jouer = jouer;
+  }
+
+  getAjouter(): boolean {
+    return this.ajouter;
+  }
+
+  setAjouter(ajouter: boolean) {
+    this.ajouter = ajouter;
   }
 
   options: MapOptions = {
@@ -77,7 +86,7 @@ export class AppComponent {
   }
 
 
-  getChamiByEmail(chamiEmail: string) : Observable<Chami> | null {
+  getChamiByEmail(chamiEmail: string) : Observable<Chami> {
     if(this.auth.user){
       console.log("store token");
        firebase.auth().currentUser?.getIdToken(true).then(function(idToken) {
@@ -85,12 +94,7 @@ export class AppComponent {
         }
         );
       }
-    if(chamiEmail !== null) {
       return this.ccService.getChamiByEmail(chamiEmail,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
-    }
-    else {
-      return null;
-    }
   }
 
   addChami(chami: Chami) {
