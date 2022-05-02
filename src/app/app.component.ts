@@ -1,5 +1,5 @@
 import { circle, latLng, Layer, MapOptions, marker, tileLayer } from 'leaflet';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'; 
 
 import firebase from 'firebase/compat/app'; 
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush 
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
   private jouer: boolean = false;
   currentChami: Observable<Chami>|null = null;
@@ -62,7 +62,6 @@ export class AppComponent {
       prompt: 'select_account' 
     }); 
     this.auth.signInWithPopup(provider); 
-    this.auth.user.forEach(user=>this.currentChami = this.getChamiByEmail(user?.email||''));
     
   } 
 
@@ -104,5 +103,10 @@ export class AppComponent {
 
   parseAge(s: string): number{
     return parseInt(s);
+  }
+
+  ngOnInit(){
+    this.auth.user.forEach(user=>this.currentChami = this.getChamiByEmail(user?.email||''));
+
   }
 }
