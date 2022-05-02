@@ -1,11 +1,17 @@
-<div class="defi">
-    <h3>
-        {{defi.id}} : {{defi.titre}}
-    </h3>
-    <p>
-        {{defi.description}}
-    </p>
-    <label class="texte">
-        Créé par {{defi.auteur.login}}, le {{parsedDateToString(defi.dateDeCreation)}}
-    </label>
-</div>
+<mat-card class="defi-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{defi.titre}}</mat-card-title>
+        <mat-card-subtitle>Créé par {{defi.auteur.login}}, le {{parsedDateToString(defi.dateDeCreation)}}</mat-card-subtitle>
+    </mat-card-header>
+    <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+    <mat-card-content>
+        <p>
+            {{defi.description}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>J'AIME</button>
+      <button mat-button>PARTAGER</button>
+    </mat-card-actions>
+  </mat-card>

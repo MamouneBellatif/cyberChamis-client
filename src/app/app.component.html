@@ -1,9 +1,12 @@
 <h1>Projet intégrateur L3 Miage 2022</h1>
 <h2>Bienvenue chez les chamis</h2>
-<button mat-raised-button color="primary" (click)="setJouer(false); setAjouter(true)">Ajouter des défis</button>
-<button mat-raised-button color="primary" (click)="setJouer(true); setAjouter(false)">Jouer aux défis</button>
 
-<section *ngIf="getJouer()">
+<div class="example-button-row">
+  <button mat-raised-button color="primary" (click)="setJouer(false); setAjouter(true)">Ajouter des défis</button>
+  <button mat-raised-button color="primary" (click)="setJouer(true); setAjouter(false)">Jouer aux défis</button>
+</div>
+
+<section *ngIf="getJouer()" borders="">
   <app-list-defis></app-list-defis>
 </section>
 
@@ -72,4 +75,6 @@
      <div *ngIf="displayCircle" [leafletLayer]="layerCircle"></div>
 </div>
 </section>
+
+<app-list-chamis></app-list-chamis>
 -->
