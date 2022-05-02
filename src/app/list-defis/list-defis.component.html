@@ -4,26 +4,34 @@
 
 <section class="ListDefis"
          *ngIf="listDefisObs | async as defis">
-         <h1>Défis</h1>
-<table>
-    <thead>
-        <th>Défi</th>
-        <th>Titre</th>
-        <!--
-            <th>Auteur</th>
-            <th>Date de création</th>
-        -->
-    </thead>
-    <tbody>
-        <tr *ngFor="let defi of defis"
-            (click)="selectDefi(defi)">
-            <td>{{defi.id}}</td>
-            <td>{{defi.titre}}</td>
-            <!--
-                <td>{{defi.auteur.login}}</td>
-                <td>{{parsedDateToString(defi.dateDeCreation)}}</td>
-            -->
-        </tr>
-    </tbody>
-</table>
+    
+<mat-card class="defi-card">
+    <mat-card-header>
+        <mat-card-title>Défis</mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+        <table>
+            <thead>
+                <th>Défi</th>
+                <th>Titre</th>
+                <!--
+                    <th>Auteur</th>
+                    <th>Date de création</th>
+                -->
+            </thead>
+            <tbody>
+                <tr *ngFor="let defi of defis"
+                    (click)="selectDefi(defi)">
+                    <td>{{defi.id}}</td>
+                    <td>{{defi.titre}}</td>
+                    <!--
+                        <td>{{defi.auteur.login}}</td>
+                        <td>{{parsedDateToString(defi.dateDeCreation)}}</td>
+                    -->
+                </tr>
+            </tbody>
+        </table>
+    </mat-card-content>
+</mat-card>
 </section>
