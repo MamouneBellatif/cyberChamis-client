@@ -1,26 +1,21 @@
 .example-button-row .mat-button-base {
-    margin: 8px 0px 8px 8px;
-  }
+  margin: 8px 0px 8px 8px;
+}
 
 .example-button-row {
-    display: table-cell;
-    width: 490px;
+  text-align: center;
+  margin: auto;
 }
 
-header{
-  height: 56px;
-  margin-bottom: 8px;
+.example-spacer {
+  flex: 1 1 auto;
+}
+  
+.spacer-pic-nom {
+  width: 10px;
 }
 
-header img{
-  float: left;
-  width: 50px;
-}
-
-header h2{
-  margin-left: 65px;
-  padding-top: 7px;
-}
-header button{
-  float: right;
+.align-center {
+  margin-top: 10px;
+  text-align: center;
 }
