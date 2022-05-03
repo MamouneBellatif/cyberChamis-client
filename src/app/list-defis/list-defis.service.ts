@@ -14,6 +14,7 @@ export class ListDefisService {
   constructor(private httpClient: HttpClient) { }
 
   getDefisObs(): Observable<Defi[]> {
+    // XXX DANGER : NE JAMAIS stocker un jeton de sécurité dans localStorage... tout le monde y a accès...
     return this.httpClient.get<Defi[]>(this.listDefisUrl, 
       {headers: new HttpHeaders(
         {'Authorization': JSON.parse(localStorage.getItem("currentUserToken") || '{}')})});

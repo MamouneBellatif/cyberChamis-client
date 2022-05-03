@@ -14,33 +14,15 @@ import { Observable, takeWhile } from 'rxjs';
 })
 export class AppComponent implements OnInit{
 
-  private jouer: boolean = false;
+  private mode: string = '';
   currentChami: Observable<Chami[]>|null = null;
-  private ajouter: boolean = false;
-  private visualiser: boolean = false;
-
-  getJouer(): boolean {
-    return this.jouer;
+  
+  getMode(): string {
+    return this.mode;
   }
 
-  setJouer(jouer: boolean) {
-    this.jouer = jouer;
-  }
-
-  getAjouter(): boolean {
-    return this.ajouter;
-  }
-
-  setAjouter(ajouter: boolean) {
-    this.ajouter = ajouter;
-  }
-
-  getVisualiser(): boolean {
-    return this.visualiser;
-  }
-
-  setVisualiser(visualiser: boolean) {
-    this.visualiser = visualiser;
+  setMode(mode: string) {
+    this.mode = mode;
   }
 
   options: MapOptions = {

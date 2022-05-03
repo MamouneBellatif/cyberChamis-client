@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { catchError, lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface Chami {
@@ -28,13 +28,16 @@ export class CyberchamisService {
 
   private url = environment.apiUrl;
 
-  addChami(userId: string, chami: Chami, token: string): Observable<any> {
-    let toto = this.httpClient.post(this.url+'chamis/'+userId, chami, {headers:{Authorization:token}});
+  /**
+   * 
+   */
+  async addChami(userId: string, chami: Chami, token: string): Promise<unknown> {
+    let toto = await lastValueFrom( this.httpClient.post(this.url+'chamis/'+userId, chami, {headers:{Authorization:token}}) );
     return toto
   }
 
-  addDefi(defiId:string, defi: Defi): Observable<Defi> {
-    return this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi);
+  async addDefi(defiId:string, defi: Defi): Promise<Defi> {
+    return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi) );
   }
 
   deleteChami(userId: string): Observable<unknown> {

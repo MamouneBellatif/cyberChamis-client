@@ -12,12 +12,12 @@
     <h2>Bienvenue chez les chamis</h2>
   </div>
   <div class="example-button-row">
-    <button mat-raised-button color="primary" (click)="setVisualiser(false); setJouer(false); setAjouter(true)">Ajouter des défis</button>
-    <button mat-raised-button color="primary" (click)="setVisualiser(false); setJouer(true); setAjouter(false)">Jouer aux défis</button>
-    <button mat-raised-button color="primary" (click)="setVisualiser(true); setJouer(false); setAjouter(false)">Visualiser les chamis</button>
+    <button mat-raised-button color="primary" (click)="setMode('AJOUTER')">Ajouter des défis</button>
+    <button mat-raised-button color="primary" (click)="setMode('JOUER')">Jouer aux défis</button>
+    <button mat-raised-button color="primary" (click)="setMode('VISUALISER')">Visualiser les chamis</button>
   </div>
     
-    <section *ngIf="getAjouter()">
+    <section *ngIf="getMode() === 'AJOUTER'">
       <section *ngIf="user.email !== null"> 
         <section *ngIf="currentChami | async as chami; else chamiInexistant">
           Bienvenue {{chami[0].login}} !
@@ -67,11 +67,11 @@
   </mat-toolbar>
 </ng-template>
 
-<section *ngIf="getJouer()">
+<section *ngIf="getMode() === 'JOUER'">
   <app-list-defis></app-list-defis>
 </section>
 
-<section *ngIf="getVisualiser()">
+<section *ngIf="getMode() === 'VISUALISER'">
   <app-list-chamis></app-list-chamis>
 </section> 
 
