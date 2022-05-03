@@ -1,11 +1,9 @@
 <section *ngIf="auth.user | async as user; else showLogin">
   <div>
     <header>
-      <img src="{{ user.photoURL }}" 
-            width="50px"
-      />
-      <h2>{{ user.displayName }}</h2>
+      <img src="{{ user.photoURL }}" />
       <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
+      <h2>{{ user.displayName }}</h2>
     </header>
     
     <section *ngIf="getAjouter()">

@@ -1,13 +1,19 @@
 .grid {
     display: grid;
     height: 20px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    max-width:310px;
   }
   
   .defiId {
     grid-column: 1;
   }
   
+  .clickableLine:hover {
+    cursor: pointer;
+    background-color: #d3d3e4;
+  }
+
   .titre {
-    grid-column: 2;
+    grid-column: 2/span 2;
   }

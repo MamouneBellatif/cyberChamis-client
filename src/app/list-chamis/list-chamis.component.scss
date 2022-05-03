@@ -1,17 +1,20 @@
 .grid {
     display: grid;
     height: 20px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6,1fr);
+    max-width: 310px;
   }
   
   .auteur {
-    grid-column: 1;
+    grid-column: 1/span 3;
   }
   
   .age {
-    grid-column: 2;
+    grid-column: 4;
+    text-align:center
   }
 
   .nbDefi {
-    grid-column: 3;
+    grid-column: 5/span 2;
+    text-align:center
   }

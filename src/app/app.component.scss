@@ -5,4 +5,22 @@
 .example-button-row {
     display: table-cell;
     width: 490px;
-  }
+}
+
+header{
+  height: 56px;
+  margin-bottom: 8px;
+}
+
+header img{
+  float: left;
+  width: 50px;
+}
+
+header h2{
+  margin-left: 65px;
+  padding-top: 7px;
+}
+header button{
+  float: right;
+}
