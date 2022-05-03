@@ -1,5 +1,5 @@
-<tr>
-    <td>{{chami.login}}</td>
-    <td>{{chami.age}}</td>
-    <td><section *ngIf="defisObs|async as defis">{{defis.length}}</section></td>
-</tr>
+<li class="grid">
+    <td class="auteur">{{chami.login}}</td>
+    <td class="age">{{chami.age}}</td>
+    <td class="nbDefi"><section *ngIf="defisObs|async as defis">{{defis.length}}</section></td>
+</li>
