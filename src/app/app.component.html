@@ -12,8 +12,9 @@
     <h2>Bienvenue chez les chamis</h2>
   </div>
   <div class="example-button-row">
-    <button mat-raised-button color="primary" (click)="setJouer(false); setAjouter(true)">Ajouter des défis</button>
-    <button mat-raised-button color="primary" (click)="setJouer(true); setAjouter(false)">Jouer aux défis</button>
+    <button mat-raised-button color="primary" (click)="setVisualiser(false); setJouer(false); setAjouter(true)">Ajouter des défis</button>
+    <button mat-raised-button color="primary" (click)="setVisualiser(false); setJouer(true); setAjouter(false)">Jouer aux défis</button>
+    <button mat-raised-button color="primary" (click)="setVisualiser(true); setJouer(false); setAjouter(false)">Visualiser les chamis</button>
   </div>
     
     <section *ngIf="getAjouter()">
@@ -25,7 +26,7 @@
     
       <ng-template #chamiInexistant>
         <mat-card>
-        <mat-card-subtitle>Créez votre profil de Chami</mat-card-subtitle> 
+        <mat-card-subtitle>Créez votre profil de Chami pour pouvoir ajouter des défis !</mat-card-subtitle> 
           <section *ngIf="user.email !== null">
             <form (submit)="addChami({login: loginChami.value,
                                       age: parseAge(ageChami.value),
@@ -50,10 +51,8 @@
             </form>
           </section>
         </mat-card>
-
-        <app-list-chamis></app-list-chamis>
-
       </ng-template>
+
   </section>
 
 </section>
@@ -66,10 +65,13 @@
   </mat-toolbar>
 </ng-template>
 
-<section *ngIf="getJouer()" borders="">
+<section *ngIf="getJouer()">
   <app-list-defis></app-list-defis>
 </section>
 
+<section *ngIf="getVisualiser()">
+  <app-list-chamis></app-list-chamis>
+</section> 
 
 <!--
 <label>

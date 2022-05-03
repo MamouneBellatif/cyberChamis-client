@@ -17,6 +17,7 @@ export class AppComponent implements OnInit{
   private jouer: boolean = false;
   currentChami: Observable<Chami>|null = null;
   private ajouter: boolean = false;
+  private visualiser: boolean = false;
 
   getJouer(): boolean {
     return this.jouer;
@@ -32,6 +33,14 @@ export class AppComponent implements OnInit{
 
   setAjouter(ajouter: boolean) {
     this.ajouter = ajouter;
+  }
+
+  getVisualiser(): boolean {
+    return this.visualiser;
+  }
+
+  setVisualiser(visualiser: boolean) {
+    this.visualiser = visualiser;
   }
 
   options: MapOptions = {
@@ -75,12 +84,10 @@ export class AppComponent implements OnInit{
     );
     
   } 
-
-    
+  
   logout(): void { 
     this.auth.signOut(); 
   }
-
 
   idToken!: string;
 
@@ -94,7 +101,6 @@ export class AppComponent implements OnInit{
       });
     })
   }
-
 
   getChamiByEmail(chamiEmail: string) : Observable<Chami> {
     if(this.auth.user){
@@ -115,6 +121,7 @@ export class AppComponent implements OnInit{
   parseAge(s: string): number{
     return parseInt(s);
   }
+
   ngOnInit(): void {
     this.auth.user.forEach(user => this.currentChami = user !== null ? this.getChamiByEmail(user.email||''):null)
   }
