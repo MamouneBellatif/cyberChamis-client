@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import firebase from 'firebase/compat/app'; 
 import { Chami, CyberchamisService } from './cyberchamis.service';
-import { Observable } from 'rxjs';
+import { Observable, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-root',
