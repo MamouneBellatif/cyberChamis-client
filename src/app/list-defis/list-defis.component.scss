@@ -1,0 +1,13 @@
+.grid {
+    display: grid;
+    height: 20px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .defiId {
+    grid-column: 1;
+  }
+  
+  .titre {
+    grid-column: 2;
+  }
