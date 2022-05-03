@@ -9,5 +9,6 @@ export const environment = {
     measurementId: 'G-2JV40MWP25',
   },
   production: true,
-  apiUrl: 'https://projet-integrateur-g5.herokuapp.com/api/'
+  // apiUrl: 'https://projet-integrateur-g5.herokuapp.com/api/', // si le client est servi par Firebase
+  apiUrl: '/api/' // si votre client est servi par Heroku
 };

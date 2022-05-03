@@ -28,12 +28,16 @@ export class CyberchamisService {
 
   private url = environment.apiUrl;
 
+  /**
+   * 
+   */
   async addChami(userId: string, chami: Chami, token: string): Promise<unknown> {
-    return await lastValueFrom(this.httpClient.post(this.url+'chamis/'+userId, chami, {headers:{Authorization:token}}));
+    let toto = await lastValueFrom( this.httpClient.post(this.url+'chamis/'+userId, chami, {headers:{Authorization:token}}) );
+    return toto
   }
 
-  async addDefi(defiId:string, defi: Defi): Promise<unknown> {
-    return await lastValueFrom(this.httpClient.post(this.url+'defis/'+defiId, defi));
+  async addDefi(defiId:string, defi: Defi): Promise<Defi> {
+    return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi) );
   }
 
   async deleteChami(userId: string): Promise<unknown> {

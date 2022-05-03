@@ -13,33 +13,16 @@ import { Chami, CyberchamisService } from './cyberchamis.service';
 })
 export class AppComponent implements OnInit{
 
-  private jouer: boolean = false;
   currentChami: Promise<Chami[]>|null = null;
-  private ajouter: boolean = false;
-  private visualiser: boolean = false;
 
-  getJouer(): boolean {
-    return this.jouer;
+  private mode: string = '';
+  
+  getMode(): string {
+    return this.mode;
   }
 
-  setJouer(jouer: boolean) {
-    this.jouer = jouer;
-  }
-
-  getAjouter(): boolean {
-    return this.ajouter;
-  }
-
-  setAjouter(ajouter: boolean) {
-    this.ajouter = ajouter;
-  }
-
-  getVisualiser(): boolean {
-    return this.visualiser;
-  }
-
-  setVisualiser(visualiser: boolean) {
-    this.visualiser = visualiser;
+  setMode(mode: string) {
+    this.mode = mode;
   }
 
   options: MapOptions = {
