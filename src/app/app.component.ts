@@ -4,7 +4,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import firebase from 'firebase/compat/app'; 
 import { Chami, CyberchamisService } from './cyberchamis.service';
-import { Observable, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,7 @@ import { Observable, takeWhile } from 'rxjs';
 export class AppComponent implements OnInit{
 
   private jouer: boolean = false;
-  currentChami: Observable<Chami[]>|null = null;
+  currentChami: Promise<Chami[]>|null = null;
   private ajouter: boolean = false;
   private visualiser: boolean = false;
 
@@ -79,10 +78,7 @@ export class AppComponent implements OnInit{
     provider.setCustomParameters({ 
       prompt: 'select_account' 
     }); 
-    this.auth.signInWithPopup(provider).then( ()=>
-      this.auth.user.forEach(user=>this.currentChami = this.getChamiByEmail(user?.email||''))
-    );
-    
+    this.auth.signInWithPopup(provider);
   } 
   
   logout(): void { 
@@ -103,7 +99,7 @@ export class AppComponent implements OnInit{
   }
 
 
-  getChamiByEmail(chamiEmail: string) : Observable<Chami[]> {
+  getChamiByEmail(chamiEmail: string) : Promise<Chami[]> {
     if(this.auth.user){
       //console.log("store token");
        firebase.auth().currentUser?.getIdToken(true).then(function(idToken) {
@@ -114,7 +110,7 @@ export class AppComponent implements OnInit{
     return this.ccService.getChamiByEmail(chamiEmail,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
-  addChami(chami: Chami) {
+  addChami(chami: Chami):Promise<unknown> {
     return this.ccService.addChami(chami.login, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
@@ -123,6 +119,9 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.auth.user.forEach(user => this.currentChami = user !== null ? this.getChamiByEmail(user.email||''):null)
+    this.auth.user.forEach(user => {
+      if (user !== null)  
+        this.currentChami = this.getChamiByEmail(user.email||''); 
+      });
   }
 }

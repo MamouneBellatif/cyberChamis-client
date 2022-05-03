@@ -3,7 +3,7 @@
 </app-defi>
 
 <section class="ListDefis"
-         *ngIf="listDefisObs | async as defis">
+         *ngIf="listDefis |async as lDefis">
     
 <mat-card class="defi-card">
     <mat-card-header>
@@ -22,7 +22,7 @@
                 -->
             </li>
             <li class="grid clickableLine"
-                *ngFor="let defi of defis"
+                *ngFor="let defi of lDefis"
                 (click)="selectDefi(defi)">
                 <td class="defiId">{{defi.id}}</td>
                 <td class="titre">{{defi.titre}}</td>

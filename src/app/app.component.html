@@ -19,7 +19,7 @@
     
     <section *ngIf="getAjouter()">
       <section *ngIf="user.email !== null"> 
-        <section *ngIf="currentChami | async as chami; else chamiInexistant">
+        <section *ngIf="currentChami| async as chami ; else chamiInexistant">
           Bienvenue {{chami[0].login}} !
         </section>
       </section>
@@ -61,7 +61,7 @@
 
 <ng-template #showLogin>
   <mat-toolbar>
-    <span>Veuillez vous authentifier.</span>
+    <span class="smaller">Veuillez vous authentifier.</span>
     <span class="example-spacer"></span>
     <button mat-stroked-button color="primary" (click)="login()">Login with Google</button>
   </mat-toolbar>

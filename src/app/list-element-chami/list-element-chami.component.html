@@ -1,5 +1,5 @@
 <li class="grid">
     <td class="auteur">{{chami.login}}</td>
     <td class="age">{{chami.age}}</td>
-    <td class="nbDefi"><section *ngIf="defisObs|async as defis">{{defis.length}}</section></td>
+    <td class="nbDefi"><section *ngIf="defis|async as lDefis">{{lDefis.length}}</section></td>
 </li>
