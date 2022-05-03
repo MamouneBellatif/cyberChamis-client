@@ -28,8 +28,9 @@ export class CyberchamisService {
 
   private url = environment.apiUrl;
 
-  addChami(userId: string, chami: Chami): Observable<Chami> {
-    return this.httpClient.post<Chami>(this.url+'chamis/'+userId, chami);
+  addChami(userId: string, chami: Chami, token: string): Observable<any> {
+    let toto = this.httpClient.post(this.url+'chamis/'+userId, chami, {headers:{Authorization:token}});
+    return toto
   }
 
   addDefi(defiId:string, defi: Defi): Observable<Defi> {
@@ -44,8 +45,8 @@ export class CyberchamisService {
     return this.httpClient.delete(this.url+'defis'+defiId);
   }
 
-  getChamiByEmail(chamiEmail: string, token: string): Observable<Chami> {
-    return this.httpClient.get<Chami>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}});
+  getChamiByEmail(chamiEmail: string, token: string): Observable<Chami[]> {
+    return this.httpClient.get<Chami[]>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}});
   }
 
 }

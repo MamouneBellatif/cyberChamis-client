@@ -20,7 +20,7 @@
     <section *ngIf="getAjouter()">
       <section *ngIf="user.email !== null"> 
         <section *ngIf="currentChami | async as chami; else chamiInexistant">
-          Bienvenue {{chami.login}} !
+          Bienvenue {{chami[0].login}} !
         </section>
       </section>
     
@@ -40,6 +40,7 @@
                                 name="loginChami"
                                 placeholder="Votre login">
               </mat-form-field>
+              &nbsp;
               <mat-form-field class="example-form-field" appearance="fill">
                 <mat-label>Age</mat-label>
                 <input matInput #ageChami
@@ -47,6 +48,7 @@
                                 name="age"
                                 placeholder="Votre âge">
               </mat-form-field>
+              &nbsp;
               <button mat-raised-button color="primary" type="submit">Valider</button>
             </form>
           </section>

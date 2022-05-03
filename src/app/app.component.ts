@@ -15,7 +15,7 @@ import { Observable, takeWhile } from 'rxjs';
 export class AppComponent implements OnInit{
 
   private jouer: boolean = false;
-  currentChami: Observable<Chami>|null = null;
+  currentChami: Observable<Chami[]>|null = null;
   private ajouter: boolean = false;
   private visualiser: boolean = false;
 
@@ -102,7 +102,8 @@ export class AppComponent implements OnInit{
     })
   }
 
-  getChamiByEmail(chamiEmail: string) : Observable<Chami> {
+
+  getChamiByEmail(chamiEmail: string) : Observable<Chami[]> {
     if(this.auth.user){
       //console.log("store token");
        firebase.auth().currentUser?.getIdToken(true).then(function(idToken) {
@@ -114,8 +115,7 @@ export class AppComponent implements OnInit{
   }
 
   addChami(chami: Chami) {
-    //console.log("whatever");
-    return this.ccService.addChami(chami.login, chami);
+    return this.ccService.addChami(chami.login, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   parseAge(s: string): number{
