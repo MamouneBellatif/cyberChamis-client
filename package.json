@@ -25,6 +25,7 @@
     "@ng-web-apis/geolocation": "^1.0.4",
     "firebase": "^9.7.0",
     "firebase-login": "^1.0.0",
+    "firebase-tools": "^10.7.2",
     "leaflet": "^1.8.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
