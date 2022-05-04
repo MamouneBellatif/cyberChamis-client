@@ -31,10 +31,9 @@ export class LocalisationComponent implements OnInit {
                });
     
     const onLocationFound = (e: { accuracy: number; latlng: L.LatLngExpression; }) => {
-        var radius = e.accuracy / 2;
         map.removeLayer(this.marker);
-        this.marker = L.marker(e.latlng).addTo(map)
-            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+        this.marker = new L.Marker(e.latlng, {draggable:true});
+        map.addLayer(this.marker);
     }
     
     map.on('locationfound', onLocationFound);
