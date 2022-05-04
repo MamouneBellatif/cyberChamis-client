@@ -1,5 +1,7 @@
+<!-- Utilisateur loggé -->
 <section *ngIf="auth.user | async as user; else showLogin">
 
+  <!-- Barre d'entête -->
   <mat-toolbar>
     <img src="{{ user.photoURL }}" class="profile-image"/>
     <span class="spacer-pic-nom"></span>
@@ -8,16 +10,20 @@
     <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
   </mat-toolbar>
 
+  <!-- Titre appli -->
   <div class="align-center">
     <h1>Projet intégrateur L3 Miage 2022</h1>
     <h2>Bienvenue chez les chamis</h2>
   </div>
+
+  <!-- Navigation -->
   <div class="example-button-row">
     <button mat-raised-button color="primary" (click)="setMode('AJOUTER')">Ajouter des défis</button>
     <button mat-raised-button color="primary" (click)="setMode('JOUER')">Jouer aux défis</button>
     <button mat-raised-button color="primary" (click)="setMode('VISUALISER')">Visualiser les chamis</button>
   </div>
     
+  <!-- Mode ajout de défis -->
   <section *ngIf="getMode() === 'AJOUTER'">
 
     <section *ngIf="user.email !== null"> 
@@ -26,6 +32,7 @@
       </section>
     </section>
   
+    <!-- Création de profil Chami -->
     <ng-template #chamiInexistant>
       <mat-card>
         <mat-card-subtitle>Créez votre profil de Chami pour pouvoir ajouter des défis !</mat-card-subtitle> 
@@ -62,20 +69,24 @@
 
   </section>
 
-  <section *ngIf="getMode() === 'JOUER'">
+  <!-- Mode jeu -->
+  <section *ngIf = "getMode() === 'JOUER'">
 
+    <!-- Connecté comme Chami -->
     <section *ngIf="user.email !== null"> 
       <section *ngIf="currentChami| async as chami ; else chamiInexistant">
         Bienvenue {{chami[0].login}} !
       </section>
 
-    <app-list-defis></app-list-defis>
+      <!-- Choix du défi -->
+      <app-list-defis></app-list-defis>
 
     </section>
   
+    <!-- Création du profil de Chami -->
     <ng-template #chamiInexistant>
       <mat-card>
-        <mat-card-subtitle>Créez votre profil de Chami pour pouvoir jouer aux défis défis !</mat-card-subtitle> 
+        <mat-card-subtitle>Créez votre profil de Chami pour pouvoir jouer aux défis !</mat-card-subtitle> 
         <section *ngIf="user.email !== null">
           <form (submit)="addChami({login: loginChami.value,
                                     age: parseAge(ageChami.value),
@@ -111,12 +122,13 @@
 
 </section>
 
+<!-- Consultation liste Chamis -->
 <section *ngIf="getMode() === 'VISUALISER'">
   <app-list-chamis></app-list-chamis>
 </section> 
 
+<!-- Page d'accueil - invite de connexion -->
 <ng-template #showLogin>
-
   <mat-toolbar>
     <span class="smaller">Veuillez vous authentifier.</span>
     <span class="example-spacer"></span>

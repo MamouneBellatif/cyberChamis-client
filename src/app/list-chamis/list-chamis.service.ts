@@ -10,12 +10,16 @@ import { tooltip } from 'leaflet';
 })
 export class ListChamisService  {
 
-  readonly listChamisObs!: Observable<Chami>;
-
+  //readonly listChamisObs!: Observable<Chami>;
+  // URL de l'API chamis
   private chamisListUrl = environment.apiUrl+'chamis/';
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * 
+   * @returns La promesse de la liste de tous les Chamis
+   */
   async getChamis(): Promise<Chami[]> {
     return await lastValueFrom(this.httpClient.get<Chami[]>(this.chamisListUrl, 
         {headers: new HttpHeaders(

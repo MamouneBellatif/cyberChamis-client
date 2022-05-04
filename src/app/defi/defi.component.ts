@@ -16,6 +16,11 @@ export class DefiComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * 
+   * @param stringDate Une string représentant une date au format YYYY-MM-DDThh:mm:ss
+   * @returns La date formattée selon la localisation de l'appareil
+   */
   parsedDateToString(stringDate: string) : string {
     return new Date(stringDate).toLocaleString();
   }

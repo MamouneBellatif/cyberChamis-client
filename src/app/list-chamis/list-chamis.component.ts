@@ -12,7 +12,8 @@ import { ListChamisService } from './list-chamis.service';
 export class ListChamisComponent implements OnInit {
 
   listChamis!: Promise<Chami[]>;
-  listDefisObsParChamis: Observable<Defi[]>[] = [];
+
+  //listDefisObsParChamis: Observable<Defi[]>[] = [];
 
   constructor(private lcService: ListChamisService) {
     this.listChamis = lcService.getChamis();

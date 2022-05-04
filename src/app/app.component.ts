@@ -13,8 +13,10 @@ import { Chami, CyberchamisService } from './cyberchamis.service';
 })
 export class AppComponent implements OnInit{
 
+  // Chami connecté
   currentChami: Promise<Chami[]>|null = null;
 
+  // Fonctionnalité en cours : VISUALISER [Chamis], JOUER, AJOUTER [Defi]
   private mode: string = '';
   
   getMode(): string {
@@ -25,6 +27,7 @@ export class AppComponent implements OnInit{
     this.mode = mode;
   }
 
+  // Configuration leaflet
   options: MapOptions = {
     layers: [
       tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18,  attribution: '...' }),
@@ -41,6 +44,7 @@ export class AppComponent implements OnInit{
 
   dataIconGoogle = 'assets/images/iconGoogle.png'; 
 
+
   ccService: CyberchamisService;
     
   constructor(public auth: AngularFireAuth, ccService: CyberchamisService) {
@@ -56,6 +60,7 @@ export class AppComponent implements OnInit{
     )
   } 
     
+  // Connexion avec Firebase
   login(): void { 
     const provider = new firebase.auth.GoogleAuthProvider(); 
     provider.setCustomParameters({ 
@@ -68,6 +73,7 @@ export class AppComponent implements OnInit{
     this.auth.signOut(); 
   }
 
+  // not used?
   idToken!: string;
 
   getToken():Promise<string>{
@@ -81,7 +87,12 @@ export class AppComponent implements OnInit{
     })
   }
 
-
+  /**
+   * Retourne la promesse des Chamis
+   * enregistrés avec l'email chamiEmail
+   * @param chamiEmail une adresse email à rechercher
+   * @returns la promesse d'une liste de Chamis ayant cette adresse email
+   */
   getChamiByEmail(chamiEmail: string) : Promise<Chami[]> {
     if(this.auth.user){
       //console.log("store token");
@@ -93,14 +104,27 @@ export class AppComponent implements OnInit{
     return this.ccService.getChamiByEmail(chamiEmail,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
+  /**
+   * Enregistre un nouveau Chami
+   * @param chami Un Chami à enregistrer
+   * @returns Une promesse ?
+   */
   addChami(chami: Chami):Promise<unknown> {
     return this.ccService.addChami(chami.login, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
+  /**
+   * Encapsulation de parseInt pour son utilisation dans le template
+   * @param s Une string représentant un entier
+   * @returns Ledit entier
+   */
   parseAge(s: string): number{
     return parseInt(s);
   }
 
+  /**
+   * Initialise le Chami courant currentChami
+   */
   ngOnInit(): void {
     this.auth.user.forEach(user => {
       if (user !== null)  

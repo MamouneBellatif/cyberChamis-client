@@ -8,10 +8,16 @@ import { Defi } from '../cyberchamis.service';
   providedIn: 'root'
 })
 export class ListElementChamiService {
+  // URL de l'API defis
   private defisListUrl = environment.apiUrl+'defis/';
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * Charge tous les défis crées par un Chami
+   * @param login le login du Chami
+   * @returns La promesse de la liste des Defis créés par ce Chami
+   */
   async getDefis(login: string): Promise<Defi[]>{
     return await lastValueFrom(this.httpClient.get<Defi[]>(this.defisListUrl+'chami/'+login, 
       {headers: new HttpHeaders(
