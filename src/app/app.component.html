@@ -45,6 +45,9 @@
                 <mat-label>Age</mat-label>
                 <input matInput #ageChami
                                 type="number"
+                                min="0"
+                                max="123"
+                                step="1"
                                 name="age"
                                 placeholder="Votre âge">
               </mat-form-field>
@@ -65,6 +68,10 @@
     <span class="example-spacer"></span>
     <button mat-stroked-button color="primary" (click)="login()">Login with Google</button>
   </mat-toolbar>
+  <div class="align-center">
+    <img src="assets/images/pngegg.png" class="logo"/>
+    <h1 class="main-title">CyberChaMis</h1>
+  </div>
 </ng-template>
 
 <section *ngIf="getMode() === 'JOUER'">
@@ -88,7 +95,4 @@
 
      <div *ngIf="displayCircle" [leafletLayer]="layerCircle"></div>
 </div>
-</section>
-
-<app-list-chamis></app-list-chamis>
 -->
