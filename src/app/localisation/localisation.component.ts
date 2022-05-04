@@ -23,7 +23,7 @@ export class LocalisationComponent implements OnInit {
             subdomains:['mt0','mt1','mt2','mt3']
         }).addTo(map);
     
-    
+        
     
     map.locate({setView: true, 
                  maxZoom: 16, 
