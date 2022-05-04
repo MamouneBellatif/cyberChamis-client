@@ -29,9 +29,10 @@ export class LocalisationComponent implements OnInit {
 
     map.addLayer(osmLayer);
 
-
+    let marker: L.Layer;
     navigator.geolocation.watchPosition((position) => {
-      L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindTooltip("Ma position", {permanent: true, direction: 'top'});
+      map.removeLayer(marker);
+      marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindTooltip("Ma position", {permanent: true, direction: 'top'});
     }, null, this.option);
   }
 
