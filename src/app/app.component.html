@@ -28,7 +28,7 @@
 
     <section *ngIf="user.email !== null"> 
       <section *ngIf="currentChami| async as chami ; else chamiInexistant">
-        Bienvenue {{chami[0].login}} !
+        <h2 class="bienvenue">Bienvenue {{chami[0].login}} !</h2>
       </section>
     </section>
   
@@ -75,11 +75,12 @@
     <!-- Connecté comme Chami -->
     <section *ngIf="user.email !== null"> 
       <section *ngIf="currentChami| async as chami ; else chamiInexistant">
-        Bienvenue {{chami[0].login}} !
-      </section>
+        <h2 class="bienvenue">Bienvenue {{chami[0].login}} !</h2>
 
-      <!-- Choix du défi -->
-      <app-list-defis></app-list-defis>
+        <!-- Choix du défi -->
+        <app-list-defis></app-list-defis>
+
+      </section>
 
     </section>
   
