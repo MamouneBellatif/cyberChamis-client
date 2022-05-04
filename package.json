@@ -23,6 +23,7 @@
     "@angular/router": "~13.3.0",
     "@asymmetrik/ngx-leaflet": "^13.0.2",
     "firebase": "^9.7.0",
+    "@ng-web-apis/geolocation": "^1.0.4",
     "firebase-login": "^1.0.0",
     "leaflet": "^1.8.0",
     "rxjs": "~7.5.0",
