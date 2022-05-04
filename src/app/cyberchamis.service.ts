@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, lastValueFrom, Observable } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface Chami {
@@ -40,16 +40,16 @@ export class CyberchamisService {
     return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi) );
   }
 
-  deleteChami(userId: string): Observable<unknown> {
-    return this.httpClient.delete(this.url+'chamis/'+userId);
+  async deleteChami(userId: string): Promise<unknown> {
+    return await lastValueFrom(this.httpClient.delete(this.url+'chamis/'+userId));
   }
 
-  deleteDefi(defiId: string): Observable<unknown> {
-    return this.httpClient.delete(this.url+'defis'+defiId);
+  async deleteDefi(defiId: string): Promise<unknown> {
+    return await lastValueFrom(this.httpClient.delete(this.url+'defis'+defiId));
   }
 
-  getChamiByEmail(chamiEmail: string, token: string): Observable<Chami[]> {
-    return this.httpClient.get<Chami[]>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}});
+  async getChamiByEmail(chamiEmail: string, token: string): Promise<Chami[]> {
+    return await lastValueFrom(this.httpClient.get<Chami[]>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}}));
   }
 
 }

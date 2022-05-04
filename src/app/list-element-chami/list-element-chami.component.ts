@@ -11,11 +11,11 @@ import { ListElementChamiService } from './list-element-chami.service';
 export class ListElementChamiComponent implements OnInit {
   @Input() chami!: Chami;
 
-  defisObs!: Observable<Defi[]>;
+  defis!: Promise<Defi[]>;
   constructor(public lecService: ListElementChamiService) { }
 
   ngOnInit(): void {
-    this.defisObs = this.lecService.getDefis(this.chami.login);
+    this.defis = this.lecService.getDefis(this.chami.login)
   }
 
 }

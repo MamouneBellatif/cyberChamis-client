@@ -1,6 +1,6 @@
 <section *ngIf="auth.user | async as user; else showLogin">
   <mat-toolbar>
-    <img src="{{ user.photoURL }}" width=40px/>
+    <img src="{{ user.photoURL }}" class="profile-image"/>
     <span class="spacer-pic-nom"></span>
     <span>{{ user.displayName }}</span>
     <span class="example-spacer"></span>
@@ -19,7 +19,7 @@
     
     <section *ngIf="getMode() === 'AJOUTER'">
       <section *ngIf="user.email !== null"> 
-        <section *ngIf="currentChami | async as chami; else chamiInexistant">
+        <section *ngIf="currentChami| async as chami ; else chamiInexistant">
           Bienvenue {{chami[0].login}} !
         </section>
       </section>
@@ -64,12 +64,12 @@
 
 <ng-template #showLogin>
   <mat-toolbar>
-    <span>Veuillez vous authentifier.</span>
+    <span class="smaller">Veuillez vous authentifier.</span>
     <span class="example-spacer"></span>
     <button mat-stroked-button color="primary" (click)="login()">Login with Google</button>
   </mat-toolbar>
   <div class="align-center">
-    <img src="assets/images/pngegg.png" class="logo"/>
+    <img src="assets/images/pngegg.png" class="main-logo"/>
     <h1 class="main-title">CyberChaMis</h1>
   </div>
 </ng-template>

@@ -11,11 +11,11 @@ import { ListChamisService } from './list-chamis.service';
 })
 export class ListChamisComponent implements OnInit {
 
-  readonly listChamisObs!: Observable<Chami[]>;
+  listChamis!: Promise<Chami[]>;
   listDefisObsParChamis: Observable<Defi[]>[] = [];
 
   constructor(private lcService: ListChamisService) {
-    this.listChamisObs = lcService.getChamis();
+    this.listChamis = lcService.getChamis();
   }
 
 

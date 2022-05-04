@@ -13,19 +13,19 @@ export class ListDefisComponent implements OnInit {
 
   public currentDefi: Defi | undefined;
 
-  readonly listDefisObs!: Observable<Defi[]>;
+  listDefis!: Promise<Defi[]>;
   readonly currentDefiObs!: Observable<Defi>;
   readonly defisObs!: Observable<{defis: readonly Defi[], currentDefi: Defi}>;
 
   constructor(private ldService: ListDefisService) { 
-    this.listDefisObs = ldService.getDefisObs();
-    this.defisObs = combineLatest(
+    this.listDefis = ldService.getDefisObs();
+    /*this.defisObs = combineLatest(
       [this.listDefisObs, this.currentDefiObs]
     ).pipe(
       map(
         ([defis, currentDefi]) => ({defis, currentDefi})
       )
-    );
+    );*/
   }
 
   ngOnInit(): void {

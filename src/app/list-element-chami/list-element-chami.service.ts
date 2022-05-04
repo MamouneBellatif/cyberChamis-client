@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Defi } from '../cyberchamis.service';
 
@@ -11,11 +12,11 @@ export class ListElementChamiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getDefis(login: string){
-    return this.httpClient.get<Defi[]>(this.defisListUrl+'chami/'+login, 
+  async getDefis(login: string): Promise<Defi[]>{
+    return await lastValueFrom(this.httpClient.get<Defi[]>(this.defisListUrl+'chami/'+login, 
       {headers: new HttpHeaders(
         {Authorization: JSON.parse(localStorage.getItem("currentUserToken") || '{""}')})}
-      );
+      ));
 
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Defi } from '../cyberchamis.service';
 
@@ -13,11 +13,10 @@ export class ListDefisService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getDefisObs(): Observable<Defi[]> {
-    // XXX DANGER : NE JAMAIS stocker un jeton de sécurité dans localStorage... tout le monde y a accès...
-    return this.httpClient.get<Defi[]>(this.listDefisUrl, 
+  async getDefisObs(): Promise<Defi[]> {
+    return await lastValueFrom(this.httpClient.get<Defi[]>(this.listDefisUrl, 
       {headers: new HttpHeaders(
-        {'Authorization': JSON.parse(localStorage.getItem("currentUserToken") || '{}')})});
+        {'Authorization': JSON.parse(localStorage.getItem("currentUserToken") || '{}')})}));
   }
 
 
