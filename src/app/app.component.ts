@@ -76,10 +76,13 @@ export class AppComponent implements OnInit{
   // not used?
   idToken!: string;
 
+  userId!:string;
+
   getToken():Promise<string>{
     return new Promise((resolve) => {
       this.auth.onAuthStateChanged(user => { if(user){
         user.getIdToken().then(idToken => { this.idToken=idToken;
+        this.userId=user.uid;
         resolve(idToken);
         });
       }
@@ -110,7 +113,9 @@ export class AppComponent implements OnInit{
    * @returns Une promesse ?
    */
   addChami(chami: Chami):Promise<unknown> {
-    return this.ccService.addChami(chami.login, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    // this.auth.user.subscribe(data => this.userId=data?.uid ||'').unsubscribe();
+    
+    return this.ccService.addChami(firebase.auth().currentUser?.uid||'', chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   /**
@@ -130,5 +135,14 @@ export class AppComponent implements OnInit{
       if (user !== null)  
         this.currentChami = this.getChamiByEmail(user.email||''); 
       });
+      console.log("init");
+      firebase.auth().onAuthStateChanged((user) => {
+        if(user){
+          console.log("userId "+user.uid);
+          this.userId=user.uid;
+        }else{
+
+        }
+      })
   }
 }

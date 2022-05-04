@@ -4,6 +4,7 @@ import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface Chami {
+  readonly id: string;
   readonly login: string;
   readonly age: number;
   readonly defis: Defi[];
@@ -36,8 +37,8 @@ export class CyberchamisService {
     return toto
   }
 
-  async addDefi(defiId:string, defi: Defi): Promise<Defi> {
-    return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi) );
+  async addDefi(defiId:string, defi: Defi, token: string): Promise<Defi> {
+    return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi,{headers:{Authorization:token}}) );
   }
 
   async deleteChami(userId: string): Promise<unknown> {

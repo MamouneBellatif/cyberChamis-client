@@ -27,6 +27,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListElementChamiComponent } from './list-element-chami/list-element-chami.component';
 import { LocalisationComponent } from './localisation/localisation.component';
+import { NewDefiComponent } from './new-defi/new-defi.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LocalisationComponent } from './localisation/localisation.component';
     DefiComponent,
     ListDefisComponent,
     ListElementChamiComponent,
-    LocalisationComponent
+    LocalisationComponent,
+    NewDefiComponent
   ],
   imports: [
     BrowserModule,
