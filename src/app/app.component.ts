@@ -110,7 +110,7 @@ export class AppComponent implements OnInit{
    * @returns Une promesse ?
    */
   addChami(chami: Chami):Promise<unknown> {
-    return this.ccService.addChami(chami.login, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    return this.ccService.addChami(chami.id, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   /**
