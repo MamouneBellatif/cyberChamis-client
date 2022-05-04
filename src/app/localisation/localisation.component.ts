@@ -10,7 +10,9 @@ import * as L from 'leaflet';
 })
 export class LocalisationComponent implements OnInit {
 
+  marker : L.Marker;
   constructor() {
+    this.marker = L.marker([0,0]);
   }
   ngOnInit(): void {
 
@@ -28,9 +30,10 @@ export class LocalisationComponent implements OnInit {
                  watch:true
                });
     
-    function onLocationFound(e: { accuracy: number; latlng: L.LatLngExpression; }) {
+    const onLocationFound = (e: { accuracy: number; latlng: L.LatLngExpression; }) => {
         var radius = e.accuracy / 2;
-        L.marker(e.latlng).addTo(map)
+        map.removeLayer(this.marker);
+        this.marker = L.marker(e.latlng).addTo(map)
             .bindPopup("You are within " + radius + " meters from this point").openPopup();
     }
     
