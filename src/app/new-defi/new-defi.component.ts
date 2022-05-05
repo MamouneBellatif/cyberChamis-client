@@ -24,7 +24,7 @@ export class NewDefiComponent implements OnInit {
 
   addDefi(defi: Defi) :Promise<unknown>{
     console.log('addDefi', defi);
-    return this.ccService.addDefi(defi.id,defi,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    return this.ccService.addDefi(defi,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   getCategorie(){
