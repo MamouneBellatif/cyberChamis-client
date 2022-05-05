@@ -7,6 +7,13 @@
     <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
     <mat-card-content>
         <pre>{{defi.description}}</pre>
+        <section *ngIf="this.defi.etape.length > 0">
+            <button mat-stroked-button *ngIf="numEtape===0" (click)="nextEtape()">Afficher les étapes</button>
+                <section *ngFor="let etape of etapesTmp">
+                    <app-etape [etape]="etape"></app-etape> 
+                </section>
+                <button mat-stroked-button *ngIf="numEtape>0 && etapeSuivExists()" (click)="nextEtape()">Etape suivante</button>
+        </section>
     </mat-card-content>
     <!--
         <mat-card-actions>
@@ -14,4 +21,4 @@
         <button mat-button>PARTAGER</button>
         </mat-card-actions>
     -->
-  </mat-card>
+</mat-card>

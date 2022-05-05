@@ -1,39 +1,39 @@
 <!-- Détail du défi sélectionné -->
-<app-defi *ngIf="currentDefi" 
-          [defi]="currentDefi">
-</app-defi>
+<app-defi *ngIf="currentDefi" [defi]="currentDefi"> </app-defi>
 
-<section class="ListDefis"
-         *ngIf="listDefis |async as lDefis">
-    
-    <mat-card class="defi-card">
-        <mat-card-header>
-            <mat-card-title>Défis</mat-card-title>
-            <mat-card-subtitle>Choisissez le défi que vous allez relever !</mat-card-subtitle>
-        </mat-card-header>
-        
-        <!-- Liste des défis -->
-        <mat-card-content>
-            <ul>
-                <li class="grid">
-                    <th class="defiId">Défi</th>
-                    <th class="titre">Titre</th>
-                    <!--
+<section class="ListDefis" *ngIf="listDefis | async as lDefis">
+  <mat-card class="defi-card">
+    <mat-card-header>
+      <mat-card-title>Défis</mat-card-title>
+      <mat-card-subtitle
+        >Choisissez le défi que vous allez relever !</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <!-- Liste des défis -->
+    <mat-card-content>
+      <ul>
+        <li class="grid">
+          <th class="defiId">Défi</th>
+          <th class="titre">Titre</th>
+          <!--
                         <th>Auteur</th>
                         <th>Date de création</th>
                     -->
-                </li>
-                <li class="grid clickableLine"
-                    *ngFor="let defi of lDefis"
-                    (click)="selectDefi(defi)">
-                    <td class="defiId">{{defi.id}}</td>
-                    <td class="titre">{{defi.titre}}</td>
-                    <!--
+        </li>
+        <li
+          class="grid clickableLine"
+          *ngFor="let defi of lDefis"
+          (click)="selectDefi(defi)"
+        >
+          <td class="defiId">{{ defi.id }}</td>
+          <td class="titre">{{ defi.titre }}</td>
+          <!--
                         <td>{{defi.auteur.login}}</td>
                         <td>{{parsedDateToString(defi.dateDeCreation)}}</td>
                     -->
-                </li>
-            </ul>
-        </mat-card-content>
-    </mat-card>
+        </li>
+      </ul>
+    </mat-card-content>
+  </mat-card>
 </section>

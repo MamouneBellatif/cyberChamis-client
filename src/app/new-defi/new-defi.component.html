@@ -2,24 +2,47 @@
 
 <div>
     <form (submit)="addDefi({id:'',
-                            categorie: Categorie.ENIGME,
+                            categorie: getCategorieString(categorie.value),
                             titre: titre.value,
                             dateDeCreation: '',
-                            description: '',
-                            auteur:chami});titre.value = ''">
+                            etape:[],
+                            description: description.value,
+                            auteur:chami})">
 
         <!-- <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>id du defi</mat-label>
             <input #id matInput type="text" name="idDefi" placeholder="id du défi">
         </mat-form-field> -->
+        <div>
+            <div style="margin-left: 32px">
+                <mat-form-field class="example-form-field" appearance="fill">
+                  <mat-label>Titre</mat-label>
+                  <input
+                    #titre
+                    matInput
+                    type="text"
+                    name="titreDefi"
+                    placeholder="Titre du défi"
+                  />
+                </mat-form-field>
 
-        <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Titre</mat-label>
-            <input #titre matInput type="text" name="titreDefi" placeholder="titre du défi">
-        </mat-form-field>
-
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea #description matInput placeholder="Description générale du défi"></textarea>
+                </mat-form-field>
         
-        <button mat-raised-button color="primary" type="submit">Créer</button>
+                <mat-form-field appearance="fill">
+                    <mat-label>Categorie</mat-label>
+                    <mat-select #categorie>
+                        <mat-option *ngFor="let cat of getCategorie()" [value]="cat">
+                            {{cat}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit">Créer</button>
+              </div>
+        </div>
+       
     </form>
 </div>
-
