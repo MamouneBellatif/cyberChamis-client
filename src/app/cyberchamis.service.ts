@@ -12,7 +12,7 @@ export interface Chami {
 }
 
 export enum Categorie {
-  'SPORTIF', 'CULTUREL', 'ENIGME'
+  SPORTIF="SPORTIF", CULTUREL="CULTUREL", ENIGME="ENIGME"
 }
 
 export interface Defi {
