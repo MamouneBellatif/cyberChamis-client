@@ -7,7 +7,7 @@ export interface Chami {
   readonly id: string;
   readonly login: string;
   readonly age: number;
-  readonly defis: Defi[];
+  defis: Defi[];
   readonly email: string;
 }
 

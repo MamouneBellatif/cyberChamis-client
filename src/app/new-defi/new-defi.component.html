@@ -1,25 +1,38 @@
 <!-- Faire une route a part, id automatique ? , pourquoi le chami est dasns un tableau-->
 
 <div>
-    <form (submit)="addDefi({id:'',
-                            categorie: Categorie.ENIGME,
-                            titre: titre.value,
-                            dateDeCreation: '',
-                            description: '',
-                            auteur:chami})">
-
-        <!-- <mat-form-field class="example-form-field" appearance="fill">
+  <form
+    (submit)="
+      addDefi({
+        id: '',
+        categorie: Categorie.ENIGME,
+        titre: titre.value,
+        dateDeCreation: '',
+        description: '',
+        auteur: chami
+      })
+    "
+  >
+    <!-- <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>id du defi</mat-label>
             <input #id matInput type="text" name="idDefi" placeholder="id du défi">
         </mat-form-field> -->
+        <div>
+            <div style="margin-left: 32px">
+                <mat-form-field class="example-form-field" appearance="fill">
+                  <mat-label>Titre</mat-label>
+                  <input
+                    #titre
+                    matInput
+                    type="text"
+                    name="titreDefi"
+                    placeholder="Titre du défi"
+                  />
+                </mat-form-field>
+                <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit">Créer</button>
+              </div>
+        </div>
 
-        <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Titre</mat-label>
-            <input #titre matInput type="text" name="titreDefi" placeholder="titre du défi">
-        </mat-form-field>
 
-        
-        <button mat-raised-button color="primary" type="submit">Créer</button>
-    </form>
+  </form>
 </div>
-
