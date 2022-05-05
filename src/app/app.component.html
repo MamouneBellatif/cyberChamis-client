@@ -5,9 +5,9 @@
   <mat-toolbar>
     <img src="{{ user.photoURL }}" class="profile-image"/>
     <span class="spacer-pic-nom"></span>
-    <span>{{ user.displayName }}</span>
+    <span class="smaller">{{ user.displayName }}</span>
     <span class="example-spacer"></span>
-    <button mat-stroked-button color="primary" (click)="logout()">Logout</button>
+    <button mat-stroked-button color="primary" (click)="logout()">Sign out</button>
   </mat-toolbar>
 
   <!-- Titre appli -->
@@ -111,7 +111,9 @@
   <mat-toolbar>
     <span class="smaller">Veuillez vous authentifier.</span>
     <span class="example-spacer"></span>
-    <button mat-stroked-button color="primary" (click)="login()">Login with Google</button>
+    <button mat-stroked-button color="primary" (click)="login()">
+      <img src="assets/images/google-logo.png" class="google-logo"/>
+      Sign in</button>
   </mat-toolbar>
 
   <div class="align-center">
