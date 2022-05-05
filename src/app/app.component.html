@@ -42,7 +42,26 @@
       <!-- Consultation liste Chamis -->
       <section *ngIf="getMode() === 'VISUALISER'">
         <app-list-chamis></app-list-chamis>
-      </section> 
+      </section>
+
+      <!-- Afficher la carte -->
+      <app-localisation></app-localisation>
+
+      <!--
+      <label>
+        Afficher le cercle
+        <input type="checkbox" [(ngModel)]="displayCircle" />
+      </label>
+
+      <div style="height: 300px;"
+          leaflet 
+          [leafletOptions]="options"
+          [leafletLayers]="otherLayers">
+
+          <div *ngIf="displayCircle" [leafletLayer]="layerCircle"></div>
+      </div>
+      -->
+      
     </section>
   </section>
 
@@ -100,21 +119,3 @@
   </div>
 
 </ng-template>
-
-<!-- Afficher la carte -->
-<app-localisation></app-localisation>
-
-<!--
-<label>
-  Afficher le cercle
-  <input type="checkbox" [(ngModel)]="displayCircle" />
-</label>
-
-<div style="height: 300px;"
-     leaflet 
-     [leafletOptions]="options"
-     [leafletLayers]="otherLayers">
-
-     <div *ngIf="displayCircle" [leafletLayer]="layerCircle"></div>
-</div>
--->
