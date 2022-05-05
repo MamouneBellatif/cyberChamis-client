@@ -23,10 +23,11 @@
 
       <!-- Navigation -->
       <div class="example-button-row">
-        <button mat-raised-button color="primary" (click)="setMode('AJOUTER')">Ajouter des défis</button>
-        <button mat-raised-button color="primary" (click)="setMode('JOUER')">Jouer aux défis</button>
-        <button mat-raised-button color="primary" (click)="setMode('VISUALISER')">Visualiser les chamis</button>
+        <button mat-raised-button (click)="setMode('AJOUTER')">Ajouter des défis</button>
+        <button mat-raised-button (click)="setMode('JOUER')">Jouer aux défis</button>
+        <button mat-raised-button (click)="setMode('VISUALISER')">Visualiser les chamis</button>
       </div>
+      &nbsp;
         
       <!-- Mode ajout de défis -->
       <section *ngIf="getMode() === 'AJOUTER'">
