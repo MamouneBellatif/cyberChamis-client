@@ -137,6 +137,12 @@ export class AppComponent implements OnInit{
       if (user !== null)  
         this.currentChami = this.getChamiByEmail(user.email||''); 
       });
+
+    // this.auth.user.subscribe(data =>{
+       
+    //      this.currentChami = this.getChamiByEmail(data.email||'');}
+    //     .unsubscribe();
+
       console.log("init");
       firebase.auth().onAuthStateChanged((user) => {
         if(user){

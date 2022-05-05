@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Chami, CyberchamisService, Defi } from '../cyberchamis.service';
+import {Categorie, Chami, CyberchamisService, Defi } from '../cyberchamis.service';
 import firebase from 'firebase/compat/app'; 
 
 
@@ -12,9 +12,13 @@ import firebase from 'firebase/compat/app';
 export class NewDefiComponent implements OnInit {
 
   @Input() chami!:Chami;
+
+  // categorie: Categorie = Categorie.SPORTIF;
+
+  Categorie = Categorie;
+
   // @Input() token!:string;
   constructor(private auth: AngularFireAuth,private ccService: CyberchamisService) { }
-
   ngOnInit(): void {
   }
 

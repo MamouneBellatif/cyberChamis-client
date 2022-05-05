@@ -1,7 +1,8 @@
 <!-- Faire une route a part, id automatique ? , pourquoi le chami est dasns un tableau-->
 
 <div>
-    <form (submit)="addDefi({id: id.value,
+    <form (submit)="addDefi({id: '',
+                            categorie : Categorie.SPORTIF,
                             titre: titre.value,
                             dateDeCreation: '',
                             description: '',
@@ -16,6 +17,8 @@
             <mat-label>Titre</mat-label>
             <input #titre matInput type="text" name="titreDefi" placeholder="titre du défi">
         </mat-form-field>
+
+        
         <button mat-raised-button color="primary" type="submit">Créer</button>
     </form>
 </div>
