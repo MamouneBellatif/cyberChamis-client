@@ -15,7 +15,7 @@ export class NewDefiComponent implements OnInit {
 
   // categorie: Categorie = Categorie.SPORTIF;
 
-  Categorie = Categorie;
+  // Categorie = Categorie;
 
   // @Input() token!:string;
   constructor(private auth: AngularFireAuth,private ccService: CyberchamisService) { }
