@@ -62,8 +62,8 @@ export class CyberchamisService {
     return toto
   }
 
-  async addDefi(defiId:string, defi: Defi): Promise<Defi> {
-    return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi) );
+  async addDefi(defiId:string, defi: Defi, token: string): Promise<Defi> {
+    return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/'+defiId, defi,{headers:{Authorization:token}}) );
   }
 
   async deleteChami(userId: string): Promise<unknown> {

@@ -29,9 +29,10 @@
     <section *ngIf="user.email !== null"> 
       <section *ngIf="currentChami| async as chami ; else chamiInexistant">
         <h2 class="bienvenue">Bienvenue {{chami[0].login}} !</h2>
+        <app-new-defi [chami]="chami[0]"  ></app-new-defi>
       </section>
     </section>
-  
+    
     <!-- Création de profil Chami -->
     <ng-template #chamiInexistant>
       <mat-card>
@@ -86,7 +87,7 @@
 
     </section>
   
-    <!-- Création du profil de Chami -->
+    <!-- Création dus profil de Chami -->
     <ng-template #chamiInexistant>
       <mat-card>
         <mat-card-subtitle>Créez votre profil de Chami pour pouvoir jouer aux défis !</mat-card-subtitle> 
