@@ -67,7 +67,9 @@ export class AppComponent implements OnInit{
     provider.setCustomParameters({ 
       prompt: 'select_account' 
     }); 
-    this.auth.signInWithPopup(provider);
+    this.auth.signInWithPopup(provider).then( userCred => {
+      this.currentChami = this.getChamiByEmail(userCred.user?.email||''); 
+    });
   } 
   
   logout(): void { 
