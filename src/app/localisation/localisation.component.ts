@@ -16,23 +16,44 @@ export class LocalisationComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    let map = L.map('map')
+    let map = L.map('map', {
+      center: [45.18680056764414, 5.736371520710951],
+      zoom: 16
+    });
+    let osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+      maxZoom: 25
+  });
+
+  map.addLayer(osmLayer);
+
+    /*let map = L.map('map')
 
     const googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
             maxZoom: 20,
             subdomains:['mt0','mt1','mt2','mt3']
-        }).addTo(map);
+        }).addTo(map);*/
     
         
     
     map.locate({setView: true, 
-                 maxZoom: 16, 
+                 maxZoom: 20, 
                  watch:true
                });
     
+    /*let icon = new L.Icon.Default();
+    icon.options.shadowSize = [0,0];*/
+
+    
+    let icon = new L.Icon({
+      iconSize: [ 30, 41 ],
+      iconAnchor: [ 13, 0 ],
+      iconUrl: 'assets/images/marker-icon.png',
+      shadowUrl: 'assets/images/marker-shadow.png'
+    });
     const onLocationFound = (e: { accuracy: number; latlng: L.LatLngExpression; }) => {
         map.removeLayer(this.marker);
-        this.marker = new L.Marker(e.latlng, {draggable:true});
+        this.marker = new L.Marker(e.latlng, {draggable:true}).setIcon(icon);
         map.addLayer(this.marker);
     }
     
@@ -40,9 +61,7 @@ export class LocalisationComponent implements OnInit {
     
     }
 
-
-
-  /*
+/*
   option = {
     enableHighAccuracy: true
   };
@@ -54,7 +73,7 @@ export class LocalisationComponent implements OnInit {
     });
     let osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors',
-      maxZoom: 20
+      maxZoom: 25
   });
 
     map.addLayer(osmLayer);
@@ -65,15 +84,11 @@ export class LocalisationComponent implements OnInit {
 
 
 
-
-          let marker: L.Layer;
-          navigator.geolocation.watchPosition((position) => {
-            map.removeLayer(marker);
-            marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindTooltip("Ma position", {permanent: true, direction: 'top'});
-          
-          
-          
-          
+            let icon = new L.Icon.Default();
+            icon.options.shadowSize = [0,0];
+            navigator.geolocation.watchPosition((position) => {
+            map.removeLayer(this.marker);
+            this.marker = L.marker([position.coords.latitude, position.coords.longitude], {icon : icon}).addTo(map).bindTooltip("Ma position", {permanent: true, direction: 'top'});
           
           }, (error) => {
             console.log('System/OS services disabled', navigator);
@@ -91,5 +106,5 @@ export class LocalisationComponent implements OnInit {
       );
 
   }
-*/
+  */
 }
