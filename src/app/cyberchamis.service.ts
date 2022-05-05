@@ -12,7 +12,7 @@ export interface Chami {
 }
 
 export enum Categorie {
-  'SPORTIF', 'CULTUREL', 'ENIGME'
+  SPORTIF="SPORTIF", CULTUREL="CULTUREL", ENIGME="ENIGME"
 }
 
 export interface Defi {
@@ -64,7 +64,7 @@ export class CyberchamisService {
 
   async addDefi(defiId:string, defi: Defi, token: string): Promise<Defi> {
     // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
-    const defiPost = {catagorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur};
+    const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur};
     return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defiPost,{headers:{Authorization:token}}) );
     // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
   }
@@ -79,6 +79,10 @@ export class CyberchamisService {
 
   async getChamiByEmail(chamiEmail: string, token: string): Promise<Chami[]> {
     return await lastValueFrom(this.httpClient.get<Chami[]>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}}));
+  }
+
+  getCategorie() {
+    return Object.values(Categorie);
   }
 
 }

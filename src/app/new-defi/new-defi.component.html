@@ -2,7 +2,7 @@
 
 <div>
     <form (submit)="addDefi({id:'',
-                            categorie: Categorie.ENIGME,
+                            categorie: getCategorieString(categorie.value),
                             titre: titre.value,
                             dateDeCreation: '',
                             description: description.value,
@@ -21,6 +21,15 @@
         <mat-form-field>
             <mat-label>Description</mat-label>
             <textarea #description matInput placeholder="Description générale du défi"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Categorie</mat-label>
+            <mat-select #categorie>
+                <mat-option *ngFor="let cat of getCategorie()" [value]="cat">
+                    {{cat}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
 
         
