@@ -14,6 +14,7 @@ export class LocalisationComponent implements OnInit {
   constructor() {
     this.marker = L.marker([0,0]);
   }
+  /*
   ngOnInit(): void {
 
     let map = L.map('map')
@@ -40,9 +41,8 @@ export class LocalisationComponent implements OnInit {
     
     }
 
+*/
 
-
-  /*
   option = {
     enableHighAccuracy: true
   };
@@ -65,13 +65,9 @@ export class LocalisationComponent implements OnInit {
 
 
 
-
-          let marker: L.Layer;
-          navigator.geolocation.watchPosition((position) => {
-            map.removeLayer(marker);
-            marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindTooltip("Ma position", {permanent: true, direction: 'top'});
-          
-          
+            navigator.geolocation.watchPosition((position) => {
+            map.removeLayer(this.marker);
+            this.marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindTooltip("Ma position", {permanent: true, direction: 'top'});
           
           
           
@@ -91,5 +87,4 @@ export class LocalisationComponent implements OnInit {
       );
 
   }
-*/
 }
