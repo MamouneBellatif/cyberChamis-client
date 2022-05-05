@@ -29,6 +29,7 @@ import { ListElementChamiComponent } from './list-element-chami/list-element-cha
 import { LocalisationComponent } from './localisation/localisation.component';
 import { NewDefiComponent } from './new-defi/new-defi.component';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { EtapeComponent } from './etape/etape.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     ListDefisComponent,
     ListElementChamiComponent,
     LocalisationComponent,
-    NewDefiComponent
+    NewDefiComponent,
+    EtapeComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,8 @@ export class DefiComponent implements OnInit {
 
   @Input() defi!: Defi;
 
+  private etape1: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -23,5 +25,13 @@ export class DefiComponent implements OnInit {
    */
   parsedDateToString(stringDate: string) : string {
     return new Date(stringDate).toLocaleString();
+  }
+
+  set1erEtape(etape1: boolean) {
+    this.etape1 = etape1;
+  }
+
+  get1erEtape() {
+    return this.etape1;
   }
 }

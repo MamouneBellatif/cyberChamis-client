@@ -7,6 +7,11 @@
     <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
     <mat-card-content>
         <pre>{{defi.description}}</pre>
+        <button mat-stroked-button (click)="set1erEtape(true)">Afficher les étapes</button>
+        <section *ngIf="get1erEtape()">
+            <app-etape [etape]="defi.etape[0]"></app-etape>
+        </section>
+        
     </mat-card-content>
     <!--
         <mat-card-actions>

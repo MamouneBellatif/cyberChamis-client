@@ -22,6 +22,7 @@ export interface Defi {
   readonly titre: string;
   readonly dateDeCreation: string;
   readonly description: string;
+  readonly etape: Etape[];
   readonly auteur: Chami;
 }
 
