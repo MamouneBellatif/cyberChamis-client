@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {Categorie, Chami, CyberchamisService, Defi } from '../cyberchamis.service';
+import { Categorie, Chami, CyberchamisService, Defi } from '../cyberchamis.service';
 import firebase from 'firebase/compat/app'; 
 
 
@@ -10,7 +10,7 @@ import firebase from 'firebase/compat/app';
   styleUrls: ['./new-defi.component.scss']
 })
 export class NewDefiComponent implements OnInit {
-
+  Categorie = Categorie; // C'est la magie.
   @Input() chami!:Chami;
 
   // categorie: Categorie = Categorie.SPORTIF;

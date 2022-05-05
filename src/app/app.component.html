@@ -13,125 +13,98 @@
   <!-- Titre appli -->
   <div class="align-center">
     <h1>Projet intégrateur L3 Miage 2022</h1>
-    <h2>Bienvenue chez les chamis</h2>
   </div>
 
-  <!-- Navigation -->
-  <div class="example-button-row">
-    <button mat-raised-button color="primary" (click)="setMode('AJOUTER')">Ajouter des défis</button>
-    <button mat-raised-button color="primary" (click)="setMode('JOUER')">Jouer aux défis</button>
-    <button mat-raised-button color="primary" (click)="setMode('VISUALISER')">Visualiser les chamis</button>
-  </div>
-    
-  <!-- Mode ajout de défis -->
-  <section *ngIf="getMode() === 'AJOUTER'">
+  <!-- Connecté comme Chami -->
+  <section *ngIf="user.email !== null"> 
+    <section *ngIf="currentChami| async as chami ; else chamiInexistant">
 
-    <section *ngIf="user.email !== null"> 
-      <section *ngIf="currentChami| async as chami ; else chamiInexistant">
-        <h2 class="bienvenue">Bienvenue {{chami[0].login}} !</h2>
+      <h2 class="bienvenue">Bienvenue {{chami[0].login}} chez les chamis !</h2>
+
+      <!-- Navigation -->
+      <div class="example-button-row">
+        <button mat-raised-button (click)="setMode('AJOUTER')">Ajouter des défis</button>
+        <button mat-raised-button (click)="setMode('JOUER')">Jouer aux défis</button>
+        <button mat-raised-button (click)="setMode('VISUALISER')">Visualiser les chamis</button>
+      </div>
+      &nbsp;
+        
+      <!-- Mode ajout de défis -->
+      <section *ngIf="getMode() === 'AJOUTER'">
         <app-new-defi [chami]="chami[0]"  ></app-new-defi>
       </section>
-    </section>
-    
-    <!-- Création de profil Chami -->
-    <ng-template #chamiInexistant>
-      <mat-card>
-        <mat-card-subtitle>Créez votre profil de Chami pour pouvoir ajouter des défis !</mat-card-subtitle> 
-        <section *ngIf="user.email !== null">
-          <form (submit)="addChami({
-                                    id: user.uid,
-                                    login: loginChami.value,
-                                    age: parseAge(ageChami.value),
-                                    defis: [],
-                                    email: user.email
-                                  }); loginChami.value=''; ageChami.value=''">
-            <mat-form-field class="example-form-field" appearance="fill">
-              <mat-label>Login</mat-label>
-              <input matInput #loginChami
-                              type="text"
-                              name="loginChami"
-                              placeholder="Votre login">
-            </mat-form-field>
-            &nbsp;
-            <mat-form-field class="example-form-field" appearance="fill">
-              <mat-label>Age</mat-label>
-              <input matInput #ageChami
-                              type="number"
-                              min="0"
-                              max="123"
-                              step="1"
-                              name="age"
-                              placeholder="Votre âge">
-            </mat-form-field>
-            &nbsp;
-            <button mat-raised-button color="primary" type="submit">Valider</button>
-          </form>
-        </section>
-      </mat-card>
-    </ng-template>
 
-  </section>
-
-  <!-- Mode jeu -->
-  <section *ngIf = "getMode() === 'JOUER'">
-
-    <!-- Connecté comme Chami -->
-    <section *ngIf="user.email !== null"> 
-      <section *ngIf="currentChami| async as chami ; else chamiInexistant">
-        <h2 class="bienvenue">Bienvenue {{chami[0].login}} !</h2>
-
+      <!-- Mode jeu -->
+      <section *ngIf = "getMode() === 'JOUER'">
         <!-- Choix du défi -->
         <app-list-defis></app-list-defis>
-
       </section>
 
-    </section>
-  
-    <!-- Création dus profil de Chami -->
-    <ng-template #chamiInexistant>
-      <mat-card>
-        <mat-card-subtitle>Créez votre profil de Chami pour pouvoir jouer aux défis !</mat-card-subtitle> 
-        <section *ngIf="user.email !== null">
-          <form (submit)="addChami({
-                                    id: user.uid,
-                                    login: loginChami.value,
-                                    age: parseAge(ageChami.value),
-                                    defis: [],
-                                    email: user.email
-                                  }); loginChami.value=''; ageChami.value=''">
-            <mat-form-field class="example-form-field" appearance="fill">
-              <mat-label>Login</mat-label>
-              <input matInput #loginChami
-                              type="text"
-                              name="loginChami"
-                              placeholder="Votre login">
-            </mat-form-field>
-            &nbsp;
-            <mat-form-field class="example-form-field" appearance="fill">
-              <mat-label>Age</mat-label>
-              <input matInput #ageChami
-                              type="number"
-                              min="0"
-                              max="123"
-                              step="1"
-                              name="age"
-                              placeholder="Votre âge">
-            </mat-form-field>
-            &nbsp;
-            <button mat-raised-button color="primary" type="submit">Valider</button>
-          </form>
-        </section>
-      </mat-card>
-    </ng-template>
+      <!-- Consultation liste Chamis -->
+      <section *ngIf="getMode() === 'VISUALISER'">
+        <app-list-chamis></app-list-chamis>
+      </section>
 
+      <!-- Afficher la carte -->
+      <app-localisation></app-localisation>
+
+      <!--
+      <label>
+        Afficher le cercle
+        <input type="checkbox" [(ngModel)]="displayCircle" />
+      </label>
+
+      <div style="height: 300px;"
+          leaflet 
+          [leafletOptions]="options"
+          [leafletLayers]="otherLayers">
+
+          <div *ngIf="displayCircle" [leafletLayer]="layerCircle"></div>
+      </div>
+      -->
+      
+    </section>
   </section>
 
-</section>
+  <!-- Création du profil de Chami -->
+  <ng-template #chamiInexistant>
+    <h2 class="align-center">Bienvenue chez les chamis !</h2>
+    <mat-card>
+      <mat-card-subtitle>Créez votre profil de Chami pour pouvoir ajouter des défis, jouer aux défis et visualiser les membres de la communauté !</mat-card-subtitle> 
+      <section *ngIf="user.email !== null">
+        <form (submit)="addChami({
+                                  id: user.uid,
+                                  login: loginChami.value,
+                                  age: parseAge(ageChami.value),
+                                  defis: [],
+                                  email: user.email
+                                }); loginChami.value=''; ageChami.value=''">
+          <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Login</mat-label>
+            <input matInput #loginChami
+                            type="text"
+                            name="loginChami"
+                            placeholder="Votre login">
+          </mat-form-field>
+          &nbsp;
+          <mat-form-field class="example-form-field" appearance="fill">
+            <mat-label>Age</mat-label>
+            <input matInput #ageChami
+                            type="number"
+                            min="0"
+                            max="123"
+                            step="1"
+                            name="age"
+                            placeholder="Votre âge">
+          </mat-form-field>
+          &nbsp;
+          <button mat-raised-button color="primary" type="submit">Valider</button>
+        </form>
+      </section>
+    </mat-card>
+  </ng-template>
 
-<!-- Consultation liste Chamis -->
-<section *ngIf="getMode() === 'VISUALISER'">
-  <app-list-chamis></app-list-chamis>
-</section> 
+</section>
 
 <!-- Page d'accueil - invite de connexion -->
 <ng-template #showLogin>
@@ -147,21 +120,3 @@
   </div>
 
 </ng-template>
-
-<!-- Afficher la carte -->
-<app-localisation></app-localisation>
-
-<!--
-<label>
-  Afficher le cercle
-  <input type="checkbox" [(ngModel)]="displayCircle" />
-</label>
-
-<div style="height: 300px;"
-     leaflet 
-     [leafletOptions]="options"
-     [leafletLayers]="otherLayers">
-
-     <div *ngIf="displayCircle" [leafletLayer]="layerCircle"></div>
-</div>
--->
