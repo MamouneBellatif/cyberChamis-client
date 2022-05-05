@@ -11,13 +11,38 @@ export interface Chami {
   readonly email: string;
 }
 
+export enum Categorie {
+  'SPORTIF', 'CULTUREL', 'ENIGME'
+}
+
 export interface Defi {
 
   readonly id: string;
+  readonly categorie: Categorie;
   readonly titre: string;
   readonly dateDeCreation: string;
   readonly description: string;
   readonly auteur: Chami;
+}
+
+export enum TypeEtape{
+  'mere',
+  'indice',
+  'media',
+  'question'
+}
+
+export interface Etape {
+  readonly type_etape: TypeEtape;
+  readonly id: number;
+  readonly label: string;
+  readonly rang: number;
+  readonly url: string;
+  readonly point: number;
+  readonly reponse_attendu: string;
+  readonly cout: number;
+  readonly defi: Defi; 
+
 }
 
 @Injectable({

@@ -115,7 +115,9 @@ export class AppComponent implements OnInit{
   addChami(chami: Chami):Promise<unknown> {
     // this.auth.user.subscribe(data => this.userId=data?.uid ||'').unsubscribe();
     
-    return this.ccService.addChami(firebase.auth().currentUser?.uid||'', chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    // return this.ccService.addChami(firebase.auth().currentUser?.uid||'', chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    
+    return this.ccService.addChami(chami.id, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   /**

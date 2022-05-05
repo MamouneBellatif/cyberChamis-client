@@ -38,7 +38,9 @@
       <mat-card>
         <mat-card-subtitle>Créez votre profil de Chami pour pouvoir ajouter des défis !</mat-card-subtitle> 
         <section *ngIf="user.email !== null">
-          <form (submit)="addChami({id: user.uid, login: loginChami.value,
+          <form (submit)="addChami({
+                                    id: user.uid,
+                                    login: loginChami.value,
                                     age: parseAge(ageChami.value),
                                     defis: [],
                                     email: user.email
@@ -90,7 +92,9 @@
       <mat-card>
         <mat-card-subtitle>Créez votre profil de Chami pour pouvoir jouer aux défis !</mat-card-subtitle> 
         <section *ngIf="user.email !== null">
-          <form (submit)="addChami({id: user.uid,login: loginChami.value,
+          <form (submit)="addChami({
+                                    id: user.uid,
+                                    login: loginChami.value,
                                     age: parseAge(ageChami.value),
                                     defis: [],
                                     email: user.email
