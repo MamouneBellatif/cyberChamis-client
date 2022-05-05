@@ -23,12 +23,15 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select'; 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListElementChamiComponent } from './list-element-chami/list-element-chami.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { NewDefiComponent } from './new-defi/new-defi.component';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { EtapeComponent } from './etape/etape.component';
 import { NotificationComponentComponent } from './notification-component/notification-component.component';
 
 @NgModule({
@@ -41,6 +44,7 @@ import { NotificationComponentComponent } from './notification-component/notific
     ListElementChamiComponent,
     LocalisationComponent,
     NewDefiComponent,
+    EtapeComponent,
     NotificationComponentComponent
   ],
   imports: [
@@ -61,6 +65,8 @@ import { NotificationComponentComponent } from './notification-component/notific
     MatTableModule,
     MatCardModule,
     MatToolbarModule,
+    MatOptionModule,
+    MatSelectModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
   ],
