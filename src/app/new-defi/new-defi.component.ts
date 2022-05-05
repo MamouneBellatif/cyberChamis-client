@@ -12,9 +12,13 @@ import firebase from 'firebase/compat/app';
 export class NewDefiComponent implements OnInit {
   Categorie = Categorie; // C'est la magie.
   @Input() chami!:Chami;
+
+  // categorie: Categorie = Categorie.SPORTIF;
+
+  // Categorie = Categorie;
+
   // @Input() token!:string;
   constructor(private auth: AngularFireAuth,private ccService: CyberchamisService) { }
-
   ngOnInit(): void {
   }
 
