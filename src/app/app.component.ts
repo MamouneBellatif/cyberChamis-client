@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import firebase from 'firebase/compat/app'; 
 import { Chami, CyberchamisService } from './cyberchamis.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -98,7 +99,6 @@ export class AppComponent implements OnInit{
    */
   getChamiByEmail(chamiEmail: string) : Promise<Chami[]> {
     if(this.auth.user){
-      //console.log("store token");
        firebase.auth().currentUser?.getIdToken(true).then(function(idToken) {
           localStorage.setItem("currentUserToken",JSON.stringify(idToken));
         }
@@ -133,7 +133,7 @@ export class AppComponent implements OnInit{
    * Initialise le Chami courant currentChami
    */
   ngOnInit(): void {
-    this.auth.user.forEach(user => {
+    this.auth.user.pipe(take(2)).subscribe(user => {
       if (user !== null)  
         this.currentChami = this.getChamiByEmail(user.email||''); 
       });
