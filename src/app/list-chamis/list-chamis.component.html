@@ -1,20 +1,34 @@
-<section class="ListChamis"
-         *ngIf="listChamis|async as chamis">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Chamis</mat-card-title>
-            <mat-card-subtitle>Rencontrez les membres de la communauté !</mat-card-subtitle>
-        </mat-card-header>
-        
-        <mat-card-content>
-            <ul>
-                <li class="grid">
-                    <th class="auteur">Auteur</th>
-                    <th class="age">Age</th>
-                    <th class="nbDefi">Défis créés</th>
-                </li>
-                <app-list-element-chami *ngFor="let chami of chamis" [chami]="chami"></app-list-element-chami>
-            </ul>
-        </mat-card-content>
-    </mat-card>
+<!-- Détail du chami sélectionné -->
+<app-chami *ngIf="currentChami" [chami]="currentChami"> </app-chami>
+
+<section class="ListChamis" *ngIf="listChamis | async as chamis">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Chamis</mat-card-title>
+      <mat-card-subtitle
+        >Rencontrez les membres de la communauté !</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <!-- Liste des chamis -->
+    <mat-card-content>
+      <ul>
+        <li class="grid">
+          <th class="auteur">Auteur</th>
+          <th class="age">Age</th>
+          <th class="nbDefi">Défis créés</th>
+        </li>
+        <!--<li
+          class="grid clickableLine"
+          *ngFor="let chami of chamis"
+          (click)="selectChami(chami)"
+        >
+          <td class="auteur">{{ chami.login }}</td>
+          <td class="age">{{ chami.age }}</td>
+          <td class="nbDefi">{{ chami.defis.length }}</td>
+        </li>-->
+        <app-list-element-chami class="grid2 clickableLine" *ngFor="let chami of chamis" [chami]="chami" (click)="selectChami(chami)"></app-list-element-chami>
+      </ul>
+    </mat-card-content>
+  </mat-card>
 </section>

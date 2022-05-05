@@ -26,5 +26,19 @@ export class NewDefiComponent implements OnInit {
     console.log('addDefi', defi);
     return this.ccService.addDefi(defi.id,defi,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
+
+  getCategorie(){
+    return this.ccService.getCategorie();
+  }
     
+  getCategorieString(categorie: string){
+    if(categorie == "SPORTIF")
+      return Categorie.SPORTIF;
+    if(categorie == "CULTUREL")
+      return Categorie.CULTUREL;
+    if(categorie == "ENIGME")
+      return Categorie.ENIGME;
+    else
+      return Categorie.CULTUREL;
+  }
 }
