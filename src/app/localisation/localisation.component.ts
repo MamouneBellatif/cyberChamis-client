@@ -48,7 +48,8 @@ export class LocalisationComponent implements OnInit {
     let icon = new L.Icon({
       iconSize: [ 30, 41 ],
       iconAnchor: [ 13, 0 ],
-      iconUrl: '../../assets/images/marker-icon.png',
+      iconUrl: 'assets/images/marker-icon.png',
+      shadowUrl: 'assets/images/marker-shadow.png'
     });
     const onLocationFound = (e: { accuracy: number; latlng: L.LatLngExpression; }) => {
         map.removeLayer(this.marker);
