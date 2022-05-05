@@ -138,6 +138,10 @@ export class AppComponent implements OnInit{
         this.currentChami = this.getChamiByEmail(user.email||''); 
       });
 
+    // this.auth.user.subscribe(user => { 
+    //   if(user!=null)
+    //     this.currentChami = this.getChamiByEmail(user.email||'');
+    // }).unsubscribe();
     // this.auth.user.subscribe(data =>{
        
     //      this.currentChami = this.getChamiByEmail(data.email||'');}
