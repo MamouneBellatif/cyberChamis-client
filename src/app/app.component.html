@@ -1,4 +1,6 @@
 <!-- Utilisateur loggé -->
+<app-notification-component></app-notification-component>
+
 <section *ngIf="auth.user | async as user; else showLogin">
 
   <!-- Barre d'entête -->
@@ -78,7 +80,7 @@
                                   age: parseAge(ageChami.value),
                                   defis: [],
                                   email: user.email
-                                }); loginChami.value=''; ageChami.value=''">
+                                }); loginChami.value=''; ageChami.value=''; ngOnInit()">
           <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>Login</mat-label>
             <input matInput #loginChami

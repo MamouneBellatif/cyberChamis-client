@@ -12,12 +12,24 @@
             <mat-label>id du defi</mat-label>
             <input #id matInput type="text" name="idDefi" placeholder="id du défi">
         </mat-form-field> -->
+        <div>
+            <div style="margin-left: 32px">
+                <mat-form-field class="example-form-field" appearance="fill">
+                  <mat-label>Titre</mat-label>
+                  <input
+                    #titre
+                    matInput
+                    type="text"
+                    name="titreDefi"
+                    placeholder="Titre du défi"
+                  />
+                </mat-form-field>
+                <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit">Créer</button>
+              </div>
+        </div>
 
-        <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Titre</mat-label>
-            <input #titre matInput type="text" name="titreDefi" placeholder="titre du défi">
-        </mat-form-field>
 
+<<<<<<< HEAD
         <mat-form-field>
             <mat-label>Description</mat-label>
             <textarea #description matInput placeholder="Description générale du défi"></textarea>
@@ -35,5 +47,7 @@
         
         <button mat-raised-button color="primary" type="submit">Créer</button>
     </form>
+=======
+  </form>
+>>>>>>> f08c3fed72c798c9bbcf836e5e5b9d8ca7ed32a1
 </div>
-

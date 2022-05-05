@@ -8,6 +8,17 @@
   .auteur {
     grid-column: 1/span 3;
   }
+
+  .grid2 {
+    display: grid;
+    height: 20px;
+    max-width: 310px;
+  }
+
+  .clickableLine:hover {
+    cursor: pointer;
+    background-color: #d3d3e4;
+  }
   
   .age {
     grid-column: 4;
