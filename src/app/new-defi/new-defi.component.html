@@ -24,30 +24,24 @@
                     placeholder="Titre du défi"
                   />
                 </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea #description matInput placeholder="Description générale du défi"></textarea>
+                </mat-form-field>
+        
+                <mat-form-field appearance="fill">
+                    <mat-label>Categorie</mat-label>
+                    <mat-select #categorie>
+                        <mat-option *ngFor="let cat of getCategorie()" [value]="cat">
+                            {{cat}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
                 <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit">Créer</button>
               </div>
         </div>
-
-
-<<<<<<< HEAD
-        <mat-form-field>
-            <mat-label>Description</mat-label>
-            <textarea #description matInput placeholder="Description générale du défi"></textarea>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Categorie</mat-label>
-            <mat-select #categorie>
-                <mat-option *ngFor="let cat of getCategorie()" [value]="cat">
-                    {{cat}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-
-        
-        <button mat-raised-button color="primary" type="submit">Créer</button>
+       
     </form>
-=======
-  </form>
->>>>>>> f08c3fed72c798c9bbcf836e5e5b9d8ca7ed32a1
 </div>
