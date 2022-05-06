@@ -1,7 +1,7 @@
 <!-- Détail du chami sélectionné -->
 <app-chami *ngIf="currentChami" [chami]="currentChami"> </app-chami>
 
-<section class="ListChamis" *ngIf="listChamis | async as chamis">
+<section class="container ListChamis mrgTop" *ngIf="listChamis | async as chamis">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Chamis</mat-card-title>

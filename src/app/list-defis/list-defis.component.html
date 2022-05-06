@@ -1,7 +1,7 @@
 <!-- Détail du défi sélectionné -->
 <app-defi *ngIf="currentDefi" [defi]="currentDefi"> </app-defi>
 
-<section class="ListDefis" *ngIf="listDefis | async as lDefis">
+<section class="container ListDefis mrgTop" *ngIf="listDefis | async as lDefis">
   <mat-card class="defi-card">
     <mat-card-header>
       <mat-card-title>Défis</mat-card-title>
@@ -16,23 +16,16 @@
         <li class="grid">
           <th class="defiId">Défi</th>
           <th class="titre">Titre</th>
-          <!--
-                        <th>Auteur</th>
-                        <th>Date de création</th>
-                    -->
         </li>
         <li
-          class="grid clickableLine"
+          class="grid2 clickableLine"
           *ngFor="let defi of lDefis"
           (click)="selectDefi(defi)"
         >
           <td class="defiId">{{ defi.id }}</td>
           <td class="titre">{{ defi.titre }}</td>
-          <!--
-                        <td>{{defi.auteur.login}}</td>
-                        <td>{{parsedDateToString(defi.dateDeCreation)}}</td>
-                    -->
         </li>
+        <!--<app-defi class="grid2 clickableLine" *ngFor="let defi of lDefis" (click)="selectDefi(defi)"></app-defi>-->
       </ul>
     </mat-card-content>
   </mat-card>
