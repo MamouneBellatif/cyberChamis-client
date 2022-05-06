@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, TimeoutError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export interface Chami {
@@ -74,8 +74,12 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.delete(this.url+'chamis/'+userId));
   }
 
-  async deleteDefi(defiId: string): Promise<unknown> {
-    return await lastValueFrom(this.httpClient.delete(this.url+'defis'+defiId));
+  async updateDefi(defiId: String, defi: Defi, token: string): Promise<Defi> {
+    return await lastValueFrom(this.httpClient.put<Defi>(this.url+'defis/'+defiId, defi, {headers:{Authorization:token}}));
+  }
+
+  async deleteDefi(defiId: string, token: string): Promise<unknown> {
+    return await lastValueFrom(this.httpClient.delete(this.url+'defis'+defiId, {headers:{Authorization:token}}));
   }
 
   async getChamiByEmail(chamiEmail: string, token: string): Promise<Chami[]> {

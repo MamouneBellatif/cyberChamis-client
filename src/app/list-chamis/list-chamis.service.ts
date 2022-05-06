@@ -14,7 +14,7 @@ export class ListChamisService  {
   // URL de l'API chamis
   private chamisListUrl = environment.apiUrl+'chamis/';
 
-  private defisListUrl = environment.apiUrl+'defis/'
+  private defisListUrl = environment.apiUrl+'defis/';
 
   constructor(private httpClient: HttpClient) { }
 

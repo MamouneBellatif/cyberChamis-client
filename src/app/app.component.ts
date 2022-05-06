@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
   // Chami connecté
   currentChami: Promise<Chami[]>|null = null;
 
-  // Fonctionnalité en cours : VISUALISER [Chamis], JOUER, AJOUTER [Defi]
+  // Fonctionnalité en cours : VISUALISER [Chamis], JOUER, AJOUTER [Defi], MODIFIER [Defi]
   private mode: string = '';
   
   getMode(): string {
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit{
 
   setMode(mode: string) {
     this.mode = mode;
+    console.log("this.mode : "+this.mode+"\nmode : "+mode);
   }
 
   // Configuration leaflet

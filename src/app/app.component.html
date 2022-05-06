@@ -28,6 +28,7 @@
         <button mat-raised-button (click)="setMode('AJOUTER')">Ajouter des défis</button>
         <button mat-raised-button (click)="setMode('JOUER')">Jouer aux défis</button>
         <button mat-raised-button (click)="setMode('VISUALISER')">Visualiser les chamis</button>
+        <button mat-raised-button (click)="setMode('MODIFIER')">Gérer mes défis</button>
       </div>
       &nbsp;
         
@@ -37,7 +38,7 @@
       </section>
 
       <!-- Mode jeu -->
-      <section *ngIf = "getMode() === 'JOUER'">
+      <section *ngIf="getMode() === 'JOUER'">
         <!-- Choix du défi -->
         <app-list-defis></app-list-defis>
       </section>
@@ -45,6 +46,12 @@
       <!-- Consultation liste Chamis -->
       <section *ngIf="getMode() === 'VISUALISER'">
         <app-list-chamis></app-list-chamis>
+      </section>
+
+      <!-- Modification défis Chamis -->
+      <section *ngIf="getMode() === 'MODIFIER'">
+        <span>test</span>
+        <app-edit-defi [chami]="chami[0]"></app-edit-defi>
       </section>
 
       <!-- Afficher la carte -->
