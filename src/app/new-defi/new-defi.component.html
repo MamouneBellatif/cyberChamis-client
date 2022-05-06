@@ -33,16 +33,25 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <br/>
 
                 <mat-form-field class="description-defi" appearance="fill">
                     <mat-label>Description</mat-label>
-                    <textarea #description matInput placeholder="Description générale du défi"></textarea>
+                    <textarea maxlength="255" #description matInput placeholder="Description générale du défi"></textarea>
                 </mat-form-field>
+
+                <p
+                    *ngFor="let etape of listEtape; let index = index"
+                >{{etape.label}} - rang : {{etape.rang}}</p>
+
+                <app-new-etape
+                                
+                [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"
+
+                ></app-new-etape>
+
+                <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit">Créer</button>
                 <br/>
-                
-                <button mat-raised-button type="submit">Créer</button>
-              </div>
+            </div>
        
     </form>
 </div>

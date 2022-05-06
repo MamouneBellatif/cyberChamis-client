@@ -26,6 +26,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select'; 
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon'; 
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListElementChamiComponent } from './list-element-chami/list-element-chami.component';
@@ -34,6 +35,7 @@ import { NewDefiComponent } from './new-defi/new-defi.component';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { EtapeComponent } from './etape/etape.component';
 import { NotificationComponentComponent } from './notification-component/notification-component.component';
+import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 
 @NgModule({
@@ -46,6 +48,7 @@ import { EditDefiComponent } from './edit-defi/edit-defi.component';
     ListElementChamiComponent,
     LocalisationComponent,
     NewDefiComponent,
+    NewEtapeComponent,
     EtapeComponent,
     NotificationComponentComponent,
     EditDefiComponent
@@ -70,6 +73,7 @@ import { EditDefiComponent } from './edit-defi/edit-defi.component';
     MatToolbarModule,
     MatOptionModule,
     MatSelectModule,
+    MatIconModule,
     MatTabsModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),

@@ -22,15 +22,15 @@ export interface Defi {
   readonly titre: string;
   readonly dateDeCreation: string;
   readonly description: string;
-  readonly etape: Etape[];
+  etape: Etape[];
   readonly auteur: Chami;
 }
 
 export enum TypeEtape{
-  mere='mere',
-  indice='indice',
-  media='media',
-  question='question'
+  MERE="mere",
+  INDICE='indice',
+  MEDIA='media',
+  QUESTION='question'
 }
 
 export interface Etape {
@@ -42,7 +42,7 @@ export interface Etape {
   readonly point: number;
   readonly reponse_attendu: string;
   readonly cout: number;
-  readonly defi: Defi; 
+  defi: Defi; 
 
 }
 
@@ -63,11 +63,16 @@ export class CyberchamisService {
     return toto
   }
 
-  async addDefi(defiId:string, defi: Defi, token: string): Promise<Defi> {
+  async addDefi(defi: Defi, token: string): Promise<Defi> {
     // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
     const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur};
     return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defiPost,{headers:{Authorization:token}}) );
     // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
+  }
+
+  async updateDefi(defi: Defi, token: string): Promise<Defi> {
+    const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur};
+    return await lastValueFrom( this.httpClient.put<Defi>(this.url+'defis/', defiPost,{headers:{Authorization:token}}) );
   }
 
   async deleteChami(userId: string): Promise<unknown> {
@@ -86,8 +91,13 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.get<Chami[]>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}}));
   }
 
+
   getCategorie() {
     return Object.values(Categorie);
+  }
+
+  getTypeEtape(){
+    return Object.values(TypeEtape);
   }
 
 }

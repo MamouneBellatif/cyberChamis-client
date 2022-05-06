@@ -20,6 +20,7 @@
   <!-- Connecté comme Chami -->
   <section *ngIf="user.email !== null"> 
     <section *ngIf="currentChami| async as chami ; else chamiInexistant">
+    <!-- <section *ngIf="chamiSubj| async as chami ; else chamiInexistant"> -->
 
       <h2 class="bienvenue">Bienvenue {{chami[0].login}} chez les chamis !</h2>
 
@@ -87,7 +88,7 @@
                                   age: parseAge(ageChami.value),
                                   defis: [],
                                   email: user.email
-                                }); loginChami.value=''; ageChami.value=''; refresh()">
+                                }); loginChami.value=''; ageChami.value=''">
           <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>Login</mat-label>
             <input matInput #loginChami
