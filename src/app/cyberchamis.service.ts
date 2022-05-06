@@ -22,14 +22,15 @@ export interface Defi {
   readonly titre: string;
   readonly dateDeCreation: string;
   readonly description: string;
+  readonly etape: Etape[];
   readonly auteur: Chami;
 }
 
 export enum TypeEtape{
-  'mere',
-  'indice',
-  'media',
-  'question'
+  MERE="mere",
+  INDICE='indice',
+  MEDIA='media',
+  QUESTION='question'
 }
 
 export interface Etape {
@@ -89,6 +90,10 @@ export class CyberchamisService {
 
   getCategorie() {
     return Object.values(Categorie);
+  }
+
+  getTypeEtape(){
+    return Object.values(TypeEtape);
   }
 
 }

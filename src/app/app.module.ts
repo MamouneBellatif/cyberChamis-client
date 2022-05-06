@@ -32,6 +32,7 @@ import { ListElementChamiComponent } from './list-element-chami/list-element-cha
 import { LocalisationComponent } from './localisation/localisation.component';
 import { NewDefiComponent } from './new-defi/new-defi.component';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { EtapeComponent } from './etape/etape.component';
 import { NotificationComponentComponent } from './notification-component/notification-component.component';
 import { NewEtapeComponent } from './new-etape/new-etape.component';
 
@@ -45,8 +46,9 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
     ListElementChamiComponent,
     LocalisationComponent,
     NewDefiComponent,
-    NotificationComponentComponent,
-    NewEtapeComponent
+    NewEtapeComponent,
+    EtapeComponent,
+    NotificationComponentComponent
   ],
   imports: [
     BrowserModule,

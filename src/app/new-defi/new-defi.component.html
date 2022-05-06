@@ -5,6 +5,7 @@
                             categorie: getCategorieString(categorie.value),
                             titre: titre.value,
                             dateDeCreation: '',
+                            etape:[],
                             description: description.value,
                             auteur:chami})">
 
@@ -39,19 +40,11 @@
                     </mat-select>
                 </mat-form-field>
 
+                <app-new-etape
+                
+                *ngFor="let etape of listEtape"></app-new-etape>
 
-                <section>
-                    <mat-label>Ajouter une étape</mat-label>
-                    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
-                        <mat-icon>plus_one</mat-icon>
-                    </button>
-
-                    <app-new-etape></app-new-etape>
-
-                </section>
-
-
-                <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit">Créer</button>
+                <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit" (click)="ajouterEtape()">Créer</button>
               </div>
         </div>
        

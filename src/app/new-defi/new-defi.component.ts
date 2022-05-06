@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Categorie, Chami, CyberchamisService, Defi } from '../cyberchamis.service';
+import { Categorie, Chami, CyberchamisService, Defi, Etape, TypeEtape } from '../cyberchamis.service';
 import firebase from 'firebase/compat/app'; 
 
 
@@ -11,6 +11,9 @@ import firebase from 'firebase/compat/app';
 })
 export class NewDefiComponent implements OnInit {
   Categorie = Categorie; // C'est la magie.
+
+  listEtape: Etape[] = [];
+
   @Input() chami!:Chami;
 
   // categorie: Categorie = Categorie.SPORTIF;
@@ -20,11 +23,40 @@ export class NewDefiComponent implements OnInit {
   // @Input() token!:string;
   constructor(private auth: AngularFireAuth,private ccService: CyberchamisService) { }
   ngOnInit(): void {
+    this.ajouterEtape();
   }
 
+  ajouterEtape(){
+    console.log("ajouter une etape");
+    this.addEtape({
+      type_etape: TypeEtape.MERE,
+      id:0,
+      label :' ',
+      rang : 1,
+      url:' ',
+      point: 0,
+      reponse_attendu:" ",
+      cout:0,
+      defi: {
+        id:"",
+        categorie: Categorie.CULTUREL,
+        titre: "",
+        dateDeCreation:"",
+        description : "",
+        etape: [],
+        auteur: this.chami
+      }});
+  }
+  addEtape(etape: Etape){
+    this.listEtape.push(etape);
+  }
   addDefi(defi: Defi) :Promise<unknown>{
     console.log('addDefi', defi);
     return this.ccService.addDefi(defi,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+  }
+
+  updateDefi(defi : Defi) : Promise<unknown>{
+    return this.ccService.updateDefi(defi, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   getCategorie(){

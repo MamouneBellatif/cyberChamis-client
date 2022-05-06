@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { CyberchamisService, Defi, Etape } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-new-etape',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewEtapeComponent implements OnInit {
 
-  constructor() { }
+
+  @Output() newEtape = new EventEmitter<Etape>();
+  @Input() rang = '';
+  @Input() defi! : Defi;
+
+  constructor(private ccService: CyberchamisService) { }
 
   ngOnInit(): void {
+  }
+
+  addNewEtape(etape : Etape){
+    this.newEtape.emit(etape);
   }
 
 }

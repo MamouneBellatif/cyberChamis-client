@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Defi } from '../cyberchamis.service';
+import { Component, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
+import { Defi, Etape } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-defi',
@@ -7,13 +7,21 @@ import { Defi } from '../cyberchamis.service';
   styleUrls: ['./defi.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DefiComponent implements OnInit {
+export class DefiComponent implements OnChanges {
 
   @Input() defi!: Defi;
 
+  private etape1: boolean = false;
+
+  numEtape: number = 0;
+
+  etapesTmp: Etape[] = [];
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    this.numEtape = 0;
+    this.etapesTmp = [];
   }
 
   /**
@@ -23,5 +31,25 @@ export class DefiComponent implements OnInit {
    */
   parsedDateToString(stringDate: string) : string {
     return new Date(stringDate).toLocaleString();
+  }
+
+  set1erEtape(etape1: boolean) {
+    this.etape1 = etape1;
+  }
+
+  get1erEtape() {
+    return this.etape1;
+  }
+
+  etapeSuivExists(): boolean {
+    if(this.numEtape < this.defi.etape.length) {
+      return true;
+    }
+    else return false;
+  }
+
+  nextEtape() {
+    this.etapesTmp.push(this.defi.etape[this.numEtape]);
+    this.numEtape++;
   }
 }
