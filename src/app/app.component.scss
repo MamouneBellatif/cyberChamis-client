@@ -1,14 +1,21 @@
 .example-button-row .mat-button-base {
   margin: 8px 0px 8px 8px;
 }
-@media only screen and (max-width: 595px) {
+@media only screen and (max-width: 780px) {
+  .example-button-row{
+    width: 400px;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 410px) {
   .example-button-row{
     width: 200px;
     margin: auto;
   }
 }
 
-@media only screen and (min-width: 595px) {
+@media only screen and (min-width: 780px) {
   .example-button-row {
     text-align: center;
     margin: auto;
