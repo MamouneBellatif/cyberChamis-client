@@ -70,10 +70,10 @@ export class CyberchamisService {
     // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
   }
 
-  async updateDefi(defi: Defi, token: string): Promise<Defi> {
+  /*async updateDefi(defi: Defi, token: string): Promise<Defi> {
     const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur};
     return await lastValueFrom( this.httpClient.put<Defi>(this.url+'defis/', defiPost,{headers:{Authorization:token}}) );
-  }
+  }*/
 
   async deleteChami(userId: string): Promise<unknown> {
     return await lastValueFrom(this.httpClient.delete(this.url+'chamis/'+userId));
