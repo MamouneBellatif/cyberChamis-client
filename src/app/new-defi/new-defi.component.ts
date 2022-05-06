@@ -16,6 +16,16 @@ export class NewDefiComponent implements OnInit {
 
   @Input() chami!:Chami;
 
+  defi : Defi = {        
+    id:"",
+    categorie: Categorie.CULTUREL,
+    titre: "",
+    dateDeCreation:"",
+    description : "",
+    etape: [],
+    auteur: this.chami
+    };
+
   // categorie: Categorie = Categorie.SPORTIF;
 
   // Categorie = Categorie;
@@ -23,10 +33,10 @@ export class NewDefiComponent implements OnInit {
   // @Input() token!:string;
   constructor(private auth: AngularFireAuth,private ccService: CyberchamisService) { }
   ngOnInit(): void {
-    this.ajouterEtape();
+    //this.ajouterEtape();
   }
 
-  ajouterEtape(){
+  /*ajouterEtape(){
     console.log("ajouter une etape");
     this.addEtape({
       type_etape: TypeEtape.MERE,
@@ -37,20 +47,26 @@ export class NewDefiComponent implements OnInit {
       point: 0,
       reponse_attendu:" ",
       cout:0,
-      defi: {
-        id:"",
-        categorie: Categorie.CULTUREL,
-        titre: "",
-        dateDeCreation:"",
-        description : "",
-        etape: [],
-        auteur: this.chami
-      }});
-  }
+      defi: this.defi});
+  }*/
   addEtape(etape: Etape){
+    console.log('ajouter encor un defis');
+    /*this.listEtape.forEach(old => {
+      if(etape.rang == old.rang){
+        this.listEtape = this.listEtape.filter(e => {
+          e.rang != etape.rang;
+        })
+      }
+    });*/
     this.listEtape.push(etape);
+    console.log(this.listEtape);
   }
+
   addDefi(defi: Defi) :Promise<unknown>{
+    defi.etape = this.listEtape;
+    defi.etape.forEach(element => {
+      element.defi = defi;
+    })
     console.log('addDefi', defi);
     return this.ccService.addDefi(defi,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }

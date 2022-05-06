@@ -22,7 +22,7 @@ export interface Defi {
   readonly titre: string;
   readonly dateDeCreation: string;
   readonly description: string;
-  readonly etape: Etape[];
+  etape: Etape[];
   readonly auteur: Chami;
 }
 
@@ -42,7 +42,7 @@ export interface Etape {
   readonly point: number;
   readonly reponse_attendu: string;
   readonly cout: number;
-  readonly defi: Defi; 
+  defi: Defi; 
 
 }
 

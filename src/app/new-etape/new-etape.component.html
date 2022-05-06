@@ -1,10 +1,10 @@
 
 
-<form (onBlur)="addNewEtape({
+<form (submit)="addNewEtape({
   type_etape: typeEtape.value,
   id: 0,
   label: labelEtape.value,
-  rang: rangEtape.valueAsNumber,
+  rang: rang,
   url : monURL.value,
   point : 0,
   reponse_attendu: '',
@@ -17,10 +17,10 @@
 
         <mat-label>Type d'étape</mat-label>
         <mat-select #typeEtape>
-            <mat-option [value]="'simple'">
+            <mat-option [value]="'mere'">
               simple
           </mat-option>
-          <mat-option [value]="'média'">
+          <mat-option [value]="'media'">
             média
         </mat-option>
         <mat-option [value]="'question'">
@@ -31,31 +31,28 @@
 
       <mat-form-field>
         <mat-label>Description de l'étape</mat-label>
-        <textarea #labelEtape matInput></textarea>
+        <textarea maxlength="255" #labelEtape matInput></textarea>
       </mat-form-field>
 
-      <mat-form-field>
+      <!--<mat-form-field>
         <mat-label>Rang</mat-label>
         <input matInput type="number" [ngModel]="rang" #rangEtape/>
-      </mat-form-field>
+      </mat-form-field>-->
 
       <mat-form-field
         class="cacher"
-        [class.media] = "typeEtape.value === 'média'"
+        [class.media] = "typeEtape.value === 'media'"
       >
         <mat-label>URL</mat-label>
         <input matInput type="text" #monURL/>
       </mat-form-field>
 
+      <button type="submit">Save</button>
+
       <!--AJOUTER LE COMPOSANT QUESTION AVEC LA CLASS : 
         [class.question] = "typeEtape.value === 'question'"
         class="cacher"
       -->
-
-    <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
-      <mat-icon>plus_one</mat-icon>
-    </button>
-
 
 
     <!--<mat-form-field appearance="fill">

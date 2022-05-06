@@ -10,7 +10,7 @@ export class NewEtapeComponent implements OnInit {
 
 
   @Output() newEtape = new EventEmitter<Etape>();
-  @Input() rang = '';
+  @Input() rang! : number;
   @Input() defi! : Defi;
 
   constructor(private ccService: CyberchamisService) { }
@@ -19,6 +19,7 @@ export class NewEtapeComponent implements OnInit {
   }
 
   addNewEtape(etape : Etape){
+    console.log("valider sur le composant new-etape");
     this.newEtape.emit(etape);
   }
 
