@@ -65,9 +65,9 @@ export class CyberchamisService {
 
   async addDefi(defi: Defi, token: string) {
     // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
-    //const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur, etape: defi.etape};
+    const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur, etape: defi.etape};
     console.log("avant requete post");
-        await lastValueFrom( this.httpClient.post(this.url+'defis/create/', defi,{headers:{Authorization:token}}) ).then(() => console.log("ten post"));
+        await lastValueFrom( this.httpClient.post(this.url+'defis/create/', defiPost,{headers:{Authorization:token}}) ).then(() => console.log("ten post"));
     //return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
     // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
   }
