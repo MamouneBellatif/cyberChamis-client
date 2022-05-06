@@ -1,3 +1,7 @@
+mat-card-content ul{
+  padding:0 20px 0 20px;
+}
+
 .grid {
   display: grid;
   height: 20px;
@@ -11,6 +15,7 @@
 
 .grid2 {
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
   height: 20px;
   max-width: 310px;
 }
@@ -22,6 +27,7 @@
 
 .titre {
   grid-column: 2 / span 2;
+  text-align: center;
 }
 
 .mrgTop {
