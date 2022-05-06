@@ -80,7 +80,7 @@
                                   age: parseAge(ageChami.value),
                                   defis: [],
                                   email: user.email
-                                }); loginChami.value=''; ageChami.value=''; ngOnInit()">
+                                }); loginChami.value=''; ageChami.value=''; refresh()">
           <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>Login</mat-label>
             <input matInput #loginChami
@@ -99,7 +99,7 @@
                             name="age"
                             placeholder="Votre âge">
           </mat-form-field>
-          &nbsp;
+          <br/>
           <button mat-raised-button color="primary" type="submit">Valider</button>
         </form>
       </section>

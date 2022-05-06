@@ -136,27 +136,27 @@ export class AppComponent implements OnInit{
    */
   ngOnInit(): void {
     this.auth.user.pipe(take(2)).subscribe(user => {
-      if (user !== null)  
-        this.currentChami = this.getChamiByEmail(user.email||''); 
+        if (user !== null)  
+          this.currentChami = this.getChamiByEmail(user.email||''); 
       });
 
-    // this.auth.user.subscribe(user => { 
-    //   if(user!=null)
-    //     this.currentChami = this.getChamiByEmail(user.email||'');
-    // }).unsubscribe();
     // this.auth.user.subscribe(data =>{
        
     //      this.currentChami = this.getChamiByEmail(data.email||'');}
     //     .unsubscribe();
 
-      console.log("init");
-      firebase.auth().onAuthStateChanged((user) => {
-        if(user){
-          console.log("userId "+user.uid);
-          this.userId=user.uid;
-        }else{
+      //console.log("init");
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user){
+        console.log("userId "+user.uid);
+        this.userId=user.uid;
+      }else{
 
-        }
-      })
+      }
+    })
+  }
+
+  refresh(){
+    window.location.reload()
   }
 }

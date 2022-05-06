@@ -13,6 +13,20 @@ export class NotificationComponentComponent implements OnInit {
 
   constructor() { }
 
+  initialize() {
+		const eventSource = new EventSource('http://localhost:8080/notification');
+		eventSource.onmessage = e => {
+			const msg = e.data;
+    console.log("msg: " + msg)		
+  };
+		eventSource.onopen = e => console.log('open');
+		eventSource.onerror = e => {
+				console.log(e);
+		};
+		eventSource.addEventListener('second', e => {
+			console.log('second', e.data);
+		}, false);}
+
   subscribe() {
     let eventSource = new EventSource("http://localhost:8080/stream");
     let subscription = new Subject();
@@ -27,15 +41,16 @@ export class NotificationComponentComponent implements OnInit {
   connect(): void{
     console.log("event");
     let source = new EventSource('http://localhost:8080/stream');
-    source.addEventListener('message',message => {
+    source.addEventListener('update',message => {
+      console.log('connection sse'+message.data);
       let n: Notification;
       n = JSON.parse(message.data);
-      console.log('connection sse'+message.data)
     })
   }
 
   ngOnInit(): void {
     // this.connect();
+    this.initialize();
   }
 
 }

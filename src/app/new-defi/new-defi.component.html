@@ -7,15 +7,14 @@
                             dateDeCreation: '',
                             etape:[],
                             description: description.value,
-                            auteur:chami})">
+                            auteur:chami}); titre.value=''; description.value=''; categorie.value=''">
 
         <!-- <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>id du defi</mat-label>
             <input #id matInput type="text" name="idDefi" placeholder="id du défi">
         </mat-form-field> -->
-        <div>
-            <div style="margin-left: 32px">
-                <mat-form-field class="example-form-field" appearance="fill">
+            <div class="add-defi-form">
+                <mat-form-field class="titre" appearance="fill">
                   <mat-label>Titre</mat-label>
                   <input
                     #titre
@@ -26,12 +25,7 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field>
-                    <mat-label>Description</mat-label>
-                    <textarea #description matInput placeholder="Description générale du défi"></textarea>
-                </mat-form-field>
-        
-                <mat-form-field appearance="fill">
+                <mat-form-field class="categorie" appearance="fill">
                     <mat-label>Categorie</mat-label>
                     <mat-select #categorie>
                         <mat-option *ngFor="let cat of getCategorie()" [value]="cat">
@@ -39,10 +33,16 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <br/>
+
+                <mat-form-field class="description-defi" appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea #description matInput placeholder="Description générale du défi"></textarea>
+                </mat-form-field>
+                <br/>
                 
-                <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit">Créer</button>
+                <button mat-raised-button type="submit">Créer</button>
               </div>
-        </div>
        
     </form>
 </div>
