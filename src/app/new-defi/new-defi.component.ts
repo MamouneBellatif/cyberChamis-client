@@ -72,7 +72,7 @@ export class NewDefiComponent implements OnInit {
   }
 
   updateDefi(defi : Defi) : Promise<unknown>{
-    return this.ccService.updateDefi(defi, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    return this.ccService.updateDefi(defi.id, defi, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
   getCategorie(){

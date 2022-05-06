@@ -27,10 +27,10 @@ export interface Defi {
 }
 
 export enum TypeEtape{
-  MERE="mere",
-  INDICE='indice',
-  MEDIA='media',
-  QUESTION='question'
+  mere="mere",
+  indice='indice',
+  media='media',
+  question='question'
 }
 
 export interface Etape {
@@ -68,11 +68,6 @@ export class CyberchamisService {
     const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur};
     return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defiPost,{headers:{Authorization:token}}) );
     // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
-  }
-
-  async updateDefi(defi: Defi, token: string): Promise<Defi> {
-    const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur};
-    return await lastValueFrom( this.httpClient.put<Defi>(this.url+'defis/', defiPost,{headers:{Authorization:token}}) );
   }
 
   async deleteChami(userId: string): Promise<unknown> {
