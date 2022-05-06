@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, map, Observable, from, BehaviorSubject, Subject } from 'rxjs';
 import { Defi } from '../cyberchamis.service';
 import { ListDefisService } from './list-defis.service';
 
@@ -16,11 +16,16 @@ export class ListDefisComponent implements OnInit {
 
   // La liste des Defis à afficher
   listDefis!: Promise<Defi[]>;
-  //readonly currentDefiObs!: Observable<Defi>;
-  //readonly defisObs!: Observable<{defis: readonly Defi[], currentDefi: Defi}>;
+  // listObs!: Observable<Defi[]>;
+  subj = new Subject<Defi[]>();
+
 
   constructor(private ldService: ListDefisService) { 
     this.listDefis = ldService.getDefisObs();
+    // this.listObs = from(this.listDefis);
+    this.listDefis.then(data => this.subj.next(data))
+
+
     /*this.defisObs = combineLatest(
       [this.listDefisObs, this.currentDefiObs]
     ).pipe(
@@ -30,7 +35,21 @@ export class ListDefisComponent implements OnInit {
     );*/
   }
 
+
+  initialize() {
+		const eventSource = new EventSource('http://localhost:8080/notification');
+		eventSource.onmessage = e => {
+			const msg = e.data;
+      this.ldService.getDefisObs().then(data => {this.subj.next(data);
+                          console.log("data" +JSON.stringify(data));});
+      console.log("nv defis");	
+    };
+  }
+
+  // firebase.auth().currentUser?.uid
+
   ngOnInit(): void {
+    this.initialize();
   }
 
   /**

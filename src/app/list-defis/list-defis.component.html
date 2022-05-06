@@ -1,7 +1,9 @@
 <!-- Détail du défi sélectionné -->
 <app-defi *ngIf="currentDefi" [defi]="currentDefi"> </app-defi>
 
-<section class="ListDefis" *ngIf="listDefis | async as lDefis">
+<!-- <section class="ListDefis" *ngIf="listDefis | async as lDefis"> -->
+<section class="ListDefis" *ngIf="subj | async as lDefis">
+<!-- <section class="ListDefis" *ngIf="listObs | async as lDefis"> -->
   <mat-card class="defi-card">
     <mat-card-header>
       <mat-card-title>Défis</mat-card-title>
