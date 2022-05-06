@@ -27,10 +27,10 @@ export interface Defi {
 }
 
 export enum TypeEtape{
-  'mere',
-  'indice',
-  'media',
-  'question'
+  mere='mere',
+  indice='indice',
+  media='media',
+  question='question'
 }
 
 export interface Etape {

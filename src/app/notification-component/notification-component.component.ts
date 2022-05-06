@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 })
 export class NotificationComponentComponent implements OnInit {
 
+  
 
   constructor() { }
 
@@ -18,7 +19,7 @@ export class NotificationComponentComponent implements OnInit {
 		eventSource.onmessage = e => {
 			const msg = e.data;
     console.log("msg: " + msg)		
-  };
+    };
 		eventSource.onopen = e => console.log('open');
 		eventSource.onerror = e => {
 				console.log(e);
