@@ -64,9 +64,6 @@ export class NewDefiComponent implements OnInit {
 
   addDefi(defi: Defi) :Promise<unknown>{
     defi.etape = this.listEtape;
-    defi.etape.forEach(element => {
-      element.defi = defi;
-    })
     console.log('addDefi', defi);
     return this.ccService.addDefi(defi,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
