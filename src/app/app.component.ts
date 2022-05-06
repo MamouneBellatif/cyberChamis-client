@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import firebase from 'firebase/compat/app'; 
 import { Chami, CyberchamisService } from './cyberchamis.service';
-import { take } from 'rxjs';
+import { Subject, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
 
   // Chami connecté
   currentChami: Promise<Chami[]>|null = null;
+  // chamiSubj = new Subject<Chami[]>();
 
   // Fonctionnalité en cours : VISUALISER [Chamis], JOUER, AJOUTER [Defi], MODIFIER [Defi]
   private mode: string = '';
@@ -61,6 +62,25 @@ export class AppComponent implements OnInit{
 
     )
   } 
+
+    /**
+   * Initialise le Chami courant currentChami
+   */
+     ngOnInit(): void {
+      this.auth.user.pipe(take(2)).subscribe(user => {
+          if (user !== null)  
+            this.currentChami = this.getChamiByEmail(user.email||''); 
+            // this.currentChami?.then(data => this.chamiSubj.next(data))
+        });
+      firebase.auth().onAuthStateChanged((user) => {
+        if(user){
+          console.log("userId "+user.uid);
+          this.userId=user.uid;
+        }else{
+  
+        }
+      })
+    }
     
   // Connexion avec Firebase
   login(): void { 
@@ -115,12 +135,14 @@ export class AppComponent implements OnInit{
    * @param chami Un Chami à enregistrer
    * @returns Une promesse ?
    */
-  addChami(chami: Chami):Promise<unknown> {
+  addChami(chami: Chami) {
+  // addChami(chami: Chami):Promise<unknown> {
     // this.auth.user.subscribe(data => this.userId=data?.uid ||'').unsubscribe();
     
     // return this.ccService.addChami(firebase.auth().currentUser?.uid||'', chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
     
-    return this.ccService.addChami(chami.id, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    this.ccService.addChami(chami.id, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}')).then(() => this.refresh());
+    
   }
 
   /**
@@ -132,30 +154,7 @@ export class AppComponent implements OnInit{
     return parseInt(s);
   }
 
-  /**
-   * Initialise le Chami courant currentChami
-   */
-  ngOnInit(): void {
-    this.auth.user.pipe(take(2)).subscribe(user => {
-        if (user !== null)  
-          this.currentChami = this.getChamiByEmail(user.email||''); 
-      });
 
-    // this.auth.user.subscribe(data =>{
-       
-    //      this.currentChami = this.getChamiByEmail(data.email||'');}
-    //     .unsubscribe();
-
-      //console.log("init");
-    firebase.auth().onAuthStateChanged((user) => {
-      if(user){
-        console.log("userId "+user.uid);
-        this.userId=user.uid;
-      }else{
-
-      }
-    })
-  }
 
   refresh(){
     window.location.reload()
