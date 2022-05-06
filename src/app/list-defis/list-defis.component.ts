@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { combineLatest, map, Observable, from, BehaviorSubject, Subject } from 'rxjs';
 import { Defi } from '../cyberchamis.service';
+import { NotificationService } from '../notification.service';
 import { ListDefisService } from './list-defis.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class ListDefisComponent implements OnInit {
   subj = new Subject<Defi[]>();
 
 
-  constructor(private ldService: ListDefisService) { 
+  constructor(private ldService: ListDefisService, private eventService: NotificationService ) { 
     this.listDefis = ldService.getDefisObs();
     // this.listObs = from(this.listDefis);
     this.listDefis.then(data => this.subj.next(data))
@@ -37,8 +38,8 @@ export class ListDefisComponent implements OnInit {
 
 
   initialize() {
-		const eventSource = new EventSource('http://localhost:8080/notification');
-		eventSource.onmessage = e => {
+		// const eventSource = new EventSource('http://localhost:8080/notification');
+		this.eventService.eventSource.onmessage = e => {
 			const msg = e.data;
       this.ldService.getDefisObs().then(data => {this.subj.next(data);
                           console.log("data" +JSON.stringify(data));});

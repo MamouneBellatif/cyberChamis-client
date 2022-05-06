@@ -36,6 +36,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { EtapeComponent } from './etape/etape.component';
 import { NotificationComponentComponent } from './notification-component/notification-component.component';
 import { NewEtapeComponent } from './new-etape/new-etape.component';
+import { EditDefiComponent } from './edit-defi/edit-defi.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
     NewDefiComponent,
     NewEtapeComponent,
     EtapeComponent,
-    NotificationComponentComponent
+    NotificationComponentComponent,
+    EditDefiComponent
   ],
   imports: [
     BrowserModule,

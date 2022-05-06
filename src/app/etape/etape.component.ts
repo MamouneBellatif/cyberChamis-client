@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Etape } from '../cyberchamis.service';
+import { Etape, TypeEtape } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-etape',
@@ -7,11 +7,15 @@ import { Etape } from '../cyberchamis.service';
   styleUrls: ['./etape.component.scss']
 })
 export class EtapeComponent implements OnInit {
-
+  TypeEtape = TypeEtape;
+  tipDisplayed: boolean = false;
   @Input() etape!: Etape;
 
   constructor() { }
 
+  displayTip(){
+    this.tipDisplayed = true;
+  }
   ngOnInit(): void {
   }
 
