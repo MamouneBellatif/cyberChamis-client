@@ -35,7 +35,8 @@ export class ListChamisComponent implements OnInit {
 		this.eventService.eventSource.onmessage = e => {
 			const msg = e.data;
       this.lcService.getChamis().then(data => {this.chamiSubj.next(data);
-                          console.log("data" +JSON.stringify(data));});
+                          // console.log("data" +JSON.stringify(data));});
+                          });
       console.log("nv chami");	
     };
   }

@@ -15,7 +15,8 @@ import { Subject, take } from 'rxjs';
 export class AppComponent implements OnInit{
 
   // Chami connecté
-  currentChami: Promise<Chami[]>|null = null;
+  // currentChami: Promise<Chami[]>|null = null;
+  currentChami: Promise<Chami>|null = null;
   // chamiSubj = new Subject<Chami[]>();
 
   // Fonctionnalité en cours : VISUALISER [Chamis], JOUER, AJOUTER [Defi], MODIFIER [Defi]
@@ -69,7 +70,8 @@ export class AppComponent implements OnInit{
      ngOnInit(): void {
       this.auth.user.pipe(take(2)).subscribe(user => {
           if (user !== null)  
-            this.currentChami = this.getChamiByEmail(user.email||''); 
+            // this.currentChami = this.getChamiByEmail(user.email||''); 
+            this.currentChami = this.getChamiById(user.uid||''); 
             // this.currentChami?.then(data => this.chamiSubj.next(data))
         });
       firebase.auth().onAuthStateChanged((user) => {
@@ -89,7 +91,8 @@ export class AppComponent implements OnInit{
       prompt: 'select_account' 
     }); 
     this.auth.signInWithPopup(provider).then( userCred => {
-      this.currentChami = this.getChamiByEmail(userCred.user?.email||''); 
+      // this.currentChami = this.getChamiByEmail(userCred.user?.email||''); 
+      this.currentChami = this.getChamiById(userCred.user?.uid||''); 
     });
   } 
   
@@ -130,6 +133,22 @@ export class AppComponent implements OnInit{
     return this.ccService.getChamiByEmail(chamiEmail,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
   }
 
+    /**
+   * Retourne la promesse des Chamis
+   * enregistrés avec l'email chamiEmail
+   * @param chamiEmail une adresse email à rechercher
+   * @returns la promesse d'une liste de Chamis ayant cette adresse email
+   */
+     getChamiById(chamiId: string) : Promise<Chami> {
+      if(this.auth.user){
+         firebase.auth().currentUser?.getIdToken(true).then(function(idToken) {
+            localStorage.setItem("currentUserToken",JSON.stringify(idToken));
+          }
+        );
+      }
+      return this.ccService.getChamiById(chamiId,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    }
+
   /**
    * Enregistre un nouveau Chami
    * @param chami Un Chami à enregistrer
@@ -160,3 +179,4 @@ export class AppComponent implements OnInit{
     window.location.reload()
   }
 }
+

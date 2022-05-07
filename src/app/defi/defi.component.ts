@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input, OnChanges } from '@angular/core';
-import { Defi, Etape } from '../cyberchamis.service';
+import { Component, ChangeDetectionStrategy, Input, OnChanges, OnInit } from '@angular/core';
+import { Chami, CyberchamisService, Defi, Etape } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-defi',
@@ -7,7 +7,7 @@ import { Defi, Etape } from '../cyberchamis.service';
   styleUrls: ['./defi.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DefiComponent implements OnChanges {
+export class DefiComponent implements OnChanges, OnInit {
 
   @Input() defi!: Defi;
 
@@ -17,11 +17,18 @@ export class DefiComponent implements OnChanges {
 
   etapesTmp: Etape[] = [];
 
-  constructor() { }
+  // chami!:Chami;
+
+  // constructor(public csService: CyberchamisService) { }
+  constructor(public csService: CyberchamisService) { }
 
   ngOnChanges(): void {
     this.numEtape = 0;
     this.etapesTmp = [];
+  }
+
+  ngOnInit(): void {
+    // this.csService.
   }
 
   /**
@@ -31,6 +38,11 @@ export class DefiComponent implements OnChanges {
    */
   parsedDateToString(stringDate: string) : string {
     return new Date(stringDate).toLocaleString();
+  }
+
+  newVisite(defi: Defi, chami: Chami){
+    console.log("new visite("+defi.id+","+chami.id+")");
+    this.csService.addVisite(chami, defi, JSON.parse(localStorage.getItem("currentUserToken")||''));
   }
 
   set1erEtape(etape1: boolean) {

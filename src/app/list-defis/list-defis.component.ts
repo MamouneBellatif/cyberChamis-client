@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { combineLatest, map, Observable, from, BehaviorSubject, Subject } from 'rxjs';
-import { Defi } from '../cyberchamis.service';
+import { Chami, Defi } from '../cyberchamis.service';
 import { NotificationService } from '../notification.service';
 import { ListDefisService } from './list-defis.service';
 
@@ -12,6 +12,7 @@ import { ListDefisService } from './list-defis.service';
 })
 export class ListDefisComponent implements OnInit {
 
+  // @Input() chami!: Chami;
   // Le Defi sélectionné
   public currentDefi: Defi | undefined;
 
@@ -42,7 +43,7 @@ export class ListDefisComponent implements OnInit {
 		this.eventService.eventSource.onmessage = e => {
 			const msg = e.data;
       this.ldService.getDefisObs().then(data => {this.subj.next(data);
-                          console.log("data" +JSON.stringify(data));});
+                          });
       console.log("nv defis");	
     };
   }

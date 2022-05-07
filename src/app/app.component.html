@@ -22,7 +22,7 @@
     <section *ngIf="currentChami| async as chami ; else chamiInexistant">
     <!-- <section *ngIf="chamiSubj| async as chami ; else chamiInexistant"> -->
 
-      <h2 class="bienvenue">Bienvenue {{chami[0].login}} chez les chamis !</h2>
+      <h2 class="bienvenue">Bienvenue {{chami.login}} chez les chamis !</h2>
 
       <!-- Navigation -->
       <div class="example-button-row">
@@ -35,12 +35,13 @@
         
       <!-- Mode ajout de défis -->
       <section *ngIf="getMode() === 'AJOUTER'">
-        <app-new-defi [chami]="chami[0]"  ></app-new-defi>
+        <app-new-defi [chami]="chami"  ></app-new-defi>
       </section>
 
       <!-- Mode jeu -->
       <section *ngIf="getMode() === 'JOUER'">
         <!-- Choix du défi -->
+        <!-- <app-list-defis [chami]="currentChami"></app-list-defis> -->
         <app-list-defis></app-list-defis>
       </section>
 
@@ -52,7 +53,7 @@
       <!-- Modification défis Chamis -->
       <section *ngIf="getMode() === 'MODIFIER'">
         <span>test</span>
-        <app-edit-defi [chami]="chami[0]"></app-edit-defi>
+        <app-edit-defi [chami]="chami"></app-edit-defi>
       </section>
 
       <!-- Afficher la carte -->

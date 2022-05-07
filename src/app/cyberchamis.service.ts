@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, TimeoutError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import {BehaviorSubject } from 'rxjs';
 export interface Chami {
   readonly id: string;
   readonly login: string;
@@ -46,10 +46,23 @@ export interface Etape {
 
 }
 
+export interface Visite{
+  id: number;
+  joueurs: Chami[];
+  defi : Defi;
+  rang: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class CyberchamisService {
+
+  // currentChamiSubj = new BehaviorSubject<Chami>({id:'', login:'', age:0, defis:[], email:''});
+  // chamiObs = this.currentChamiSubj.asObservable();
+
+  // currentChami: Chami | undefined;
+  currentChami!: Chami; 
 
   constructor(private httpClient: HttpClient) { }
 
@@ -91,6 +104,20 @@ export class CyberchamisService {
 
   async getChamiByEmail(chamiEmail: string, token: string): Promise<Chami[]> {
     return await lastValueFrom(this.httpClient.get<Chami[]>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}}));
+  }
+
+  async getChamiById(chamiId: string, token: string): Promise<any>{
+    // let  ret: Promise<any> = await lastValueFrom(this.httpClient.get<Chami>(this.url+'chamis/'+chamiId, {headers: new HttpHeaders({Authorization: token})})).then(chami =>this.currentChamiSubj.next(chami));
+    let  ret = await lastValueFrom(this.httpClient.get<Chami>(this.url+'chamis/'+chamiId, {headers: new HttpHeaders({Authorization: token})})).then(chami =>this.currentChami=chami);
+    // return await lastValueFrom(this.httpClient.get<Chami>(this.url+'chamis/'+chamiId, {headers: new HttpHeaders({Authorization: token})}));
+    return ret;
+  }
+
+  async addVisite(chami: Chami, defi: Defi, token: string){
+    let chamiArray: Chami[] =[];
+    chamiArray.push(chami);
+    let ret = await lastValueFrom(this.httpClient.post<Visite>(this.url+'visite/', {joueurs: chamiArray, defi: defi}, {headers:{Authorization:token}})).then(()=> console.log("visite created"));
+    return ret;
   }
 
 
