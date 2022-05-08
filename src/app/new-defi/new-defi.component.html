@@ -1,8 +1,7 @@
 <!-- Faire une route a part, id automatique ? , pourquoi le chami est dasns un tableau-->
 
 <div>
-    <form (submit)="addDefi({id:'',
-                            categorie: getCategorieString(categorie.value),
+    <form (submit)="addDefi({ categorie: getCategorieString(categorie.value),
                             titre: titre.value,
                             dateDeCreation: '',
                             etape:[],

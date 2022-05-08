@@ -46,7 +46,6 @@ export class EditDefiComponent implements OnInit {
     return this.ccService.updateDefi(
       defi.id,
       defi,
-      JSON.parse(localStorage.getItem('currentUserToken') || '{}')
     );
   }
 
@@ -54,7 +53,6 @@ export class EditDefiComponent implements OnInit {
     console.log('deleteDefi', defi);
     return this.ccService.deleteDefi(
       defi.id,
-      JSON.parse(localStorage.getItem('currentUserToken') || '{}')
     );
   }
 }

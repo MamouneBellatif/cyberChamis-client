@@ -38,6 +38,7 @@ import { NotificationComponentComponent } from './notification-component/notific
 import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
+import { VisiteListComponent } from './visite-list/visite-list.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { PlayComponent } from './play/play.component';
     EtapeComponent,
     NotificationComponentComponent,
     EditDefiComponent,
-    PlayComponent
+    PlayComponent,
+    VisiteListComponent
   ],
   imports: [
     BrowserModule,

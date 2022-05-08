@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, OnChanges, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Chami, CyberchamisService, Defi, Etape } from '../cyberchamis.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class DefiComponent implements OnChanges, OnInit {
   // chami!:Chami;
 
   // constructor(public csService: CyberchamisService) { }
-  constructor(public csService: CyberchamisService) { }
+  constructor(public csService: CyberchamisService, private router: Router) { }
 
   ngOnChanges(): void {
     this.numEtape = 0;
@@ -42,7 +43,9 @@ export class DefiComponent implements OnChanges, OnInit {
 
   newVisite(defi: Defi, chami: Chami){
     console.log("new visite("+defi.id+","+chami.id+")");
-    this.csService.addVisite(chami, defi, JSON.parse(localStorage.getItem("currentUserToken")||''));
+    this.csService.addVisite(chami, defi).then((visite) => {
+      this.router.navigateByUrl("play/visite/"+visite.id+"/"+chami.id);
+    });
   }
 
   set1erEtape(etape1: boolean) {

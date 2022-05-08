@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom, TimeoutError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {BehaviorSubject } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 export interface Chami {
   readonly id: string;
   readonly login: string;
@@ -15,9 +16,19 @@ export enum Categorie {
   SPORTIF="SPORTIF", CULTUREL="CULTUREL", ENIGME="ENIGME"
 }
 
+export interface DefiDTO {
+  // id: string;
+  categorie: Categorie;
+  titre: string;
+  dateDeCreation: string;
+  description: string;
+  etape: Etape[];
+  auteur: Chami;
+}
 export interface Defi {
 
-  id: string;
+  // id: string;
+  id: number;
   categorie: Categorie;
   titre: string;
   dateDeCreation: string;
@@ -58,31 +69,33 @@ export interface Visite{
 })
 export class CyberchamisService {
 
-  // currentChamiSubj = new BehaviorSubject<Chami>({id:'', login:'', age:0, defis:[], email:''});
-  // chamiObs = this.currentChamiSubj.asObservable();
-
-  // currentChami: Chami | undefined;
   currentChami!: Chami; 
+  currentToken!: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,public auth: AngularFireAuth) { 
+    this.auth.authState.subscribe(
+      user => {
+        user?.getIdTokenResult().then(idToken => { 
+          this.currentToken=idToken.token;          
+        }
+        )
+      }     
+    )
+  }
 
   private url = environment.apiUrl;
 
   /**
    * 
    */
-  async addChami(userId: string, chami: Chami, token: string): Promise<unknown> {
-    let toto = await lastValueFrom( this.httpClient.post(this.url+'chamis/'+userId, chami, {headers:{Authorization:token}}) );
+  async addChami(userId: string, chami: Chami): Promise<unknown> {
+    let toto = await lastValueFrom( this.httpClient.post(this.url+'chamis/'+userId, chami, {headers:{Authorization:this.currentToken}}) );
     return toto
   }
 
-  async addDefi(defi: Defi, token: string) {
-    // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
+  async addDefi(defi: DefiDTO) {
     const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur, etape: defi.etape};
-    console.log("avant requete post");
-        await lastValueFrom( this.httpClient.post(this.url+'defis/create/', defiPost,{headers:{Authorization:token}}) ).then(() => console.log("ten post"));
-    //return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
-    // return await lastValueFrom( this.httpClient.post<Defi>(this.url+'defis/create/', defi,{headers:{Authorization:token}}) );
+        await lastValueFrom( this.httpClient.post(this.url+'defis/create/', defiPost,{headers:{Authorization:this.currentToken}}) ).then(() => console.log("ten post"));
   }
 
   /*async updateDefi(defi: Defi, token: string): Promise<Defi> {
@@ -94,30 +107,32 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.delete(this.url+'chamis/'+userId));
   }
 
-  async updateDefi(defiId: String, defi: Defi, token: string): Promise<Defi> {
-    return await lastValueFrom(this.httpClient.put<Defi>(this.url+'defis/'+defiId, defi, {headers:{Authorization:token}}));
+  async updateDefi(defiId: number, defi: Defi): Promise<Defi> {
+    return await lastValueFrom(this.httpClient.put<Defi>(this.url+'defis/'+defiId, defi, {headers:{Authorization:this.currentToken}}));
   }
 
-  async deleteDefi(defiId: string, token: string): Promise<unknown> {
-    return await lastValueFrom(this.httpClient.delete(this.url+'defis'+defiId, {headers:{Authorization:token}}));
+  async deleteDefi(defiId: number): Promise<unknown> {
+    return await lastValueFrom(this.httpClient.delete(this.url+'defis'+defiId, {headers:{Authorization:this.currentToken}}));
   }
 
-  async getChamiByEmail(chamiEmail: string, token: string): Promise<Chami[]> {
-    return await lastValueFrom(this.httpClient.get<Chami[]>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: token}),params:{email:chamiEmail}}));
+  async getChamiByEmail(chamiEmail: string): Promise<Chami[]> {
+    return await lastValueFrom(this.httpClient.get<Chami[]>(this.url+'chamis/mail/', {headers: new HttpHeaders({Authorization: this.currentToken}),params:{email:chamiEmail}}));
   }
 
-  async getChamiById(chamiId: string, token: string): Promise<any>{
-    // let  ret: Promise<any> = await lastValueFrom(this.httpClient.get<Chami>(this.url+'chamis/'+chamiId, {headers: new HttpHeaders({Authorization: token})})).then(chami =>this.currentChamiSubj.next(chami));
-    let  ret = await lastValueFrom(this.httpClient.get<Chami>(this.url+'chamis/'+chamiId, {headers: new HttpHeaders({Authorization: token})})).then(chami =>this.currentChami=chami);
-    // return await lastValueFrom(this.httpClient.get<Chami>(this.url+'chamis/'+chamiId, {headers: new HttpHeaders({Authorization: token})}));
+  async getChamiById(chamiId: string): Promise<any>{
+    let  ret = await lastValueFrom(this.httpClient.get<Chami>(this.url+'chamis/'+chamiId, {headers: new HttpHeaders({Authorization:this.currentToken})})).then(chami =>this.currentChami=chami);
     return ret;
   }
 
-  async addVisite(chami: Chami, defi: Defi, token: string){
+  async addVisite(chami: Chami, defi: Defi):Promise<Visite>{
     let chamiArray: Chami[] =[];
     chamiArray.push(chami);
-    let ret = await lastValueFrom(this.httpClient.post<Visite>(this.url+'visite/', {joueurs: chamiArray, defi: defi}, {headers:{Authorization:token}})).then(()=> console.log("visite created"));
-    return ret;
+    let visiteDto :{joueur:string, defi:number, rang:number} = {joueur:chami.id, defi:defi.id, rang:0};
+    return await lastValueFrom(this.httpClient.post<Visite>(this.url+'visite/', {joueur:chami.id, defi:defi.id, rang:0}, {headers:{Authorization:this.currentToken}}));
+  }
+
+  async getVisitesByChami(chamiId: string): Promise<Visite[]> {
+    return await lastValueFrom(this.httpClient.get<Visite[]>(this.url+'visite/', {headers: new HttpHeaders({Authorization: this.currentToken}),params:{chami:chamiId}}));
   }
 
 

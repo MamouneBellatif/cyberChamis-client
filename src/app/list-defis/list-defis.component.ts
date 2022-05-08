@@ -12,13 +12,11 @@ import { ListDefisService } from './list-defis.service';
 })
 export class ListDefisComponent implements OnInit {
 
-  // @Input() chami!: Chami;
   // Le Defi sélectionné
   public currentDefi: Defi | undefined;
 
   // La liste des Defis à afficher
   listDefis!: Promise<Defi[]>;
-  // listObs!: Observable<Defi[]>;
   subj = new Subject<Defi[]>();
 
 
@@ -67,7 +65,6 @@ export class ListDefisComponent implements OnInit {
    * Définit un défi comme étant sélectionné
    */
   selectDefi(defi: Defi) {
-    //console.log("hello");
     this.currentDefi = defi;
   }
 }

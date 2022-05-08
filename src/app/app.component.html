@@ -12,9 +12,14 @@
     <button mat-stroked-button color="primary" (click)="logout()">Sign out</button>
   </mat-toolbar>
 
+  <!-- route pour une visite (partie) -->
+<router-outlet></router-outlet>
+
+<div *ngIf="router.url==='/'">
+
   <!-- Titre appli -->
   <div class="align-center">
-    <h1>Projet intégrateur L3 Miage 2022</h1>
+    <h1>CyberChamis.xyz</h1>
   </div>
 
   <!-- Connecté comme Chami -->
@@ -30,9 +35,14 @@
         <button mat-raised-button (click)="setMode('JOUER')">Jouer aux défis</button>
         <button mat-raised-button (click)="setMode('VISUALISER')">Visualiser les chamis</button>
         <button mat-raised-button (click)="setMode('MODIFIER')">Gérer mes défis</button>
+        <button mat-raised-button (click)="setMode('VISITES')">Mes Visites</button>
       </div>
       &nbsp;
         
+
+      <!-- Vous pouvez recuperer le chami courant dans le service, vous pouvez enlever 
+      les input
+     -->
       <!-- Mode ajout de défis -->
       <section *ngIf="getMode() === 'AJOUTER'">
         <app-new-defi [chami]="chami"  ></app-new-defi>
@@ -52,8 +62,12 @@
 
       <!-- Modification défis Chamis -->
       <section *ngIf="getMode() === 'MODIFIER'">
-        <span>test</span>
         <app-edit-defi [chami]="chami"></app-edit-defi>
+      </section>
+
+      <!-- Les Visites -->
+      <section *ngIf="getMode() === 'VISITES'">
+        <app-visite-list></app-visite-list>
       </section>
 
       <!-- Afficher la carte -->
@@ -114,6 +128,8 @@
       </section>
     </mat-card>
   </ng-template>
+
+</div>
 
 </section>
 

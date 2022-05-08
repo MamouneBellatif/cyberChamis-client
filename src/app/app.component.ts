@@ -5,6 +5,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app'; 
 import { Chami, CyberchamisService } from './cyberchamis.service';
 import { Subject, take } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -51,7 +52,7 @@ export class AppComponent implements OnInit{
 
   ccService: CyberchamisService;
     
-  constructor(public auth: AngularFireAuth, ccService: CyberchamisService) {
+  constructor(public auth: AngularFireAuth, ccService: CyberchamisService, public router: Router) {
     this.ccService = ccService;
     this.auth.authState.subscribe(
       user => {
@@ -64,6 +65,7 @@ export class AppComponent implements OnInit{
     )
   } 
 
+  
     /**
    * Initialise le Chami courant currentChami
    */
@@ -130,7 +132,7 @@ export class AppComponent implements OnInit{
         }
       );
     }
-    return this.ccService.getChamiByEmail(chamiEmail,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    return this.ccService.getChamiByEmail(chamiEmail);
   }
 
     /**
@@ -146,7 +148,7 @@ export class AppComponent implements OnInit{
           }
         );
       }
-      return this.ccService.getChamiById(chamiId,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+      return this.ccService.getChamiById(chamiId);
     }
 
   /**
@@ -158,9 +160,9 @@ export class AppComponent implements OnInit{
   // addChami(chami: Chami):Promise<unknown> {
     // this.auth.user.subscribe(data => this.userId=data?.uid ||'').unsubscribe();
     
-    // return this.ccService.addChami(firebase.auth().currentUser?.uid||'', chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    // return this.ccService.addChami(firebase.auth().currentUser?.uid||'', chami);
     
-    this.ccService.addChami(chami.id, chami, JSON.parse(localStorage.getItem("currentUserToken") || '{}')).then(() => this.refresh());
+    this.ccService.addChami(chami.id, chami).then(() => this.refresh());
     
   }
 

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Categorie, Chami, CyberchamisService, Defi, Etape, TypeEtape } from '../cyberchamis.service';
+import { Categorie, Chami, CyberchamisService, Defi, DefiDTO, Etape, TypeEtape } from '../cyberchamis.service';
 import firebase from 'firebase/compat/app'; 
 
 
@@ -17,7 +17,7 @@ export class NewDefiComponent implements OnInit {
   @Input() chami!:Chami;
 
   defi : Defi = {        
-    id:"",
+    id:0,
     categorie: Categorie.CULTUREL,
     titre: "",
     dateDeCreation:"",
@@ -62,14 +62,14 @@ export class NewDefiComponent implements OnInit {
     console.log(this.listEtape);
   }
 
-  addDefi(defi: Defi) :Promise<unknown>{
+  addDefi(defi: DefiDTO) :Promise<unknown>{
     defi.etape = this.listEtape;
     console.log('addDefi', defi);
-    return this.ccService.addDefi(defi,JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    return this.ccService.addDefi(defi);
   }
 
   updateDefi(defi : Defi) : Promise<unknown>{
-    return this.ccService.updateDefi(defi.id, defi, JSON.parse(localStorage.getItem("currentUserToken") || '{}'));
+    return this.ccService.updateDefi(defi.id, defi);
   }
 
   getCategorie(){
