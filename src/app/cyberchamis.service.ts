@@ -62,6 +62,8 @@ export interface Visite{
   joueurs: Chami[];
   defi : Defi;
   rang: number;
+  dateDebut: string;
+  dateFin: string;
 }
 
 @Injectable({
@@ -132,7 +134,7 @@ export class CyberchamisService {
   }
 
   async getVisitesByChami(chamiId: string): Promise<Visite[]> {
-    return await lastValueFrom(this.httpClient.get<Visite[]>(this.url+'visite/', {headers: new HttpHeaders({Authorization: this.currentToken}),params:{chami:chamiId}}));
+    return await lastValueFrom(this.httpClient.get<Visite[]>(this.url+'visite/'+chamiId, {headers: new HttpHeaders({Authorization: this.currentToken})}));
   }
 
 
