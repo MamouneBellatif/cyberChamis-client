@@ -15,7 +15,7 @@ export class NotificationComponentComponent implements OnInit {
   constructor() { }
 
   initialize() {
-		const eventSource = new EventSource('http://localhost:8080/notification');
+		const eventSource = new EventSource('https://projet-integrateur-g5.herokuapp.com/notification');
 		eventSource.onmessage = e => {
 			const msg = e.data;
     console.log("msg: " + msg)		
@@ -41,7 +41,7 @@ export class NotificationComponentComponent implements OnInit {
 
   connect(): void{
     console.log("event");
-    let source = new EventSource('http://localhost:8080/stream');
+    let source = new EventSource('https://projet-integrateur-g5.herokuapp.com//stream');
     source.addEventListener('update',message => {
       console.log('connection sse'+message.data);
       let n: Notification;
