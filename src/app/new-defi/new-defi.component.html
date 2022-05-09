@@ -4,9 +4,9 @@
     <form (submit)="addDefi({ categorie: getCategorieString(categorie.value),
                             titre: titre.value,
                             dateDeCreation: '',
-                            etape:[],
+                            etape:listEtape,
                             description: description.value,
-                            auteur:chami}); titre.value=''; description.value=''; categorie.value=''">
+                            auteur:chami}); titre.value=''; description.value=''">
 
         <!-- <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>id du defi</mat-label>

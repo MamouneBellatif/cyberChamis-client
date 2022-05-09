@@ -53,8 +53,7 @@ export interface Etape {
   readonly point: number;
   readonly reponse_attendu: string;
   readonly cout: number;
-  //defi: Defi; 
-
+  readonly type_reponse_attendu: string
 }
 
 export interface Visite{
