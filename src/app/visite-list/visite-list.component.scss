@@ -1,41 +1,53 @@
+mat-card-content ul{
+    padding:0 20px 0 20px;
+  }
+
 .grid {
     display: grid;
     height: 20px;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(3,1fr);
     max-width: 310px;
   }
   
   .titre {
-    grid-column: 1/span 3;
+    grid-column: 1;
   }
 
-  .grid2 {
+ .id {
+    grid-column:2;
+}
+
+.reprendre{
+    grid-column:6;
+}
+
+.grid2 {
     display: grid;
     height: 20px;
     max-width: 310px;
   }
 
-  .clickableLine:hover {
+.clickableLine:hover {
     cursor: pointer;
     background-color: #d3d3e4;
   }
   
-  .date {
-    grid-column: 4;
+.date {
+    grid-column: 3;
     text-align:center
   }
 
-  .enCours {
-    grid-column: 5/span 2;
+.enCours {
+    grid-column: 5;
     text-align:center
   }
 
-  .container {
+.container {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .mrgTop {
+.mrgTop {
     margin-top: 30px;
   }
