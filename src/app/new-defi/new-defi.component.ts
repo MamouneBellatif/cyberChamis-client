@@ -50,19 +50,13 @@ export class NewDefiComponent implements OnInit {
       defi: this.defi});
   }*/
   addEtape(etape: Etape){
-    console.log('ajouter encor un defis');
-    /*this.listEtape.forEach(old => {
-      if(etape.rang == old.rang){
-        this.listEtape = this.listEtape.filter(e => {
-          e.rang != etape.rang;
-        })
-      }
-    });*/
+    console.log('ajouter encore un defis');
     this.listEtape.push(etape);
     console.log(this.listEtape);
   }
 
   addDefi(defi: DefiDTO) :Promise<unknown>{
+    console.log("envoie du defi");
     defi.etape = this.listEtape;
     console.log('addDefi', defi);
     return this.ccService.addDefi(defi);
