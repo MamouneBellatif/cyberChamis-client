@@ -146,4 +146,11 @@ export class CyberchamisService {
     return Object.values(TypeEtape);
   }
 
+
+  async getVisite(visiteId: string): Promise<Visite>{
+    return await lastValueFrom(this.httpClient.get<Visite>(this.url+"visite/play/"+visiteId, 
+    {headers: new HttpHeaders(
+      {'Authorization': this.currentToken})}));
+  }
+
 }

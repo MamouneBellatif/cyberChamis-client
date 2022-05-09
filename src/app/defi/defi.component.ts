@@ -11,6 +11,7 @@ import { Chami, CyberchamisService, Defi, Etape, TypeEtape } from '../cyberchami
 export class DefiComponent implements OnChanges, OnInit {
 
   @Input() defi!: Defi;
+  @Input() jouer: boolean = false;
 
   private etape1: boolean = false;
 
