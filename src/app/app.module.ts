@@ -39,6 +39,8 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
 import { VisiteListComponent } from './visite-list/visite-list.component';
+import { UpdDelDefiComponent } from './upd-del-defi/upd-del-defi.component';
+import { UpdateDefiComponent } from './update-defi/update-defi.component';
 
 
 @NgModule({
@@ -56,7 +58,9 @@ import { VisiteListComponent } from './visite-list/visite-list.component';
     NotificationComponentComponent,
     EditDefiComponent,
     PlayComponent,
-    VisiteListComponent
+    VisiteListComponent,
+    UpdDelDefiComponent,
+    UpdateDefiComponent
   ],
   imports: [
     BrowserModule,

@@ -114,7 +114,7 @@ export class CyberchamisService {
   }
 
   async deleteDefi(defiId: number): Promise<unknown> {
-    return await lastValueFrom(this.httpClient.delete(this.url+'defis'+defiId, {headers:{Authorization:this.currentToken}}));
+    return await lastValueFrom(this.httpClient.delete(this.url+'defis/'+defiId, {headers:{Authorization:this.currentToken}}));
   }
 
   async getChamiByEmail(chamiEmail: string): Promise<Chami[]> {
