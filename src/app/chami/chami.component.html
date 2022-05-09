@@ -7,7 +7,7 @@
   </mat-card-header>
   <mat-card-content class="container">
     <mat-tab-group>
-      <mat-tab *ngFor="let defi of chami.defis" [label]="defi.id.toString()" ><br/><b>Titre : </b>{{ defi.titre }}<br/><b>Description : </b>{{ defi.description }}<br/><b>Catégorie : </b>{{ defi.categorie }}<br/><b>Date de création : </b>{{ parsedDateToString(defi.dateDeCreation) }}</mat-tab>
+      <mat-tab *ngFor="let defi of chami.defis" [label]="'D'+defi.id.toString()" ><br/><b>Titre : </b>{{ defi.titre }}<br/><b>Description : </b>{{ defi.description }}<br/><b>Catégorie : </b>{{ defi.categorie }}<br/><b>Date de création : </b>{{ parsedDateToString(defi.dateDeCreation) }}</mat-tab>
     </mat-tab-group>
   </mat-card-content>
 </mat-card>
