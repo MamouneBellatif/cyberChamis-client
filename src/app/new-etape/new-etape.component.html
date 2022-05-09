@@ -12,16 +12,6 @@
 }); monURL.value=''; labelEtape.value=''; cout.valueAsNumber=0;">
 
 
-  <div>
-    <mat-label>Est ce un indice ?</mat-label>
-    <input type="radio" name="estIndice" id="oui" value="Oui" (change)="setIndice(true)">
-    <label for="oui">Oui</label>
-
-    <input checked type="radio" name="estIndice" id="non" value="non" (change)="setIndice(false)">
-    <label for="non">Non</label>
-  </div>
-
-
     <mat-form-field class="type-etape" appearance="fill">
 
         <mat-label>Type d'étape</mat-label>
@@ -39,9 +29,20 @@
       </mat-form-field>
       <br/>
 
-      <mat-form-field class="description-etape" appearance="fill"
-        [class.cacheIndice] = "isIndice() && typeEtape.value == 'media'"
-      >
+      <div>
+        <label class="example-margin">Est-ce un indice ?</label> &nbsp;
+        <mat-radio-group>
+          <mat-radio-button type="radio" name="estIndice" id="oui" value="Oui" (change)="setIndice(true)">
+            <label for="oui">Oui</label>
+          </mat-radio-button> &nbsp;
+          <mat-radio-button checked type="radio" name="estIndice" id="non" value="non" (change)="setIndice(false)">
+            <label for="non">Non</label>
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <br/>
+
+      <mat-form-field class="description-etape" appearance="fill" [class.cacheIndice] = "isIndice() && typeEtape.value == 'media'">
         <mat-label>Description de l'étape</mat-label>
         <textarea maxlength="255" #labelEtape matInput placeholder="Description, Question, Autre, etc."></textarea>
       </mat-form-field>
@@ -52,30 +53,15 @@
         <input matInput type="number" [ngModel]="rang" #rangEtape/>
       </mat-form-field>-->
 
-      <mat-form-field
-        class="cacher type-etape" appearance="fill"
-        [class.media] = "typeEtape.value == 'media'"
-      >
+      <mat-form-field class="cacher type-etape" appearance="fill" [class.media] = "typeEtape.value == 'media'">
         <mat-label>URL</mat-label>
         <input matInput type="text" #monURL/>
       </mat-form-field>
 
-      <mat-form-field
-        class="cacher"
-        [class.indice] = "isIndice()"
-      >
+      <mat-form-field class="cacher type-etape" appearance="fill" [class.indice] = "isIndice()">
         <mat-label>Cout de l'indice</mat-label>
         <input matInput type="number" #cout/>
       </mat-form-field>
-
-
-   <!--   <mat-form-field
-      class="cacher"
-      [class.media] = "typeEtape.value === 'indice'"
-    >
-      <mat-label>Cout</mat-label>
-      <input matInput type="number" #cout/>
-    </mat-form-field> -->
 
       <button mat-stroked-button color="primary" type="submit">AJOUTER l'étape</button>
 

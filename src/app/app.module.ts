@@ -39,6 +39,8 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
 import { VisiteListComponent } from './visite-list/visite-list.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { VisiteListComponent } from './visite-list/visite-list.component';
     MatSelectModule,
     MatIconModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatRadioModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
   ],
