@@ -21,7 +21,9 @@
         Afficher les étapes
       </button>
       <section *ngFor="let etape of etapesTmp">
-        <app-etape [etape]="etape"></app-etape>
+        <app-etape [etape]="etape"
+                    (reponse)="reponse.emit($event)">
+        </app-etape>
       </section>
       <button
         mat-stroked-button
