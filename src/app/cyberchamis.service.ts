@@ -57,6 +57,12 @@ export interface Etape {
 
 }
 
+export interface VisiteDTO{
+  joueur:string;
+  defi: number;
+  rang:number
+}
+
 export interface Visite{
   id: number;
   joueurs: Chami[];
@@ -137,6 +143,10 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.get<Visite[]>(this.url+'visite/'+chamiId, {headers: new HttpHeaders({Authorization: this.currentToken})}));
   }
 
+  async getVisitesDTOByChami(chamiId: string): Promise<VisiteDTO[]>{
+    return await lastValueFrom(this.httpClient.get<VisiteDTO[]>(this.url+'visite/DTO/'+chamiId,{headers: new HttpHeaders({Authorization: this.currentToken})}));
+  }
+
 
   getCategorie() {
     return Object.values(Categorie);
@@ -144,6 +154,15 @@ export class CyberchamisService {
 
   getTypeEtape(){
     return Object.values(TypeEtape);
+  }
+
+  /**
+   * 
+   * @param stringDate Une string représentant une date au format YYYY-MM-DDThh:mm:ss
+   * @returns La date formattée selon la localisation de l'appareil
+   */
+   parsedDateToString(stringDate: string) : string {
+    return new Date(stringDate).toLocaleString();
   }
 
 }
