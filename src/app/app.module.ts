@@ -39,9 +39,14 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
 import { VisiteListComponent } from './visite-list/visite-list.component';
+<<<<<<< HEAD
 import { UpdDelDefiComponent } from './upd-del-defi/upd-del-defi.component';
 import { UpdateDefiComponent } from './update-defi/update-defi.component';
 
+=======
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+>>>>>>> c0a2b441d72b1df7bdbafc50a5bcabe99a50e7f3
 
 @NgModule({
   declarations: [
@@ -84,6 +89,8 @@ import { UpdateDefiComponent } from './update-defi/update-defi.component';
     MatSelectModule,
     MatIconModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatRadioModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
   ],

@@ -12,6 +12,7 @@
             <mat-label>id du defi</mat-label>   
             <input #id matInput type="text" name="idDefi" placeholder="id du défi">
         </mat-form-field> -->
+        
             <div class="add-defi-form">
                 <mat-form-field class="titre" appearance="fill">
                   <mat-label>Titre</mat-label>
@@ -32,23 +33,25 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
+                <br/>
 
                 <mat-form-field class="description-defi" appearance="fill">
                     <mat-label>Description</mat-label>
                     <textarea maxlength="255" #description matInput placeholder="Description générale du défi"></textarea>
                 </mat-form-field>
 
-                <p
-                    *ngFor="let etape of listEtape; let index = index"
-                >{{etape.label}} - rang : {{etape.rang}}</p>
+                <mat-card class="card-etapes">
+                    <mat-card-title><h3>Les étapes du défi :</h3></mat-card-title>
+                    <mat-card-subtitle>Pour chaque étape que vous souhaitez ajouter au défi, remplissez les informations ci-dessous avant d'appuyer sur "AJOUTER"</mat-card-subtitle>
+                    <p class="liste-etapes" *ngFor="let etape of listEtape; let index = index">{{etape.rang}} - {{etape.label}}</p>
+                </mat-card>
+                <br/>
+                
 
-                <app-new-etape
-                                
-                [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"
+                <app-new-etape [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"></app-new-etape>
+                <br/>
 
-                ></app-new-etape>
-
-                <button mat-raised-button color="primary" style="margin-left: 20px;" type="submit">Créer</button>
+                <button mat-raised-button color="primary" type="submit">Créer défi</button>
                 <br/>
             </div>
        

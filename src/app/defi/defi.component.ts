@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Chami, CyberchamisService, Defi, Etape } from '../cyberchamis.service';
+import { Chami, CyberchamisService, Defi, Etape, TypeEtape } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-defi',
@@ -66,5 +66,15 @@ export class DefiComponent implements OnChanges, OnInit {
   nextEtape() {
     this.etapesTmp.push(this.defi.etape[this.numEtape]);
     this.numEtape++;
+
+    // Insertion des indices dans l'étape qui les précède
+    const currEtapeId: number = this.etapesTmp.length-1;
+    if(!this.etapesTmp[currEtapeId].listIndice){
+      this.etapesTmp[currEtapeId].listIndice = [];
+    }
+    while(this.defi.etape[this.numEtape].type_etape === TypeEtape.indice){
+      this.etapesTmp[currEtapeId].listIndice?.push(this.defi.etape[this.numEtape]);
+      this.numEtape++;
+    }
   }
 }

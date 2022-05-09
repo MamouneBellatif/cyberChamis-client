@@ -45,15 +45,22 @@ export enum TypeEtape{
 }
 
 export interface Etape {
-  readonly type_etape: TypeEtape;
-  readonly id: number;
-  readonly label: string;
-  readonly rang: number;
-  readonly url: string;
-  readonly point: number;
-  readonly reponse_attendu: string;
-  readonly cout: number;
-  readonly type_reponse_attendu: string
+  type_etape: TypeEtape;
+  id: number;
+  label: string;
+  rang: number;
+  url: string;
+  point: number;
+  reponse_attendu: string;
+  cout: number;
+  type_reponse_attendu: string;
+  listIndice?: Partial<Etape>[];
+}
+
+export interface VisiteDTO{
+  joueur:string;
+  defi: number;
+  rang:number
 }
 
 export interface Visite{
@@ -140,6 +147,10 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.get<Visite[]>(this.url+'visite/'+chamiId, {headers: new HttpHeaders({Authorization: this.currentToken})}));
   }
 
+  async getVisitesDTOByChami(chamiId: string): Promise<VisiteDTO[]>{
+    return await lastValueFrom(this.httpClient.get<VisiteDTO[]>(this.url+'visite/DTO/'+chamiId,{headers: new HttpHeaders({Authorization: this.currentToken})}));
+  }
+
 
   getCategorie() {
     return Object.values(Categorie);
@@ -147,6 +158,15 @@ export class CyberchamisService {
 
   getTypeEtape(){
     return Object.values(TypeEtape);
+  }
+
+  /**
+   * 
+   * @param stringDate Une string représentant une date au format YYYY-MM-DDThh:mm:ss
+   * @returns La date formattée selon la localisation de l'appareil
+   */
+   parsedDateToString(stringDate: string) : string {
+    return new Date(stringDate).toLocaleString();
   }
 
 }
