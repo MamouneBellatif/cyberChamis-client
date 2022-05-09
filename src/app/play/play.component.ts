@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-play',
@@ -12,13 +12,18 @@ export class PlayComponent implements OnInit {
   chamiId!:string;
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
 
 
   ngOnInit(): void {
     this.visiteId = this.route.snapshot.paramMap.get('visiteId') || '';
     this.chamiId = this.route.snapshot.paramMap.get('chamiId') || '';
+  }
+
+  retour(){
+    window.history.back();
+    this.router.navigateByUrl("/");
   }
 
 } 
