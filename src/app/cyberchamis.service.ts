@@ -53,7 +53,8 @@ export interface Etape {
   point: number;
   reponse_attendu: string;
   cout: number;
-  type_reponse_attendu: string
+  type_reponse_attendu: string;
+  listIndice?: Partial<Etape>[];
 }
 
 export interface Visite{
