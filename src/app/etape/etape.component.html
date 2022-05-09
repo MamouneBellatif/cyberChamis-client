@@ -14,15 +14,14 @@
         </p>
     </form>
 
-    <form *ngSwitchCase="TypeEtape.indice" >
-        <button mat-raised-button color="accent" *ngIf="!tipDisplayed"
-                (click)="displayTip()">Un indice ?</button>
-        <p *ngIf="tipDisplayed">
-            {{etape.label}}
-        </p>
-    </form>
-
 
     <p *ngSwitchDefault>{{etape.label}}</p>
 
 </section>
+<form *ngIf="etape.listIndice!=undefined && etape.listIndice.length > 0">
+    <button mat-raised-button color="accent" *ngIf="nbTips > iTip"
+            (click)="displayTip()">Un indice ?</button>
+    <p  *ngFor="let tip of displayedTips">
+        {{tip.label}}
+    </p>
+</form>

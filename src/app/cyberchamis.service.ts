@@ -53,6 +53,7 @@ export interface Etape {
   readonly point: number;
   readonly reponse_attendu: string;
   readonly cout: number;
+  listIndice?: Partial<Etape>[];
   //defi: Defi; 
 
 }
