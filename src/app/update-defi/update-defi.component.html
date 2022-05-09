@@ -1,0 +1,72 @@
+<button mat-stroked-button color="primary" (click)="retour()">Retour</button>
+
+<!-- Faire une route a part, id automatique ? , pourquoi le chami est dasns un tableau-->
+
+<div>
+  <form
+    (submit)="
+      updateDefi({
+        id: defi.id,
+        categorie: getCategorieString(categorie.value),
+        titre: titre.value,
+        dateDeCreation: '',
+        etape: [],
+        description: description.value,
+        auteur: defi.auteur
+      });
+      titre.value = '';
+      description.value = ''
+    "
+  >
+    <div class="update-defi-form">
+      <mat-form-field class="titre" appearance="fill">
+        <mat-label>Titre</mat-label>
+        <input
+          #titre
+          matInput
+          type="text"
+          name="titreDefi"
+          [ngModel]="defi.titre"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="categorie" appearance="fill">
+        <mat-label>Categorie</mat-label>
+        <mat-select #categorie>
+          <mat-option *ngFor="let categories of getCategorie()" [value]="categories">
+            {{ categories }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="description-defi" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          #description
+          matInput
+          maxlength="255"
+        >{{ defi.description }}</textarea>
+      </mat-form-field>
+
+      <!-- <p *ngFor="let etapes of listEtape; let index = index">
+        {{ etapes.label }} - rang : {{ etapes.rang }}
+      </p>
+
+      <app-new-etape
+        [defi]="defi"
+        [rang]="listEtape.length + 1"
+        (newEtape)="addEtape($event)"
+      ></app-new-etape> -->
+
+      <button
+        mat-raised-button
+        color="primary"
+        style="margin-left: 20px"
+        type="submit"
+      >
+        Valider
+      </button>
+      <br />
+    </div>
+  </form>
+</div>

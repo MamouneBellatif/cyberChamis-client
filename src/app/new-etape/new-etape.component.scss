@@ -1,9 +1,9 @@
 
-.cacher{
+.cacher, .cacheIndice{
     display: none;
 }
 
-.media{
+.media, .indice{
     display: block;
 }
 
@@ -33,12 +33,4 @@
         width: 400px;
         margin: auto;
     }
-}
-
-.cacher, .cacheIndice{
-    display: none;
-}
-
-.media, .indice{
-    display: flex;
 }

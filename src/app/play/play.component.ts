@@ -30,4 +30,6 @@ export class PlayComponent implements OnInit {
     this.router.navigateByUrl("/");
   }
 
+  
+
 } 

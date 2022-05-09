@@ -49,6 +49,7 @@ export class NewDefiComponent implements OnInit {
       cout:0,
       defi: this.defi});
   }*/
+  
   addEtape(etape: Etape){
     console.log('ajouter encore un defis');
     this.listEtape.push(etape);
