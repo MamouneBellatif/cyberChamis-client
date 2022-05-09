@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { CyberchamisService, Defi, Etape } from '../cyberchamis.service';
+import { CyberchamisService, Defi, Etape, TypeEtape } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-new-etape',
@@ -13,6 +13,8 @@ export class NewEtapeComponent implements OnInit {
   @Input() rang! : number;
   @Input() defi! : Defi;
 
+  private estIndice : Boolean = false;
+
   constructor(private ccService: CyberchamisService) { }
 
   ngOnInit(): void {
@@ -20,7 +22,19 @@ export class NewEtapeComponent implements OnInit {
 
   addNewEtape(etape : Etape){
     console.log("valider sur le composant new-etape");
+    if(this.estIndice){
+      etape.type_etape = TypeEtape.indice;
+      etape.label = "URL:" + etape.url;
+    }
     this.newEtape.emit(etape);
+  }
+
+  setIndice(ok : boolean){
+    this.estIndice = ok;
+  }
+
+  isIndice(){
+    return this.estIndice;
   }
 
 }
