@@ -13,7 +13,7 @@
     <!-- <button mat-stroked-button  (click)="newVisite(defi,chami)">jouer</button> -->
     <button mat-stroked-button
           (click)="newVisite(defi,csService.currentChami)"
-          *ngIf="!jouer">jouer</button>
+          *ngIf="!jouer">JOUER</button>
     <section class="container" *ngIf="this.defi.etape.length > 0">
       <button mat-stroked-button 
               *ngIf="jouer && numEtape === 0" 
