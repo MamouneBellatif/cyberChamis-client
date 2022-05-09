@@ -45,15 +45,15 @@ export enum TypeEtape{
 }
 
 export interface Etape {
-  readonly type_etape: TypeEtape;
-  readonly id: number;
-  readonly label: string;
-  readonly rang: number;
-  readonly url: string;
-  readonly point: number;
-  readonly reponse_attendu: string;
-  readonly cout: number;
-  readonly type_reponse_attendu: string
+  type_etape: TypeEtape;
+  id: number;
+  label: string;
+  rang: number;
+  url: string;
+  point: number;
+  reponse_attendu: string;
+  cout: number;
+  type_reponse_attendu: string
 }
 
 export interface Visite{

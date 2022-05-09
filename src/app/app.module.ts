@@ -40,7 +40,6 @@ import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
 import { VisiteListComponent } from './visite-list/visite-list.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
