@@ -21,4 +21,8 @@ export class PlayComponent implements OnInit {
     this.chamiId = this.route.snapshot.paramMap.get('chamiId') || '';
   }
 
+  retour(){
+    window.history.back();
+  }
+
 } 
