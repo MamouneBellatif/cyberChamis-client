@@ -1,5 +1,4 @@
 
-
 <form (submit)="addNewEtape({
   type_etape: typeEtape.value,
   id: 0,
@@ -12,41 +11,41 @@
   type_reponse_attendu: 'string'
 }); monURL.value=''; labelEtape.value=''">
 
-    <mat-form-field appearance="fill">
+    <mat-form-field class="type-etape" appearance="fill">
 
         <mat-label>Type d'étape</mat-label>
-        <mat-select #typeEtape>
+          <mat-select #typeEtape>
             <mat-option [value]="'mere'">
-              simple
-          </mat-option>
-          <mat-option [value]="'media'">
-            média
-        </mat-option>
-        <mat-option [value]="'question'">
-          question
-      </mat-option>
-        </mat-select>
+              SIMPLE
+            </mat-option>
+            <mat-option [value]="'media'">
+              MEDIA
+            </mat-option>
+            <mat-option [value]="'question'">
+              QUESTION
+            </mat-option>
+          </mat-select>
       </mat-form-field>
+      <br/>
 
-      <mat-form-field>
+      <mat-form-field class="description-etape" appearance="fill">
         <mat-label>Description de l'étape</mat-label>
-        <textarea maxlength="255" #labelEtape matInput></textarea>
+        <textarea maxlength="255" #labelEtape matInput placeholder="Description, Question, Autre, etc."></textarea>
       </mat-form-field>
+      <br/>
 
       <!--<mat-form-field>
         <mat-label>Rang</mat-label>
         <input matInput type="number" [ngModel]="rang" #rangEtape/>
       </mat-form-field>-->
 
-      <mat-form-field
-        class="cacher"
-        [class.media] = "typeEtape.value === 'media'"
-      >
-        <mat-label>URL</mat-label>
-        <input matInput type="text" #monURL/>
-      </mat-form-field>
+        <mat-form-field class="cacher type-etape" appearance="fill"
+                        [class.media] = "typeEtape.value === 'media'">
+          <mat-label>URL</mat-label>
+          <input matInput type="text" #monURL />
+        </mat-form-field>
 
-      <button type="submit">Save</button>
+      <button mat-stroked-button color="primary" type="submit">AJOUTER l'étape</button>
 
       <!--AJOUTER LE COMPOSANT QUESTION AVEC LA CLASS : 
         [class.question] = "typeEtape.value === 'question'"
