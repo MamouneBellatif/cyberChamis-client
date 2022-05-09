@@ -108,6 +108,10 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.delete(this.url+'chamis/'+userId));
   }
 
+  async getDefiById(defiId: number): Promise<Defi> {
+    return await lastValueFrom(this.httpClient.get<Defi>(this.url+'defis/'+defiId, {headers:{Authorization:this.currentToken}}));
+  }
+
   async updateDefi(defiId: number, defi: Defi): Promise<Defi> {
     return await lastValueFrom(this.httpClient.put<Defi>(this.url+'defis/'+defiId, defi, {headers:{Authorization:this.currentToken}}));
   }

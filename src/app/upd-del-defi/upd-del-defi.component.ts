@@ -18,19 +18,15 @@ export class UpdDelDefiComponent implements OnInit {
 
   /**
    * 
-   * @param stringDate Une string représentant une date au format YYYY-MM-DDThh:mm:ss
+   * @param stringDate Un string représentant une date au format YYYY-MM-DDThh:mm:ss
    * @returns La date formattée selon la localisation de l'appareil
    */
-   parsedDateToString(stringDate: string) : string {
+  parsedDateToString(stringDate: string) : string {
     return new Date(stringDate).toLocaleString();
   }
 
   supprimerDefi(defi: Defi) {
-    // console.log("new visite("+defi.id+","+chami.id+")");
     this.csService.deleteDefi(defi.id);
-    // then((visite) => {
-    //   this.router.navigateByUrl("play/visite/"+visite.id+"/"+chami.id);
-    // });
   }
 
   rediriger() {
