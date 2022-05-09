@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-play',
@@ -12,7 +12,7 @@ export class PlayComponent implements OnInit {
   chamiId!:string;
 
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
 
 
@@ -23,6 +23,7 @@ export class PlayComponent implements OnInit {
 
   retour(){
     window.history.back();
+    this.router.navigateByUrl("/");
   }
 
 } 
