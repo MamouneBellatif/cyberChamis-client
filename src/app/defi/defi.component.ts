@@ -33,6 +33,7 @@ export class DefiComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
+    console.log("defi.component.ts: ngOnInit()");
     // this.csService.
   }
 
