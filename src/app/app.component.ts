@@ -6,6 +6,7 @@ import firebase from 'firebase/compat/app';
 import { Chami, CyberchamisService } from './cyberchamis.service';
 import { Subject, take } from 'rxjs';
 import { Router } from '@angular/router';
+import { UploadService } from './upload.service';
 
 @Component({
   selector: 'app-root',
@@ -52,7 +53,7 @@ export class AppComponent implements OnInit{
 
   ccService: CyberchamisService;
     
-  constructor(public auth: AngularFireAuth, ccService: CyberchamisService, public router: Router) {
+  constructor(private uploadService: UploadService, public auth: AngularFireAuth, ccService: CyberchamisService, public router: Router) {
     this.ccService = ccService;
     this.auth.authState.subscribe(
       user => {
@@ -173,6 +174,12 @@ export class AppComponent implements OnInit{
    */
   parseAge(s: string): number{
     return parseInt(s);
+  }
+
+  imgurl(){
+  let url = this.uploadService.getImage("/uploads/lGeYVomWjSVotS1w4riM6CPaJmv1/wozzi3pges8");
+  //  console.log("url recup "+url);
+   return url;
   }
 
 
