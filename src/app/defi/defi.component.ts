@@ -72,11 +72,11 @@ export class DefiComponent implements OnChanges, OnInit {
 
     // Insertion des indices dans l'étape qui les précède
     const currEtapeId: number = this.etapesTmp.length-1;
-    if(!this.etapesTmp[currEtapeId].listIndice){
-      this.etapesTmp[currEtapeId].listIndice = [];
+    if(!this.etapesTmp[currEtapeId].listeIndice){
+      this.etapesTmp[currEtapeId].listeIndice = [];
     }
     while(this.defi.etape[this.numEtape].type_etape === TypeEtape.indice){
-      this.etapesTmp[currEtapeId].listIndice?.push(this.defi.etape[this.numEtape]);
+      this.etapesTmp[currEtapeId].listeIndice?.push(this.defi.etape[this.numEtape]);
       this.numEtape++;
     }
   }

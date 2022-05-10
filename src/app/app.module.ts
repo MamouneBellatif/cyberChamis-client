@@ -25,8 +25,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select'; 
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon'; 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon'; 
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ListElementChamiComponent } from './list-element-chami/list-element-chami.component';
@@ -39,6 +39,7 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
 import { VisiteListComponent } from './visite-list/visite-list.component';
+import { IndiceComponent } from './indice/indice.component';
 import { UpdDelDefiComponent } from './upd-del-defi/upd-del-defi.component';
 import { UpdateDefiComponent } from './update-defi/update-defi.component';
 
@@ -48,6 +49,7 @@ import { UploadComponent } from './upload/upload.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     EditDefiComponent,
     PlayComponent,
     VisiteListComponent,
+    IndiceComponent,
     UpdDelDefiComponent,
     UpdateDefiComponent,
     UploadComponent,
@@ -96,6 +99,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCheckboxModule,
     MatRadioModule,
     MatSnackBarModule,
+    MatDialogModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
     MdbCarouselModule,

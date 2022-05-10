@@ -1,6 +1,13 @@
 <button mat-stroked-button class="retour" color="primary" (click)="retour()">Retour</button>
-
-<div>
+<mat-card>
+  <mat-card-header class="container">
+    <mat-card-title>Espace modification</mat-card-title>
+    <mat-card-subtitle
+      >Changez directement dans les champs les informations que vous souhaitez modifier.</mat-card-subtitle
+    >
+  </mat-card-header>
+</mat-card>
+<div style="padding-top: 20px;">
   <form
     (submit)="
       updateDefi({
@@ -10,7 +17,9 @@
         dateDeCreation: '',
         etape: [],
         description: description.value,
-        auteur: defi.auteur
+        auteur: defi.auteur,
+        image: '',
+        coordonnees: ''
       });
       titre.value = '';
       description.value = '';

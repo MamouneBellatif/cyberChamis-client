@@ -5,24 +5,24 @@
   label: labelEtape.value,
   rang: rang,
   url : monURL.value,
-  point : 3,
-  reponse_attendu: '',
-  cout: cout.valueAsNumber,
-  type_reponse_attendu: TypeReponse.texte 
-}); monURL.value=''; labelEtape.value=''; cout.valueAsNumber=0;">
+  point : point.valueAsNumber,
+  reponseAttendu: reponseAttendu.value,
+  cout: 3,
+  typeReponseAttendu: typeReponse.value
+}); monURL.value=''; labelEtape.value=''; cout.valueAsNumber=0; point.valueAsNumber=0">
 
 
     <mat-form-field class="type-etape" appearance="fill">
 
         <mat-label>Type d'étape</mat-label>
           <mat-select #typeEtape>
-            <mat-option [value]="'mere'">
+            <mat-option [value]="TypeEtape.mere">
               SIMPLE
             </mat-option>
-            <mat-option [value]="'media'">
+            <mat-option [value]="TypeEtape.media">
               MEDIA
             </mat-option>
-            <mat-option [value]="'question'">
+            <mat-option [value]="TypeEtape.question">
               QUESTION
             </mat-option>
           </mat-select>
@@ -68,7 +68,62 @@
         <input matInput type="number" #cout/>
       </mat-form-field>
 
-      <button mat-stroked-button color="primary" type="submit">AJOUTER l'étape</button>
+
+
+
+   <!--   <mat-form-field
+      class="cacher"
+      [class.media] = "typeEtape.value === 'indice'"
+    >
+      <mat-label>Cout</mat-label>
+      <input matInput type="number" #cout/>
+    </mat-form-field> -->
+
+
+
+    <div class="divQuestion"
+    class="cacher"
+    [class.question] = "typeEtape.value == 'question'"
+    >
+      
+    <mat-form-field>
+      <mat-label>Point de la question</mat-label>
+      <input matInput type="number" #point/>
+    </mat-form-field>
+  
+    <app-indice
+      [defi]="defi" [rang]="rang" (newIndice)="addIndice($event)"
+    ></app-indice>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type de réponse attendue</mat-label>
+      <mat-select #typeReponse>
+          <mat-option [value]="'STRING'">
+            texte
+        </mat-option>
+        <mat-option [value]="'MEDIA'">
+          média
+      </mat-option>
+      <mat-option [value]="'INT'">
+        nombre
+    </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+        <mat-form-field>
+          <mat-label>Réponse</mat-label>
+          <input matInput type="text" #reponseAttendu/>
+        </mat-form-field>
+
+    </div>
+
+
+
+
+    
+
+      <button type="submit">Save</button>
 
       <!--AJOUTER LE COMPOSANT QUESTION AVEC LA CLASS : 
         [class.question] = "typeEtape.value === 'question'"

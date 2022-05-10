@@ -23,7 +23,6 @@ export class VisiteListComponent implements OnInit {
   }
 
   init_visites(){
-    console.log("init_visite");
     this.csService.getVisitesByChami(this.csService.currentChami.id).then(data => {this.subj.next(data);
       console.log("http visites: "+data);
     });
@@ -49,8 +48,10 @@ export class VisiteListComponent implements OnInit {
     }
   }
 
-  reprendreVisite(visiteId: number){
-    this.router.navigateByUrl("play/visite/"+visiteId+"/"+this.csService.currentChami.id);
+  reprendreVisite(visite: Visite){
+    if(!visite.dateFin){
+      this.router.navigateByUrl("play/visite/"+visite.id+"/"+this.csService.currentChami.id);
+    }
   }
 
   // isEnCours(visite: Visite):boolean{

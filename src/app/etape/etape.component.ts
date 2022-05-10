@@ -18,24 +18,24 @@ export class EtapeComponent implements OnInit {
   }
 
   displayTip(){
-    if(this.etape.listIndice){
-      this.displayedTips.push(this.etape.listIndice[this.iTip]);
+    if(this.etape.listeIndice){
+      this.displayedTips.push(this.etape.listeIndice[this.iTip]);
       this.iTip++
     }
   }
 
   checkReponse(valReponse:string){
     this.reponse.emit({
-      type_reponse: this.etape.type_reponse_attendu,
-      valide: valReponse === this.etape.reponse_attendu,
+      type_reponse: this.etape.typeReponseAttendu,
+      valide: valReponse === this.etape.reponseAttendu,
       value:valReponse,
-      question_id: this.etape.id
+      question: this.etape
     })
   }
 
   ngOnInit(): void {
-    if(this.etape.listIndice)
-      this.nbTips = this.etape.listIndice.length;
+    if(this.etape.listeIndice)
+      this.nbTips = this.etape.listeIndice.length;
   }
 
 }

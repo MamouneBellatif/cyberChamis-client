@@ -6,10 +6,13 @@
                             dateDeCreation: '',
                             etape:listEtape,
                             description: description.value,
-                            auteur:chami }); 
+                            auteur:chami,
+                            image: '',
+                            coordonnees: coordonnes.value}); 
                     titre.value=''; 
                     description.value=''; 
                     listEtape = [];
+                    coordonnes.value='';
                     openSnackBar('Défi créé avec succès', 'OK')">
 
         <!-- <mat-form-field class="example-form-field" appearance="fill">
@@ -28,6 +31,16 @@
                     placeholder="Titre du défi"
                   />
                 </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Coordonnées de départ</mat-label>
+                    <input
+                      #coordonnes
+                      matInput
+                      type="text"
+                      placeholder="Lat,Long"
+                    />
+                  </mat-form-field>
 
                 <mat-form-field class="categorie" appearance="fill">
                     <mat-label>Categorie</mat-label>

@@ -20,7 +20,7 @@
     <p *ngSwitchDefault>{{etape.label}}</p>
 
 </section>
-<form *ngIf="etape.listIndice!=undefined && etape.listIndice.length > 0"
+<form *ngIf="etape.listeIndice!=undefined && etape.listeIndice.length > 0"
         class="indice">
     <p  *ngFor="let tip of displayedTips">
         {{tip.label}}
