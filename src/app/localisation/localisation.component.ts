@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import {GeolocationService} from '@ng-web-apis/geolocation';
 import * as L from 'leaflet';
+import { Defi } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-localisation',
@@ -10,13 +11,17 @@ import * as L from 'leaflet';
 })
 export class LocalisationComponent implements OnInit {
 
+  @Input() listeDefis! : Defi[];
+
   marker : L.Marker;
+  icon!: L.Icon;
+  map! : L.Map;
   constructor() {
     this.marker = L.marker([0,0]);
   }
   ngOnInit(): void {
 
-    let map = L.map('map', {
+      this.map = L.map('map', {
       center: [45.18680056764414, 5.736371520710951],
       zoom: 16
     });
@@ -25,7 +30,7 @@ export class LocalisationComponent implements OnInit {
       maxZoom: 25
   });
 
-  map.addLayer(osmLayer);
+  this.map.addLayer(osmLayer);
 
     /*let map = L.map('map')
 
@@ -36,7 +41,7 @@ export class LocalisationComponent implements OnInit {
     
         
     
-    map.locate({setView: true, 
+    this.map.locate({setView: true, 
                  maxZoom: 20, 
                  watch:true
                });
@@ -45,20 +50,33 @@ export class LocalisationComponent implements OnInit {
     icon.options.shadowSize = [0,0];*/
 
     
-    let icon = new L.Icon({
+      this.icon = new L.Icon({
       iconSize: [ 30, 41 ],
       iconAnchor: [ 13, 0 ],
       iconUrl: 'assets/images/marker-icon.png',
       shadowUrl: 'assets/images/marker-shadow.png'
     });
     const onLocationFound = (e: { accuracy: number; latlng: L.LatLngExpression; }) => {
-        map.removeLayer(this.marker);
-        this.marker = new L.Marker(e.latlng, {draggable:true}).setIcon(icon);
-        map.addLayer(this.marker);
+        this.map.removeLayer(this.marker);
+        this.marker = new L.Marker(e.latlng, {draggable:true}).setIcon(this.icon);
+        this.map.addLayer(this.marker);
     }
     
-    map.on('locationfound', onLocationFound);
+    this.map.on('locationfound', onLocationFound);
     
+    this.listeDefis.forEach(element => {
+      this.addMarker(element.coordonnees);
+    });
+    }
+
+    addMarker(coordonnees : string){
+      coordonnees = coordonnees.replace(' ', '');
+      let coord = coordonnees.split(",");
+      let lat : number = parseFloat(coord[0]);
+      let long : number = parseFloat(coord[1]);
+      console.log("lat : " + lat + " et long : " + long);
+      let mark = new L.Marker([lat, long], {icon:this.icon});
+      this.map.addLayer(mark);
     }
 
 /*
