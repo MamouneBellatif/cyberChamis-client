@@ -1,19 +1,7 @@
 <!-- Faire une route a part, id automatique ? , pourquoi le chami est dasns un tableau-->
 
 <div>
-    <form (submit)="addDefi({ categorie: getCategorieString(categorie.value),
-                            titre: titre.value,
-                            dateDeCreation: '',
-                            etape:listEtape,
-                            description: description.value,
-                            auteur:chami,
-                            image: monURL.value,
-                            coordonnees: coordonnes.value}); 
-                    titre.value=''; 
-                    description.value=''; 
-                    listEtape = [];
-                    coordonnes.value='';
-                    openSnackBar('Défi créé avec succès', 'OK')">
+    <form >
 
         <!-- <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>id du defi</mat-label>   
@@ -75,7 +63,19 @@
                 <app-new-etape [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"></app-new-etape>
                 <br/>
 
-                <button mat-raised-button color="primary" type="submit">Créer défi</button>
+                <button mat-raised-button color="primary" (click)="addDefi({ categorie: getCategorieString(categorie.value),
+                  titre: titre.value,
+                  dateDeCreation: '',
+                  etape:listEtape,
+                  description: description.value,
+                  auteur:chami,
+                  image: monURL.value,
+                  coordonnees: coordonnes.value}); 
+          titre.value=''; 
+          description.value=''; 
+          listEtape = [];
+          coordonnes.value='';
+          openSnackBar('Défi créé avec succès', 'OK')">Créer défi</button>
                 <br/>
             </div>
        
