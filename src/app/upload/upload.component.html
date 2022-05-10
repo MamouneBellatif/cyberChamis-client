@@ -1,33 +1,30 @@
-<p>upload works!</p>
 <!-- <div>
     <input  type="file" (change)="upload($event)" accept=".png,.jpg"/>
 
 </div> -->
 
-<label>
+
+<!-- <label>
     <input
       type="file"
-      class="text-nowrap text-truncate"
+      accept=".png,.jpg"
       (change)="selectFile($event)"
     />
-  </label>
-  <button
-    class="btn btn-success btn-sm"
+  </label> -->
+
+  <input #Input hidden="true" type="file" onclick="this.value=null" (change)="selectFile($event)" accept=".png, .jpg"/>
+  <button mat-flat-button color="primary" (click)="Input.click();">Téleverser une image</button>
+  
+
+
+  <!-- <button mat-raised-button
     [disabled]="!selectedFiles"
     (click)="upload()"
   >
     Upload
-  </button>
-  <div *ngIf="currentFileUpload" class="progress mt-2">
-    <div
-      class="progress-bar progress-bar-info"
-      role="progressbar"
-      attr.aria-valuenow="{{ percentage }}"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      [ngStyle]="{ width: percentage + '%' }"
-    >
-      {{ percentage }}%
-    </div>
-  </div>
+  </button> -->
+  <!-- <div *ngIf="currentFileUpload">
+    <a href="{{ currentFileUpload.url }}">{{currentFileUpload.name}}</a>
+    <p>this.uploadService</p>
+  </div> -->
   

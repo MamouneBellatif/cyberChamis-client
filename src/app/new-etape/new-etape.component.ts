@@ -37,4 +37,8 @@ export class NewEtapeComponent implements OnInit {
     return this.estIndice;
   }
 
+  // setUrl(url : string){
+  //   this.
+  // }
+
 }
