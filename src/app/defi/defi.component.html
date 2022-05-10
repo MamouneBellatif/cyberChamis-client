@@ -11,13 +11,19 @@
   <mat-card-content class="container">
     <pre>{{ defi.description }}<br/></pre>
     <!-- <button mat-stroked-button  (click)="newVisite(defi,chami)">jouer</button> -->
-    <button mat-stroked-button  (click)="newVisite(defi,csService.currentChami)">jouer</button>
+    <button mat-stroked-button
+          (click)="newVisite(defi,csService.currentChami)"
+          *ngIf="!jouer">JOUER</button>
     <section class="container" *ngIf="this.defi.etape.length > 0">
-      <button mat-stroked-button *ngIf="numEtape === 0" (click)="nextEtape()">
+      <button mat-stroked-button 
+              *ngIf="jouer && numEtape === 0" 
+              (click)="nextEtape()">
         Afficher les étapes
       </button>
       <section *ngFor="let etape of etapesTmp">
-        <app-etape [etape]="etape"></app-etape>
+        <app-etape [etape]="etape"
+                    (reponse)="reponse.emit($event)">
+        </app-etape>
       </section>
       <button
         mat-stroked-button

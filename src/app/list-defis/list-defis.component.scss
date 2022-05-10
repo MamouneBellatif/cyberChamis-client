@@ -25,8 +25,11 @@ mat-card-content ul{
 }
 
 .titre {
-  grid-column: 4;
-  text-align: center;
+  grid-column: 2;
+}
+
+.titre2 {
+  grid-column: 3/span 4;
 }
 
 .mrgTop {

@@ -8,7 +8,8 @@
         </mat-card-content>
     </p>
 
-    <form *ngSwitchCase="TypeEtape.question" >
+    <form *ngSwitchCase="TypeEtape.question" 
+            (submit)="checkReponse(reponse.value)">
         <p>
             Question : {{etape.label}}<br/>
             <input #reponse/>
