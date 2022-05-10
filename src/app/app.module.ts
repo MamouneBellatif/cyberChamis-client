@@ -50,6 +50,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
+import { AfficherImageComponent } from './afficher-image/afficher-image.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     UpdDelDefiComponent,
     UpdateDefiComponent,
     UploadComponent,
+    AfficherImageComponent,
 
   ],
   imports: [
