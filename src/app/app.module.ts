@@ -9,7 +9,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideStorage,getStorage} from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from'@angular/fire/compat/auth';
@@ -44,6 +44,9 @@ import { UpdateDefiComponent } from './update-defi/update-defi.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import { UploadComponent } from './upload/upload.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +65,7 @@ import {MatRadioModule} from '@angular/material/radio';
     VisiteListComponent,
     UpdDelDefiComponent,
     UpdateDefiComponent,
+    UploadComponent,
 
   ],
   imports: [
@@ -77,6 +81,7 @@ import {MatRadioModule} from '@angular/material/radio';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     MatInputModule,
     MatButtonModule,
     MatTableModule,
