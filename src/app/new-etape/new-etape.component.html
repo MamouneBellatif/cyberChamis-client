@@ -1,15 +1,5 @@
 
-<form (submit)="addNewEtape({
-  type_etape: typeEtape.value,
-  id: 0,
-  label: labelEtape.value,
-  rang: rang,
-  url : monURL.value,
-  point : point.valueAsNumber,
-  reponseAttendu: reponseAttendu.value,
-  cout: 3,
-  typeReponseAttendu: typeReponse.value
-}); monURL.value=''; labelEtape.value=''; cout.valueAsNumber=0; point.valueAsNumber=0">
+<form>
 
 
     <mat-form-field class="type-etape" appearance="fill">
@@ -118,12 +108,17 @@
 
     </div>
 
-
-
-
-    
-
-      <button type="submit">Save</button>
+      <button (click)="addNewEtape({
+        type_etape: typeEtape.value,
+        id: 0,
+        label: labelEtape.value,
+        rang: rang,
+        url : monURL.value,
+        point : point.valueAsNumber,
+        reponseAttendu: reponseAttendu.value,
+        cout: 3,
+        typeReponseAttendu: typeReponse.value
+      }); monURL.value=''; labelEtape.value=''; cout.valueAsNumber=0; point.valueAsNumber=0">Ajouter une etape</button>
 
       <!--AJOUTER LE COMPOSANT QUESTION AVEC LA CLASS : 
         [class.question] = "typeEtape.value === 'question'"
