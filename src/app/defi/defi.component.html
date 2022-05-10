@@ -7,11 +7,10 @@
       {{ parsedDateToString(defi.dateDeCreation) }}</mat-card-subtitle
     >
   </mat-card-header>
-  <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
   <mat-card-content class="container">
     <pre>{{ defi.description }}<br/></pre>
     <!-- <button mat-stroked-button  (click)="newVisite(defi,chami)">jouer</button> -->
-    <button mat-stroked-button
+    <button mat-stroked-button class="jouer"
           (click)="newVisite(defi,csService.currentChami)"
           *ngIf="!jouer">JOUER</button>
     <section class="container" *ngIf="this.defi.etape.length > 0">
@@ -22,7 +21,8 @@
       </button>
       <section *ngFor="let etape of etapesTmp">
         <app-etape [etape]="etape"
-                    (reponse)="reponse.emit($event)">
+                    (reponse)="reponse.emit($event)"
+                    (cout)="indice.emit($event)">
         </app-etape>
       </section>
       <button

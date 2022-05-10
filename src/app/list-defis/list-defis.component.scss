@@ -1,3 +1,37 @@
+
+.max-taille {
+  max-width: 936px;
+}
+
+@media only screen and (min-width: 768px) {
+  .mrgTop {
+    margin-top: 10px;
+  }
+
+  .container {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    width: 100%;
+    max-width: 936px;
+  }
+
+  .text-carousel {
+    position: absolute;
+    bottom: 0px;
+    background-color: transparent;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width:768) {
+  .text-carousel {
+    width: 100%;
+  }
+}
+
 // mat-card-content ul{
 //   padding:0 20px 0 20px;
 // }
@@ -31,22 +65,3 @@
 // .titre2 {
 //   grid-column: 3/span 4;
 // }
-
-.mrgTop {
-  margin-top: 30px;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-}
-
-.text-carousel {
-  position: absolute;
-  bottom: 0px;
-  background-color: black;
-  color: white;
-  width: 100%;
-}

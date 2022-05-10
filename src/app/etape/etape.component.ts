@@ -12,7 +12,9 @@ export class EtapeComponent implements OnInit {
   @Input() etape!: Etape;
   iTip:number = 0;
   nbTips:number = 0;
+  repondu = false;
   @Output() reponse = new EventEmitter<Partial<Reponse>>();
+  @Output() cout = new EventEmitter<number>()
 
   constructor() { 
   }
@@ -20,6 +22,7 @@ export class EtapeComponent implements OnInit {
   displayTip(){
     if(this.etape.listeIndice){
       this.displayedTips.push(this.etape.listeIndice[this.iTip]);
+      this.cout.emit(this.etape.listeIndice[this.iTip].cout)
       this.iTip++
     }
   }

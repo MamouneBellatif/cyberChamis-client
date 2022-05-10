@@ -1,19 +1,7 @@
 <!-- Faire une route a part, id automatique ? , pourquoi le chami est dasns un tableau-->
 
 <div>
-    <form (submit)="addDefi({ categorie: getCategorieString(categorie.value),
-                            titre: titre.value,
-                            dateDeCreation: '',
-                            etape:listEtape,
-                            description: description.value,
-                            auteur:chami,
-                            image: '',
-                            coordonnees: coordonnes.value}); 
-                    titre.value=''; 
-                    description.value=''; 
-                    listEtape = [];
-                    coordonnes.value='';
-                    openSnackBar('Défi créé avec succès', 'OK')">
+    <form >
 
         <!-- <mat-form-field class="example-form-field" appearance="fill">
             <mat-label>id du defi</mat-label>   
@@ -57,6 +45,13 @@
                     <textarea maxlength="255" #description matInput placeholder="Description générale du défi"></textarea>
                 </mat-form-field>
 
+                <mat-form-field class="desctiption-defi" appearance="fill">
+                    <!-- <mat-label>URL</mat-label> -->
+                    <app-upload (urlFichier)="monURL.value=$event"></app-upload>
+                    <input disabled matInput type="text" #monURL/>
+                  </mat-form-field>
+            
+
                 <mat-card class="card-etapes">
                     <mat-card-title><h3>Les étapes du défi :</h3></mat-card-title>
                     <mat-card-subtitle>Pour chaque étape que vous souhaitez ajouter au défi, remplissez les informations ci-dessous avant d'appuyer sur "AJOUTER"</mat-card-subtitle>
@@ -68,7 +63,19 @@
                 <app-new-etape [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"></app-new-etape>
                 <br/>
 
-                <button mat-raised-button color="primary" type="submit">Créer défi</button>
+                <button mat-raised-button color="primary" (click)="addDefi({ categorie: getCategorieString(categorie.value),
+                  titre: titre.value,
+                  dateDeCreation: '',
+                  etape:listEtape,
+                  description: description.value,
+                  auteur:chami,
+                  image: monURL.value,
+                  coordonnees: coordonnes.value}); 
+          titre.value=''; 
+          description.value=''; 
+          listEtape = [];
+          coordonnes.value='';
+          openSnackBar('Défi créé avec succès', 'OK')">Créer défi</button>
                 <br/>
             </div>
        

@@ -19,6 +19,7 @@ export class PlayComponent implements OnInit {
   visiteId!:string;
   chamiId!:string;
   visite!: Visite;
+  coutIndices: number = 0;
   reponses: Reponse[] = [];
 
 
@@ -46,6 +47,10 @@ export class PlayComponent implements OnInit {
     else{
       this.reponses[iQ] = reponse;
     }
+  }
+
+  deduceIndice(cout: number){
+    this.coutIndices -= cout;
   }
 
   ngOnInit(): void {
@@ -78,7 +83,7 @@ export class PlayComponent implements OnInit {
 
       const score = this.reponses.reduce( (score, reponse, iR) => {
         return score += reponse.valide ? reponsesAttendues[iR].point : 0;
-      }, 0);
+      }, 0) + this.coutIndices;
 
       //fin visite
       this.ccService.finVisite(this.visite)

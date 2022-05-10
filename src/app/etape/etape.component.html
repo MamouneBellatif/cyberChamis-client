@@ -9,10 +9,13 @@
     </p>
 
     <form *ngSwitchCase="TypeEtape.question" 
-            (submit)="checkReponse(reponse.value); reponse.value=''">
+            (submit)="checkReponse(reponse.value); repondu=true">
         <p>
             Question : {{etape.label}}<br/>
-            <input #reponse/>
+            <input [disabled]="repondu"
+                    #reponse/>
+            <input *ngIf="!repondu"
+                    type="submit" value="ok"/>
         </p>
     </form>
 
@@ -26,5 +29,5 @@
         {{tip.label}}
     </p>
     <button mat-raised-button color="accent" *ngIf="nbTips > iTip"
-            (click)="displayTip()">Un indice ?</button>
+            (click)="displayTip()">Un indice ? (coût : {{etape.listeIndice[iTip].cout}}pts)</button>
 </form>

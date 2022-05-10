@@ -25,12 +25,20 @@ export class UploadService {
 
   constructor( private storage: AngularFireStorage, private ccService: CyberchamisService) { }
 
+  downloadURL!: Observable<string>;
 
   getImage(ref: string){ //explose url
     // const storage = getStorage();
     let urlImage='';
     const storageRef = this.storage.ref(ref);
-    storageRef.getDownloadURL().subscribe(data =>urlImage=data);
+    storageRef.getDownloadURL().subscribe(data =>{
+      console.log("geturl "+data);
+      ;urlImage=data});
+
+      // task.snapshotChanges().pipe(finalize(() => {
+      //   this.downloadURL = fileRef.getDownloadURL();
+      //   this.downloadURL.subs
+      // }))
     return urlImage;
   }
 

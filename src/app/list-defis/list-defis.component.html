@@ -1,3 +1,20 @@
+
+<section class="container ListDefis mrgTop" *ngIf="subj | async as lDefis">
+  <mdb-carousel [controls]="true" (slideChange)="onSlideChange()">
+    <mdb-carousel-item *ngFor="let defi of lDefis">
+      <div>
+        <img 
+          src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
+          class="d-block w-100 max-taille"
+        />
+        <div class="text-carousel">
+              <app-defi class="defi-card" class="container" [defi]="defi"></app-defi>
+        </div>
+      </div>
+    </mdb-carousel-item>
+  </mdb-carousel>
+</section>
+
 <!-- Détail du défi sélectionné -->
 <!-- <app-defi *ngIf="currentDefi" [defi]="currentDefi" [chami]="chami"> </app-defi> -->
 <!-- <app-defi *ngIf="currentDefi" [defi]="currentDefi"> </app-defi> -->
