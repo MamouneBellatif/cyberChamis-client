@@ -12,6 +12,7 @@ export class EtapeComponent implements OnInit {
   @Input() etape!: Etape;
   iTip:number = 0;
   nbTips:number = 0;
+  repondu = false;
   @Output() reponse = new EventEmitter<Partial<Reponse>>();
 
   constructor() { 
@@ -29,7 +30,7 @@ export class EtapeComponent implements OnInit {
       type_reponse: this.etape.typeReponseAttendu,
       valide: valReponse === this.etape.reponseAttendu,
       value:valReponse,
-      question_id: this.etape.id
+      question: this.etape
     })
   }
 

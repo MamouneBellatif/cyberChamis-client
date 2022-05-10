@@ -6,10 +6,13 @@
                             dateDeCreation: '',
                             etape:listEtape,
                             description: description.value,
-                            auteur:chami }); 
+                            auteur:chami,
+                            image: monURL.value,
+                            coordonnees: coordonnes.value}); 
                     titre.value=''; 
                     description.value=''; 
                     listEtape = [];
+                    coordonnes.value='';
                     openSnackBar('Défi créé avec succès', 'OK')">
 
         <!-- <mat-form-field class="example-form-field" appearance="fill">
@@ -29,6 +32,16 @@
                   />
                 </mat-form-field>
 
+                <mat-form-field appearance="fill">
+                    <mat-label>Coordonnées de départ</mat-label>
+                    <input
+                      #coordonnes
+                      matInput
+                      type="text"
+                      placeholder="Lat,Long"
+                    />
+                  </mat-form-field>
+
                 <mat-form-field class="categorie" appearance="fill">
                     <mat-label>Categorie</mat-label>
                     <mat-select #categorie>
@@ -43,6 +56,13 @@
                     <mat-label>Description</mat-label>
                     <textarea maxlength="255" #description matInput placeholder="Description générale du défi"></textarea>
                 </mat-form-field>
+
+                <mat-form-field class="desctiption-defi" appearance="fill">
+                    <!-- <mat-label>URL</mat-label> -->
+                    <app-upload (urlFichier)="monURL.value=$event"></app-upload>
+                    <input disabled matInput type="text" #monURL/>
+                  </mat-form-field>
+            
 
                 <mat-card class="card-etapes">
                     <mat-card-title><h3>Les étapes du défi :</h3></mat-card-title>

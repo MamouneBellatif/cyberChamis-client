@@ -27,7 +27,9 @@ export class NewDefiComponent implements OnInit {
     dateDeCreation:"",
     description : "",
     etape: [],
-    auteur: this.chami
+    auteur: this.chami,
+    image: "",
+    coordonnees: ""
     };
 
   // categorie: Categorie = Categorie.SPORTIF;

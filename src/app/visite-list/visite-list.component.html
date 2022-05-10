@@ -23,9 +23,9 @@
           </thead>
           <tbody>
             <tr
-              class="clickableLine"
+            [class.clickableLine]="!visite.dateFin"
               *ngFor="let visite of visites"
-              (click)="reprendreVisite(visite.id)"
+              (click)="reprendreVisite(visite)"
             >
               <td class="titre padd">{{ visite.defi.titre }}</td>
               <td class="date padd">
