@@ -7,12 +7,12 @@
 <label>
     <input
       type="file"
+      accept=".png,.jpg"
       class="text-nowrap text-truncate"
       (change)="selectFile($event)"
     />
   </label>
-  <button
-    class="btn btn-success btn-sm"
+  <button mat-raised-button
     [disabled]="!selectedFiles"
     (click)="upload()"
   >
