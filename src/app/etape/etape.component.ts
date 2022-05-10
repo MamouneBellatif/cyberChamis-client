@@ -17,15 +17,15 @@ export class EtapeComponent implements OnInit {
   }
 
   displayTip(){
-    if(this.etape.listIndice){
-      this.displayedTips.push(this.etape.listIndice[this.iTip]);
+    if(this.etape.listeIndice){
+      this.displayedTips.push(this.etape.listeIndice[this.iTip]);
       this.iTip++
     }
   }
 
   ngOnInit(): void {
-    if(this.etape.listIndice)
-      this.nbTips = this.etape.listIndice.length;
+    if(this.etape.listeIndice)
+      this.nbTips = this.etape.listeIndice.length;
   }
 
 }

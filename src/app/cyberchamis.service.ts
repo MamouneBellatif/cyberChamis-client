@@ -51,10 +51,18 @@ export interface Etape {
   rang: number;
   url: string;
   point: number;
-  reponse_attendu: string;
+  reponseAttendu: string;
   cout: number;
-  type_reponse_attendu: string;
-  listIndice?: Partial<Etape>[];
+  typeReponseAttendu: string;
+  listeIndice?: Partial<Etape>[];
+}
+
+export interface Indice{
+  type_etape: TypeEtape;
+  id: number;
+  label: string;
+  rang: number;
+  cout: number;
 }
 
 export interface Visite{
@@ -65,6 +73,7 @@ export interface Visite{
   dateDebut: string;
   dateFin: string;
 }
+
 
 @Injectable({
   providedIn: 'root'

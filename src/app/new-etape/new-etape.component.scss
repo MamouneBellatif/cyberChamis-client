@@ -2,6 +2,10 @@
     display: none;
 }
 
-.media, .indice{
+.media, .indice, .question{
     display: flex;
+}
+
+.divQuestion{
+    border: 1px solid red;
 }

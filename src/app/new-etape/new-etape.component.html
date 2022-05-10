@@ -6,11 +6,11 @@
   label: labelEtape.value,
   rang: rang,
   url : monURL.value,
-  point : 3,
-  reponse_attendu: '',
-  cout: cout.valueAsNumber,
-  type_reponse_attendu: 'string'
-}); monURL.value=''; labelEtape.value=''; cout.valueAsNumber=0;">
+  point : point.valueAsNumber,
+  reponseAttendu: reponseAttendu.value,
+  cout: 3,
+  typeReponseAttendu: typeReponse.value
+}); monURL.value=''; labelEtape.value=''; cout.valueAsNumber=0; point.valueAsNumber=0">
 
 
   <div>
@@ -78,6 +78,44 @@
       <input matInput type="number" #cout/>
     </mat-form-field> -->
 
+
+
+    <div class="divQuestion"
+    class="cacher"
+    [class.question] = "typeEtape.value == 'question'"
+    >
+      
+    <mat-form-field>
+      <mat-label>Point de la question</mat-label>
+      <input matInput type="number" #point/>
+    </mat-form-field>
+  
+    <app-indice
+      [defi]="defi" [rang]="rang" (newIndice)="addIndice($event)"
+    ></app-indice>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Type de réponse attendue</mat-label>
+      <mat-select #typeReponse>
+          <mat-option [value]="'STRING'">
+            texte
+        </mat-option>
+        <mat-option [value]="'MEDIA'">
+          média
+      </mat-option>
+      <mat-option [value]="'INT'">
+        nombre
+    </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+        <mat-form-field>
+          <mat-label>Réponse</mat-label>
+          <input matInput type="text" #reponseAttendu/>
+        </mat-form-field>
+
+    </div>
 
 
 
