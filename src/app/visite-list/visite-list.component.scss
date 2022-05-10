@@ -16,6 +16,7 @@
 
 .titre {
   grid-column: 1;
+  text-align: center;
 }
 
 .date {
@@ -24,7 +25,7 @@
 }
 
 .enCours {
-  grid-column: 5;
+  grid-column: 8;
   text-align: center;
 }
 
@@ -36,6 +37,11 @@
 .clickableLine:hover {
   cursor: pointer;
   background-color: #d3d3e4;
+}
+
+.padd {
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 // .reprendre {

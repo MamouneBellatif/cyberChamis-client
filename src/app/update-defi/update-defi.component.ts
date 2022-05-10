@@ -1,6 +1,7 @@
 import { Component, DefaultIterableDiffer, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { define } from 'mime';
 import {
   Categorie,
   CyberchamisService,
@@ -17,7 +18,7 @@ export class UpdateDefiComponent implements OnInit {
   defiId!: number;
   defi!: Defi;
   Categorie = Categorie;
-
+  
   constructor(
     private ccService: CyberchamisService,
     private route: ActivatedRoute,
