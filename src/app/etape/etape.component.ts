@@ -12,6 +12,7 @@ export class EtapeComponent implements OnInit {
   @Input() etape!: Etape;
   iTip:number = 0;
   nbTips:number = 0;
+  repondu = false;
   @Output() reponse = new EventEmitter<Partial<Reponse>>();
 
   constructor() { 

@@ -9,10 +9,13 @@
     </p>
 
     <form *ngSwitchCase="TypeEtape.question" 
-            (submit)="checkReponse(reponse.value); reponse.value=''">
+            (submit)="checkReponse(reponse.value); repondu=true">
         <p>
             Question : {{etape.label}}<br/>
-            <input #reponse/>
+            <input [disabled]="repondu"
+                    #reponse/>
+            <input *ngIf="!repondu"
+                    type="submit" value="ok"/>
         </p>
     </form>
 
