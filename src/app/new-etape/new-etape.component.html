@@ -54,9 +54,14 @@
       </mat-form-field>-->
 
       <mat-form-field class="cacher type-etape" appearance="fill" [class.media] = "typeEtape.value == 'media'">
-        <mat-label>URL</mat-label>
-        <input matInput type="text" #monURL/>
+        <!-- <mat-label>URL</mat-label> -->
+        <app-upload (urlFichier)="monURL.value=$event"></app-upload>
+        <input disabled matInput type="text" #monURL/>
       </mat-form-field>
+
+      <!-- <mat-form-field>
+        <app-upload></app-upload>
+      </mat-form-field> -->
 
       <mat-form-field class="cacher type-etape" appearance="fill" [class.indice] = "isIndice()">
         <mat-label>Cout de l'indice</mat-label>
