@@ -10,11 +10,10 @@ import { ListElementChamiService } from '../list-element-chami/list-element-cham
 })
 export class ChamiComponent implements OnInit {
 
-  // @Input() chami!: Chami;
+  @Input() chami!: Chami;
   // Liste des promesses défis à afficher
   //listPromesseDefis!: Promise<Defi[]>;
   
-  chami!: Chami;
   listDefis! : Defi[];
 
   constructor(private lcService: ListElementChamiService, private csService: CyberchamisService)  {
@@ -24,7 +23,6 @@ export class ChamiComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.chami=this.csService.currentChami;
     this.getDefisByChamis();
   }
 
