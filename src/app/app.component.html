@@ -46,7 +46,8 @@
      -->
       <!-- Mode ajout de défis -->
       <section *ngIf="getMode() === 'AJOUTER'">
-        <app-new-defi [chami]="chami"  ></app-new-defi>
+        <!-- <app-new-defi [chami]="chami"  ></app-new-defi> -->
+        <app-new-defi></app-new-defi>
       </section>
 
       <!-- Mode jeu -->
@@ -63,7 +64,8 @@
 
       <!-- Modification défis Chamis -->
       <section *ngIf="getMode() === 'MODIFIER'">
-        <app-edit-defi [chami]="chami"></app-edit-defi>
+        <!-- <app-edit-defi [chami]="chami"></app-edit-defi> -->
+        <app-edit-defi></app-edit-defi>
       </section>
 
       <!-- Les Visites -->

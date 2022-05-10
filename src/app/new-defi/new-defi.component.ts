@@ -14,7 +14,8 @@ export class NewDefiComponent implements OnInit {
 
   listEtape: Etape[] = [];
 
-  @Input() chami!:Chami;
+  // @Input() chami!:Chami;
+  chami!:Chami;
 
   defi : Defi = {        
     id:0,
@@ -34,6 +35,7 @@ export class NewDefiComponent implements OnInit {
   constructor(private auth: AngularFireAuth,private ccService: CyberchamisService) { }
   ngOnInit(): void {
     //this.ajouterEtape();
+    this.chami=this.ccService.currentChami;
   }
 
   /*ajouterEtape(){

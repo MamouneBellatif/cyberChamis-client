@@ -9,7 +9,8 @@ import { ListChamisService } from '../list-chamis/list-chamis.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditDefiComponent implements OnInit {
-  @Input() chami!: Chami;
+  // @Input() chami!: Chami;
+  chami!: Chami;
 
   // Liste des défis à afficher
   listDefisByChami!: Promise<Defi[]>;
@@ -20,6 +21,7 @@ export class EditDefiComponent implements OnInit {
   constructor(private lsSrvice: ListChamisService, private ccService: CyberchamisService) {}
 
   ngOnInit(): void {
+    this.chami = this.ccService.currentChami;
     this.listDefisByChami = this.getDefisByChami(this.chami.id);
   }
 
