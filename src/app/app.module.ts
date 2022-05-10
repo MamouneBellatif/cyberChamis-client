@@ -46,6 +46,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import { UploadComponent } from './upload/upload.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     MatTabsModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSnackBarModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
   ],
