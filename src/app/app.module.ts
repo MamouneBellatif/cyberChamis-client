@@ -28,7 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'; 
 import { MatTabsModule } from '@angular/material/tabs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ListElementChamiComponent } from './list-element-chami/list-element-chami.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { NewDefiComponent } from './new-defi/new-defi.component';
@@ -39,6 +39,7 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
 import { VisiteListComponent } from './visite-list/visite-list.component';
+import { IndiceComponent } from './indice/indice.component';
 import { UpdDelDefiComponent } from './upd-del-defi/upd-del-defi.component';
 import { UpdateDefiComponent } from './update-defi/update-defi.component';
 
@@ -46,6 +47,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import { UploadComponent } from './upload/upload.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 
@@ -65,6 +67,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     EditDefiComponent,
     PlayComponent,
     VisiteListComponent,
+    IndiceComponent,
     UpdDelDefiComponent,
     UpdateDefiComponent,
     UploadComponent,
@@ -99,6 +102,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatDialogModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
+    MdbCarouselModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

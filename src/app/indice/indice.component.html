@@ -1,0 +1,43 @@
+
+
+
+
+<form (submit)="addNewIndice({
+    type_etape: typeEtape.value,
+    id: 0,
+    label: labelEtape.value,
+    rang: rang,
+    cout: cout.valueAsNumber
+  }); labelEtape.value=''; cout.valueAsNumber=0;">
+  
+  
+      <mat-form-field appearance="fill">
+  
+          <mat-label>Type</mat-label>
+          <mat-select #typeEtape>
+              <mat-option [value]="'mere'">
+                simple
+            </mat-option>
+            <mat-option [value]="'media'">
+              média
+          </mat-option>
+
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Description de l'étape ou URL</mat-label>
+          <textarea maxlength="255" #labelEtape matInput></textarea>
+        </mat-form-field>
+  
+        <mat-form-field
+        >
+          <mat-label>Cout de l'indice</mat-label>
+          <input matInput type="number" #cout/>
+        </mat-form-field>
+     
+  
+        <button type="submit">Save</button>
+  
+  
+  </form>
