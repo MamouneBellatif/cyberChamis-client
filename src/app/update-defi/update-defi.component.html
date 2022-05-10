@@ -1,6 +1,4 @@
-<button mat-stroked-button color="primary" (click)="retour()">Retour</button>
-
-<!-- Faire une route a part, id automatique ? , pourquoi le chami est dasns un tableau-->
+<button mat-stroked-button class="retour" color="primary" (click)="retour()">Retour</button>
 
 <div>
   <form
@@ -15,7 +13,8 @@
         auteur: defi.auteur
       });
       titre.value = '';
-      description.value = ''
+      description.value = '';
+      openSnackBar('Modification du défi enregistrée', 'OK')
     "
   >
     <div class="update-defi-form">
@@ -39,6 +38,7 @@
         </mat-select>
       </mat-form-field>
 
+      <br/>
       <mat-form-field class="description-defi" appearance="fill">
         <mat-label>Description</mat-label>
         <textarea
@@ -58,15 +58,9 @@
         (newEtape)="addEtape($event)"
       ></app-new-etape> -->
 
-      <button
-        mat-raised-button
-        color="primary"
-        style="margin-left: 20px"
-        type="submit"
-      >
-        Valider
-      </button>
-      <br />
+      <br/>
+      <button mat-raised-button color="primary" type="submit">Valider</button>
+
     </div>
   </form>
 </div>

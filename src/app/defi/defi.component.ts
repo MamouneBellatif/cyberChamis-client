@@ -13,6 +13,7 @@ export class DefiComponent implements OnChanges, OnInit {
   @Input() defi!: Defi;
   @Input() jouer: boolean = false;
   @Output() reponse = new EventEmitter<Partial<Reponse>>();
+  @Output() fini = new EventEmitter<boolean>();
 
   private etape1: boolean = false;
 
@@ -78,5 +79,9 @@ export class DefiComponent implements OnChanges, OnInit {
       this.etapesTmp[currEtapeId].listIndice?.push(this.defi.etape[this.numEtape]);
       this.numEtape++;
     }
+  }
+
+  fin(){
+    this.fini.emit(true);
   }
 }

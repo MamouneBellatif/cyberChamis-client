@@ -32,6 +32,13 @@
       >
         Etape suivante
       </button>
+      <button
+        mat-stroked-button
+        *ngIf="numEtape > 0 && !etapeSuivExists()"
+        (click)="fin()"
+      >
+        Voir mon score
+      </button>
     </section>
   </mat-card-content>
   <!--

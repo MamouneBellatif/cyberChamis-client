@@ -97,7 +97,8 @@ export class CyberchamisService {
     this.auth.authState.subscribe(
       user => {
         user?.getIdTokenResult().then(idToken => { 
-          this.currentToken=idToken.token;          
+          this.currentToken=idToken.token;    
+          console.log(this.currentToken)      
         }
         )
       }     
