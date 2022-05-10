@@ -1,4 +1,5 @@
 import { Component, DefaultIterableDiffer, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   Categorie,
@@ -20,7 +21,8 @@ export class UpdateDefiComponent implements OnInit {
   constructor(
     private ccService: CyberchamisService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -50,5 +52,9 @@ export class UpdateDefiComponent implements OnInit {
     if (categorie == 'CULTUREL') return Categorie.CULTUREL;
     if (categorie == 'ENIGME') return Categorie.ENIGME;
     else return Categorie.CULTUREL;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
   }
 }
