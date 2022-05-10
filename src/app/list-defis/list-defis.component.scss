@@ -40,23 +40,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 50%;
 }
 
 .text-carousel {
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   background-color: black;
   color: white;
   width: 100%;
 }
-
-// color: beige;
-//   background-color: black;
-//   padding-left: 20px;
-//   padding-right: 20px;
-//   width: 100%;
-//   
-//   padding-top: 10px;
-//   top: 90%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
