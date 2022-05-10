@@ -1,35 +1,40 @@
-<span>Hello</span>
-
 <app-upd-del-defi *ngIf="currentDefi" [defi]="currentDefi"> </app-upd-del-defi>
 
-<p *ngIf="!listDefisByChami">Vous n'avez créé aucun défi !</p>
-
-<section class="container ListDefis mrgTop" *ngIf="listDefisByChami | async as lDefis">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Défis</mat-card-title>
-      <mat-card-subtitle
-        >Choisissez le défi que vous souhaitez modifier ou supprimer.</mat-card-subtitle
-      >
-    </mat-card-header>
-
-    <!-- Liste des défis -->
-    <mat-card-content>
-      <ul>
-        <li class="grid">
-          <th class="defiId">Défi</th>
-          <th class="titre">Titre</th>
-        </li>
-        <li
-          class="grid2 clickableLine"
-          *ngFor="let defi of lDefis"
-          (click)="selectDefi(defi)"
+<section
+  class="container ListDefis mrgTop"
+  *ngIf="listDefisByChami | async as lDefis"
+>
+  <p *ngIf="lDefis.length == 0; else afficher">Vous n'avez créé aucun défi !</p>
+  <ng-template #afficher>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Défis</mat-card-title>
+        <mat-card-subtitle
+          >Choisissez le défi que vous souhaitez modifier ou
+          supprimer.</mat-card-subtitle
         >
-          <td class="defiId">{{ defi.id }}</td>
-          <td class="titre">{{ defi.titre }}</td>
-        </li>
-        <!-- <app-defi class="grid2 clickableLine" *ngFor="let defi of lDefis" (click)="selectDefi(defi)"></app-defi> -->
-      </ul>
-    </mat-card-content>
-  </mat-card>
+      </mat-card-header>
+
+      <!-- Liste des défis -->
+      <mat-card-content>
+        <ul>
+          <li class="grid">
+            <th class="defiId">Défi</th>
+            <th class="titre">Titre</th>
+          </li>
+          <li
+            class="grid2 clickableLine"
+            *ngFor="let defi of lDefis"
+            (click)="selectDefi(defi)"
+          >
+            <td class="defiId">{{ defi.id }}</td>
+            <td class="titre">{{ defi.titre }}</td>
+          </li>
+          <!-- <app-defi class="grid2 clickableLine" *ngFor="let defi of lDefis" (click)="selectDefi(defi)"></app-defi> -->
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
 </section>
+
+
