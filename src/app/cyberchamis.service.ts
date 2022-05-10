@@ -53,7 +53,7 @@ export interface Etape {
   point: number;
   reponse_attendu: string;
   cout: number;
-  type_reponse_attendu: string;
+  type_reponse_attendu: TypeReponse;
   listIndice?: Partial<Etape>[];
 }
 
@@ -70,6 +70,19 @@ export interface Visite{
   rang: number;
   dateDebut: string;
   dateFin: string;
+}
+
+export enum TypeReponse{
+  media="media",
+  texte="texte"
+}
+
+export interface Reponse{
+  type_reponse: TypeReponse,
+  valide: boolean,
+  value:string,
+  question_id: number,
+  visite_id:number
 }
 
 @Injectable({
