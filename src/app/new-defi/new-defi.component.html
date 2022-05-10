@@ -44,6 +44,13 @@
                     <textarea maxlength="255" #description matInput placeholder="Description générale du défi"></textarea>
                 </mat-form-field>
 
+                <mat-form-field class="desctiption-defi" appearance="fill">
+                    <!-- <mat-label>URL</mat-label> -->
+                    <app-upload (urlFichier)="monURL.value=$event"></app-upload>
+                    <input disabled matInput type="text" #monURL/>
+                  </mat-form-field>
+            
+
                 <mat-card class="card-etapes">
                     <mat-card-title><h3>Les étapes du défi :</h3></mat-card-title>
                     <mat-card-subtitle>Pour chaque étape que vous souhaitez ajouter au défi, remplissez les informations ci-dessous avant d'appuyer sur "AJOUTER"</mat-card-subtitle>
