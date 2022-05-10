@@ -1,7 +1,3 @@
-
-
-
-
 <form (submit)="addNewIndice({
     type_etape: typeEtape.value,
     id: 0,
@@ -15,10 +11,10 @@
   
           <mat-label>Type</mat-label>
           <mat-select #typeEtape>
-              <mat-option [value]="'mere'">
+              <mat-option [value]="TypeEtape.mere">
                 simple
             </mat-option>
-            <mat-option [value]="'media'">
+            <mat-option [value]="TypeEtape.media">
               média
           </mat-option>
 

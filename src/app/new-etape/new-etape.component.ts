@@ -15,6 +15,7 @@ export class NewEtapeComponent implements OnInit {
 
   private estIndice : Boolean = false;
   reponse : string = '';
+  TypeEtape = TypeEtape;
 
   private listeDesIndices : Indice[] = []
   constructor(private ccService: CyberchamisService) { }

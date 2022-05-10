@@ -8,6 +8,7 @@ import { Defi, Etape, Indice, TypeEtape } from '../cyberchamis.service';
 })
 export class IndiceComponent implements OnInit {
 
+  TypeEtape = TypeEtape;
   @Output() newIndice = new EventEmitter<Indice>();
   @Input() rang! : number;
   @Input() defi! : Defi;

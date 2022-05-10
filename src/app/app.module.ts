@@ -39,9 +39,7 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
 import { VisiteListComponent } from './visite-list/visite-list.component';
-<<<<<<< HEAD
 import { IndiceComponent } from './indice/indice.component';
-=======
 import { UpdDelDefiComponent } from './upd-del-defi/upd-del-defi.component';
 import { UpdateDefiComponent } from './update-defi/update-defi.component';
 
@@ -51,7 +49,6 @@ import { UploadComponent } from './upload/upload.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
->>>>>>> 1c714230641c4d091346c1ab52d7b298ceb53e2b
 
 @NgModule({
   declarations: [
@@ -69,14 +66,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     EditDefiComponent,
     PlayComponent,
     VisiteListComponent,
-<<<<<<< HEAD
-    IndiceComponent
-=======
+    IndiceComponent,
     UpdDelDefiComponent,
     UpdateDefiComponent,
     UploadComponent,
 
->>>>>>> 1c714230641c4d091346c1ab52d7b298ceb53e2b
   ],
   imports: [
     BrowserModule,

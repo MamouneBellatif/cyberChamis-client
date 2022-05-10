@@ -54,7 +54,7 @@ export interface Etape {
   reponseAttendu: string;
   cout: number;
   typeReponseAttendu: TypeReponse;
-  listeIndice?: Partial<Etape>[];
+  listeIndice?: Partial<Indice>[];
 }
 
 export interface Indice{
