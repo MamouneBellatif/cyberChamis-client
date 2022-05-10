@@ -53,7 +53,7 @@ export interface Etape {
   point: number;
   reponse_attendu: string;
   cout: number;
-  type_reponse_attendu: string;
+  type_reponse_attendu: TypeReponse;
   listIndice?: Partial<Etape>[];
 }
 
@@ -70,6 +70,19 @@ export interface Visite{
   rang: number;
   dateDebut: string;
   dateFin: string;
+}
+
+export enum TypeReponse{
+  media="media",
+  texte="texte"
+}
+
+export interface Reponse{
+  type_reponse: TypeReponse,
+  valide: boolean,
+  value:string,
+  question_id: number,
+  visite_id:number
 }
 
 @Injectable({
@@ -151,6 +164,7 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.get<VisiteDTO[]>(this.url+'visite/DTO/'+chamiId,{headers: new HttpHeaders({Authorization: this.currentToken})}));
   }
 
+
   getCategorie() {
     return Object.values(Categorie);
   }
@@ -159,12 +173,12 @@ export class CyberchamisService {
     return Object.values(TypeEtape);
   }
 
+
   async getVisite(visiteId: string): Promise<Visite>{
     return await lastValueFrom(this.httpClient.get<Visite>(this.url+"visite/play/"+visiteId, 
     {headers: new HttpHeaders(
       {'Authorization': this.currentToken})}));
   }
-  
   /**
    * 
    * @param stringDate Une string représentant une date au format YYYY-MM-DDThh:mm:ss
@@ -173,6 +187,5 @@ export class CyberchamisService {
    parsedDateToString(stringDate: string) : string {
     return new Date(stringDate).toLocaleString();
   }
+
 }
-
-
