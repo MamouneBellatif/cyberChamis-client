@@ -128,7 +128,7 @@ export class CyberchamisService {
   }
 
   async addDefi(defi: DefiDTO) {
-    const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur, etape: defi.etape, image: defi.image, coodonnees: defi.coordonnees};
+    const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur, etape: defi.etape, image: defi.image, coordonnees: defi.coordonnees};
         await lastValueFrom( this.httpClient.post(this.url+'defis/create/', defiPost,{headers:{Authorization:this.currentToken}}) ).then(() => console.log("ten post"));
   }
 
