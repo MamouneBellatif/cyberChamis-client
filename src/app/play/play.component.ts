@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { max } from 'rxjs';
 import { CyberchamisService, Etape, Reponse, TypeEtape, Visite } from '../cyberchamis.service';
+
+export interface DialogData {
+  score: number;
+  maxScore: number;
+}
 
 @Component({
   selector: 'app-play',
@@ -15,7 +22,8 @@ export class PlayComponent implements OnInit {
   reponses: Reponse[] = [];
 
 
-  constructor(private route: ActivatedRoute, private router: Router, public ccService: CyberchamisService) { }
+  constructor(private route: ActivatedRoute, private router: Router, 
+    public ccService: CyberchamisService, private dialog: MatDialog) { }
 
 
   saveReponse(rep: Partial<Reponse>){
@@ -72,13 +80,55 @@ export class PlayComponent implements OnInit {
       }, 0);
 
       //Afficher fin 
-      console.log(score + "/" + maxScore)     
+      console.log(score + "/" + maxScore);
+      this.openScoreDialog(score, maxScore);
     }
     else{
-      console.log("questions: " + this.visite.defi.etape.length + ", reponses: "+ this.reponses.length)
+      console.log("questions: " + this.visite.defi.etape.length + ", reponses: "+ this.reponses.length);
+      this.openUnansweredDialog();
     }
   }
 
-  
+  openScoreDialog(score: number, maxScore:number) {
+    const dialogRef = this.dialog.open(DialogScoreComponent, {data: {score, maxScore}});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
-} 
+  openUnansweredDialog() {
+    this.dialog.open(DialogUnansweredComponent);
+  }
+
+}
+
+@Component({
+  selector: 'dialog-score',
+  templateUrl: 'dialog-score.component.html',
+  styleUrls: ['./play.component.scss']
+})
+export class DialogScoreComponent {
+  constructor(
+    public dialogRef: MatDialogRef<DialogScoreComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'dialog-unanswered',
+  templateUrl: 'dialog-unanswered.component.html',
+  styleUrls: ['./play.component.scss']
+})
+export class DialogUnansweredComponent {
+  constructor(
+    public dialogRef: MatDialogRef<DialogUnansweredComponent>,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
