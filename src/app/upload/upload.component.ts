@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/compat/storage';
 import { FileUpload, UploadService } from '../upload.service';
 
@@ -22,31 +22,32 @@ export class UploadComponent implements OnInit {
     
   // }
 
+  @Output() urlFichier = new EventEmitter<string>();
+
   selectedFiles?: FileList;
   currentFileUpload?: FileUpload;
   percentage = 0;
-  constructor(private uploadService: UploadService) { }
+  constructor(public uploadService: UploadService) { }
   ngOnInit(): void {
   }
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
+    this.upload();
   }
+
   upload(): void {
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
       this.selectedFiles = undefined;
       if (file) {
         this.currentFileUpload = new FileUpload(file);
-        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(
-          percentage => {
-            this.percentage = Math.round(percentage ? percentage : 0);
-          },
-          error => {
-            console.log(error);
-          }
-        );
+        // this.setUrl(this.uploadService.pushFileToStorage(this.currentFileUpload));
+        this.setUrl(this.uploadService.pushFileToStorage(this.currentFileUpload));
       }
     }
   }
 
+  setUrl(url : string){
+    this.urlFichier.emit(url);
+  }
 }

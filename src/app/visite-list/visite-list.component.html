@@ -1,43 +1,51 @@
 <section class="container ListChamis mrgTop" *ngIf="subj | async as visites">
-    <!-- <section class="container ListChamis mrgTop" *ngIf="subjDTO | async as visites"> -->
-    <p *ngIf="visites.length == 0; else afficher">
-      Vous n'avez effectué aucune visite !
-    </p>
-    <ng-template #afficher>
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Visites</mat-card-title>
-          <mat-card-subtitle>
-            Vos Visites en cours et passées.
-            <br />
-            Appuyez sur un défi pour le reprendre.
-          </mat-card-subtitle>
-        </mat-card-header>
-  
-        <mat-card-content>
-          <ul>
-            <li class="grid">
-              <th class="titre">Titre</th>
-              <th class="date">Date</th>
-              <th class="enCours">En cours</th>
-            </li>
-            <li
-              class="grid2"
-              [class.clickableLine]="!visite.dateFin"
+  <!-- <section class="container ListChamis mrgTop" *ngIf="subjDTO | async as visites"> -->
+  <p *ngIf="visites.length == 0; else afficher">
+    Vous n'avez effectué aucune visite !
+  </p>
+  <ng-template #afficher>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Visites</mat-card-title>
+        <mat-card-subtitle>
+          Vos Visites en cours et passées.
+          <br />
+          Appuyez sur un défi pour le reprendre.
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <table>
+          <thead>
+            <th class="titre">Titre</th>
+            <th class="date">Date</th>
+            <th class="enCours">En cours</th>
+          </thead>
+          <tbody>
+            <tr
+            [class.clickableLine]="!visite.dateFin"
               *ngFor="let visite of visites"
               (click)="reprendreVisite(visite)"
             >
-              <td class="titre">{{ visite.defi.titre }}</td>
-              <td class="date">
+              <td class="titre padd">{{ visite.defi.titre }}</td>
+              <td class="date padd">
                 {{ csService.parsedDateToString(visite.dateDebut.toString()) }}
               </td>
-              <td class="enCours">{{ etatVisite(visite) }}</td>
+              <td class="enCours padd">{{ etatVisite(visite) }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <ul>
+            <li class="grid">
+              
             </li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-    </ng-template>
-  </section>
-  
-  
-  
+            <li
+              
+            >
+              
+            </li>
+          </ul> -->
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</section>
