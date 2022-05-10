@@ -91,7 +91,6 @@ export class NewDefiComponent implements OnInit {
   }
 
   openSnackBar(message: string, action: string) {
-
     this.snackBar.open(message, action);
   }
 }
