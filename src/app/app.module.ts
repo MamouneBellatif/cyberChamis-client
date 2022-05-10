@@ -46,7 +46,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import { UploadComponent } from './upload/upload.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+<<<<<<< HEAD
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+=======
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+>>>>>>> b19d256cae758ce191ff8be565c6e3699fa433c9
 
 @NgModule({
   declarations: [
@@ -94,6 +98,7 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
     MatTabsModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSnackBarModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
     MdbCarouselModule,

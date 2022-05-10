@@ -1,4 +1,5 @@
 <app-defi [defi]="visite.defi" 
             [jouer]="true"
-            (reponse)="saveReponse($event)"></app-defi>
+            (reponse)="saveReponse($event)"
+            (fini)="fin($event)"></app-defi>
 <button mat-stroked-button class="retour" color="primary" (click)="retour()">Retour</button>

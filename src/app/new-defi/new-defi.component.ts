@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Categorie, Chami, CyberchamisService, Defi, DefiDTO, Etape, TypeEtape } from '../cyberchamis.service';
 import firebase from 'firebase/compat/app'; 
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { appCheckInstanceFactory } from '@angular/fire/app-check/app-check.module';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -32,7 +35,10 @@ export class NewDefiComponent implements OnInit {
   // Categorie = Categorie;
 
   // @Input() token!:string;
-  constructor(private auth: AngularFireAuth,private ccService: CyberchamisService) { }
+
+  constructor(private auth: AngularFireAuth, private ccService: CyberchamisService, 
+    private snackBar: MatSnackBar) { }
+
   ngOnInit(): void {
     //this.ajouterEtape();
     this.chami=this.ccService.currentChami;
@@ -82,5 +88,9 @@ export class NewDefiComponent implements OnInit {
       return Categorie.ENIGME;
     else
       return Categorie.CULTUREL;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
   }
 }
