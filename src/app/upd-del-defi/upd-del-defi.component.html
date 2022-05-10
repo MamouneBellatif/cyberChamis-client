@@ -1,0 +1,14 @@
+<mat-card class="mrgTop defi-card">
+  <mat-card-header class="container">
+    <mat-card-title>{{ defi.titre }}</mat-card-title>
+    <mat-card-subtitle
+      >Créé par {{ defi.auteur.login }}, le
+      {{ parsedDateToString(defi.dateDeCreation) }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content class="container">
+    <pre>{{ defi.description }}<br/></pre>
+    <button mat-stroked-button (click)="rediriger()">Modifier mon défi</button>
+    <button mat-stroked-button (click)="supprimerDefi(defi); refresh()">Supprimer mon défi</button>
+  </mat-card-content>
+</mat-card>

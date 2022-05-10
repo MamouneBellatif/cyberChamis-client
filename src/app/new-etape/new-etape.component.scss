@@ -1,7 +1,9 @@
+
 .cacher, .cacheIndice{
     display: none;
 }
 
+<<<<<<< HEAD
 .media, .indice, .question{
     display: flex;
 }
@@ -9,3 +11,36 @@
 .divQuestion{
     border: 1px solid red;
 }
+=======
+.media, .indice{
+    display: block;
+}
+
+@media only screen and (max-width: 475px) {
+    .add-etape-form {
+        text-align: center;
+        width: 280px;
+        margin: auto;
+    }
+    .description-etape {
+        width: 280px;
+    }
+    .type-etape {
+        width: 280px;
+    }
+}
+
+@media only screen and (min-width: 475px) {
+    .add-defi-form {
+        text-align: center;
+        margin: auto;
+    }
+    .description-etape {
+        width: 400px;
+    }
+    .type-etape {
+        width: 400px;
+        margin: auto;
+    }
+}
+>>>>>>> 1c714230641c4d091346c1ab52d7b298ceb53e2b

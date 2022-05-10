@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Etape, TypeEtape } from '../cyberchamis.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Etape, Reponse, TypeEtape } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-etape',
@@ -12,6 +12,7 @@ export class EtapeComponent implements OnInit {
   @Input() etape!: Etape;
   iTip:number = 0;
   nbTips:number = 0;
+  @Output() reponse = new EventEmitter<Partial<Reponse>>();
 
   constructor() { 
   }
@@ -21,6 +22,15 @@ export class EtapeComponent implements OnInit {
       this.displayedTips.push(this.etape.listeIndice[this.iTip]);
       this.iTip++
     }
+  }
+
+  checkReponse(valReponse:string){
+    this.reponse.emit({
+      type_reponse: this.etape.typeReponseAttendu,
+      valide: valReponse === this.etape.reponseAttendu,
+      value:valReponse,
+      question_id: this.etape.id
+    })
   }
 
   ngOnInit(): void {

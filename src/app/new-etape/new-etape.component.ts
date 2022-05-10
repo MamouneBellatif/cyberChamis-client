@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { CyberchamisService, Defi, Etape, Indice, TypeEtape } from '../cyberchamis.service';
+import { CyberchamisService, Defi, Etape, Indice, TypeEtape, TypeReponse } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-new-etape',
@@ -7,7 +7,7 @@ import { CyberchamisService, Defi, Etape, Indice, TypeEtape } from '../cybercham
   styleUrls: ['./new-etape.component.scss']
 })
 export class NewEtapeComponent implements OnInit {
-
+  TypeReponse = TypeReponse;
 
   @Output() newEtape = new EventEmitter<Etape>();
   @Input() rang! : number;

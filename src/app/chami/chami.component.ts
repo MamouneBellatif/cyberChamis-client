@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, SimpleChanges } from '@angular/core';
-import { Chami, Defi } from '../cyberchamis.service';
+import { Chami, CyberchamisService, Defi } from '../cyberchamis.service';
 import { ListElementChamiService } from '../list-element-chami/list-element-chami.service';
 
 @Component({
@@ -11,13 +11,12 @@ import { ListElementChamiService } from '../list-element-chami/list-element-cham
 export class ChamiComponent implements OnInit {
 
   @Input() chami!: Chami;
-
   // Liste des promesses défis à afficher
   //listPromesseDefis!: Promise<Defi[]>;
-
+  
   listDefis! : Defi[];
 
-  constructor(private lcService: ListElementChamiService) {
+  constructor(private lcService: ListElementChamiService, private csService: CyberchamisService)  {
     // this.listPromesseDefis = lcService.getDefis(this.chami.login).then(val => this.listDefis=val);
     // lcService.getDefis(this.chami.login).then(val => this.listDefis=val);
   }

@@ -1,4 +1,5 @@
 <section id="detailEtape" [ngSwitch]="etape.type_etape">
+
     <p *ngSwitchCase="TypeEtape.media">
         <!-- TODO : gerer différents média-->
         <mat-card-content>
@@ -7,7 +8,8 @@
         </mat-card-content>
     </p>
 
-    <form *ngSwitchCase="TypeEtape.question" >
+    <form *ngSwitchCase="TypeEtape.question" 
+            (submit)="checkReponse(reponse.value); reponse.value=''">
         <p>
             Question : {{etape.label}}<br/>
             <input #reponse/>
@@ -18,10 +20,17 @@
     <p *ngSwitchDefault>{{etape.label}}</p>
 
 </section>
+<<<<<<< HEAD
 <form *ngIf="etape.listeIndice!=undefined && etape.listeIndice.length > 0">
     <button mat-raised-button color="accent" *ngIf="nbTips > iTip"
             (click)="displayTip()">Un indice ?</button>
+=======
+<form *ngIf="etape.listIndice!=undefined && etape.listIndice.length > 0"
+        class="indice">
+>>>>>>> 1c714230641c4d091346c1ab52d7b298ceb53e2b
     <p  *ngFor="let tip of displayedTips">
         {{tip.label}}
     </p>
+    <button mat-raised-button color="accent" *ngIf="nbTips > iTip"
+            (click)="displayTip()">Un indice ?</button>
 </form>

@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Chami, CyberchamisService, Defi, Etape, TypeEtape } from '../cyberchamis.service';
+import { Chami, CyberchamisService, Defi, Etape, Reponse, TypeEtape } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-defi',
@@ -11,6 +11,9 @@ import { Chami, CyberchamisService, Defi, Etape, TypeEtape } from '../cyberchami
 export class DefiComponent implements OnChanges, OnInit {
 
   @Input() defi!: Defi;
+  @Input() jouer: boolean = false;
+  @Output() reponse = new EventEmitter<Partial<Reponse>>();
+  @Output() fini = new EventEmitter<boolean>();
 
   private etape1: boolean = false;
 
@@ -76,5 +79,9 @@ export class DefiComponent implements OnChanges, OnInit {
       this.etapesTmp[currEtapeId].listeIndice?.push(this.defi.etape[this.numEtape]);
       this.numEtape++;
     }
+  }
+
+  fin(){
+    this.fini.emit(true);
   }
 }

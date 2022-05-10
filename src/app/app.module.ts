@@ -9,7 +9,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideStorage,getStorage} from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from'@angular/fire/compat/auth';
@@ -28,7 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'; 
 import { MatTabsModule } from '@angular/material/tabs';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ListElementChamiComponent } from './list-element-chami/list-element-chami.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { NewDefiComponent } from './new-defi/new-defi.component';
@@ -39,7 +39,19 @@ import { NewEtapeComponent } from './new-etape/new-etape.component';
 import { EditDefiComponent } from './edit-defi/edit-defi.component';
 import { PlayComponent } from './play/play.component';
 import { VisiteListComponent } from './visite-list/visite-list.component';
+<<<<<<< HEAD
 import { IndiceComponent } from './indice/indice.component';
+=======
+import { UpdDelDefiComponent } from './upd-del-defi/upd-del-defi.component';
+import { UpdateDefiComponent } from './update-defi/update-defi.component';
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import { UploadComponent } from './upload/upload.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+>>>>>>> 1c714230641c4d091346c1ab52d7b298ceb53e2b
 
 @NgModule({
   declarations: [
@@ -57,7 +69,14 @@ import { IndiceComponent } from './indice/indice.component';
     EditDefiComponent,
     PlayComponent,
     VisiteListComponent,
+<<<<<<< HEAD
     IndiceComponent
+=======
+    UpdDelDefiComponent,
+    UpdateDefiComponent,
+    UploadComponent,
+
+>>>>>>> 1c714230641c4d091346c1ab52d7b298ceb53e2b
   ],
   imports: [
     BrowserModule,
@@ -72,6 +91,7 @@ import { IndiceComponent } from './indice/indice.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     MatInputModule,
     MatButtonModule,
     MatTableModule,
@@ -81,8 +101,13 @@ import { IndiceComponent } from './indice/indice.component';
     MatSelectModule,
     MatIconModule,
     MatTabsModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSnackBarModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
+    MdbCarouselModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

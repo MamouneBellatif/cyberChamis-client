@@ -1,30 +1,51 @@
-<p>visite-list works!</p>
-
 <section class="container ListChamis mrgTop" *ngIf="subj | async as visites">
-    <mat-card class="visite-card">
-        <mat-card-header>
-            <mat-card-title>Visites</mat-card-title>
-            <mat-card-subtitle>
-                Vos Visites en cours et passées
-            </mat-card-subtitle>
-            
-            <mat-card-content>
-                <ul>
-                    <li class="grid">
-                        <th class="titre">id visite</th>
-                        <th class="titre">Titre du défi</th>
-                        <th class="date">Date</th>
-                        <th class="enCours">En cours</th>
-                    </li>
-                    <li 
-                    *ngFor="let visite of visites">
-                        <td class="titre">{{visite.id}}</td>
-                        <td class="titre">{{ visite.defi.titre }}</td>
-                        <td class="date">{{ visite.dateDebut }}</td>
-                        <td class="enCours">{{ visite.dateFin==null }}</td>
-                    </li>
-                </ul>
-            </mat-card-content>
-        </mat-card-header>
-        </mat-card>
-    </section>
+  <!-- <section class="container ListChamis mrgTop" *ngIf="subjDTO | async as visites"> -->
+  <p *ngIf="visites.length == 0; else afficher">
+    Vous n'avez effectué aucune visite !
+  </p>
+  <ng-template #afficher>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Visites</mat-card-title>
+        <mat-card-subtitle>
+          Vos Visites en cours et passées.
+          <br />
+          Appuyez sur un défi pour le reprendre.
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <table>
+          <thead>
+            <th class="titre">Titre</th>
+            <th class="date">Date</th>
+            <th class="enCours">En cours</th>
+          </thead>
+          <tbody>
+            <tr
+              class="clickableLine"
+              *ngFor="let visite of visites"
+              (click)="reprendreVisite(visite.id)"
+            >
+              <td class="titre padd">{{ visite.defi.titre }}</td>
+              <td class="date padd">
+                {{ csService.parsedDateToString(visite.dateDebut.toString()) }}
+              </td>
+              <td class="enCours padd">{{ etatVisite(visite) }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <ul>
+            <li class="grid">
+              
+            </li>
+            <li
+              
+            >
+              
+            </li>
+          </ul> -->
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
+</section>

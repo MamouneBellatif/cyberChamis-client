@@ -1,0 +1,73 @@
+<button mat-stroked-button class="retour" color="primary" (click)="retour()">Retour</button>
+<mat-card>
+  <mat-card-header class="container">
+    <mat-card-title>Espace modification</mat-card-title>
+    <mat-card-subtitle
+      >Changez directement dans les champs les informations que vous souhaitez modifier.</mat-card-subtitle
+    >
+  </mat-card-header>
+</mat-card>
+<div style="padding-top: 20px;">
+  <form
+    (submit)="
+      updateDefi({
+        id: defi.id,
+        categorie: getCategorieString(categorie.value),
+        titre: titre.value,
+        dateDeCreation: '',
+        etape: [],
+        description: description.value,
+        auteur: defi.auteur
+      });
+      titre.value = '';
+      description.value = '';
+      openSnackBar('Modification du défi enregistrée', 'OK')
+    "
+  >
+    <div class="update-defi-form">
+      <mat-form-field class="titre" appearance="fill">
+        <mat-label>Titre</mat-label>
+        <input
+          #titre
+          matInput
+          type="text"
+          name="titreDefi"
+          [ngModel]="defi.titre"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="categorie" appearance="fill">
+        <mat-label>Categorie</mat-label>
+        <mat-select #categorie>
+          <mat-option *ngFor="let categories of getCategorie()" [value]="categories">
+            {{ categories }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br/>
+      <mat-form-field class="description-defi" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea
+          #description
+          matInput
+          maxlength="255"
+        >{{ defi.description }}</textarea>
+      </mat-form-field>
+
+      <!-- <p *ngFor="let etapes of listEtape; let index = index">
+        {{ etapes.label }} - rang : {{ etapes.rang }}
+      </p>
+
+      <app-new-etape
+        [defi]="defi"
+        [rang]="listEtape.length + 1"
+        (newEtape)="addEtape($event)"
+      ></app-new-etape> -->
+
+      <br/>
+      <button mat-raised-button color="primary" type="submit">Valider</button>
+
+    </div>
+  </form>
+</div>

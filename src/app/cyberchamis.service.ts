@@ -53,7 +53,7 @@ export interface Etape {
   point: number;
   reponseAttendu: string;
   cout: number;
-  typeReponseAttendu: string;
+  typeReponseAttendu: TypeReponse;
   listeIndice?: Partial<Etape>[];
 }
 
@@ -65,6 +65,12 @@ export interface Indice{
   cout: number;
 }
 
+export interface VisiteDTO{
+  joueur:string;
+  defi: number;
+  rang:number
+}
+
 export interface Visite{
   id: number;
   joueurs: Chami[];
@@ -74,6 +80,18 @@ export interface Visite{
   dateFin: string;
 }
 
+export enum TypeReponse{
+  media="media",
+  texte="texte"
+}
+
+export interface Reponse{
+  type_reponse: TypeReponse,
+  valide: boolean,
+  value:string,
+  question_id: number,
+  visite_id:number
+}
 
 @Injectable({
   providedIn: 'root'
@@ -87,7 +105,8 @@ export class CyberchamisService {
     this.auth.authState.subscribe(
       user => {
         user?.getIdTokenResult().then(idToken => { 
-          this.currentToken=idToken.token;          
+          this.currentToken=idToken.token;    
+          console.log(this.currentToken)      
         }
         )
       }     
@@ -118,12 +137,16 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.delete(this.url+'chamis/'+userId));
   }
 
+  async getDefiById(defiId: number): Promise<Defi> {
+    return await lastValueFrom(this.httpClient.get<Defi>(this.url+'defis/'+defiId, {headers:{Authorization:this.currentToken}}));
+  }
+
   async updateDefi(defiId: number, defi: Defi): Promise<Defi> {
     return await lastValueFrom(this.httpClient.put<Defi>(this.url+'defis/'+defiId, defi, {headers:{Authorization:this.currentToken}}));
   }
 
   async deleteDefi(defiId: number): Promise<unknown> {
-    return await lastValueFrom(this.httpClient.delete(this.url+'defis'+defiId, {headers:{Authorization:this.currentToken}}));
+    return await lastValueFrom(this.httpClient.delete(this.url+'defis/'+defiId, {headers:{Authorization:this.currentToken}}));
   }
 
   async getChamiByEmail(chamiEmail: string): Promise<Chami[]> {
@@ -146,6 +169,10 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.get<Visite[]>(this.url+'visite/'+chamiId, {headers: new HttpHeaders({Authorization: this.currentToken})}));
   }
 
+  async getVisitesDTOByChami(chamiId: string): Promise<VisiteDTO[]>{
+    return await lastValueFrom(this.httpClient.get<VisiteDTO[]>(this.url+'visite/DTO/'+chamiId,{headers: new HttpHeaders({Authorization: this.currentToken})}));
+  }
+
 
   getCategorie() {
     return Object.values(Categorie);
@@ -153,6 +180,21 @@ export class CyberchamisService {
 
   getTypeEtape(){
     return Object.values(TypeEtape);
+  }
+
+
+  async getVisite(visiteId: string): Promise<Visite>{
+    return await lastValueFrom(this.httpClient.get<Visite>(this.url+"visite/play/"+visiteId, 
+    {headers: new HttpHeaders(
+      {'Authorization': this.currentToken})}));
+  }
+  /**
+   * 
+   * @param stringDate Une string représentant une date au format YYYY-MM-DDThh:mm:ss
+   * @returns La date formattée selon la localisation de l'appareil
+   */
+   parsedDateToString(stringDate: string) : string {
+    return new Date(stringDate).toLocaleString();
   }
 
 }
