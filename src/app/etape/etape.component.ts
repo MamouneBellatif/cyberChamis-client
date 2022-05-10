@@ -29,7 +29,7 @@ export class EtapeComponent implements OnInit {
       type_reponse: this.etape.type_reponse_attendu,
       valide: valReponse === this.etape.reponse_attendu,
       value:valReponse,
-      question_id: this.etape.id
+      question: this.etape
     })
   }
 

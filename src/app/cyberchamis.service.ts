@@ -81,8 +81,8 @@ export interface Reponse{
   type_reponse: TypeReponse,
   valide: boolean,
   value:string,
-  question_id: number,
-  visite_id:number
+  question: Etape,
+  visite:Visite
 }
 
 @Injectable({
@@ -120,6 +120,10 @@ export class CyberchamisService {
         await lastValueFrom( this.httpClient.post(this.url+'defis/create/', defiPost,{headers:{Authorization:this.currentToken}}) ).then(() => console.log("ten post"));
   }
 
+  async addReponse(idVisite: string, reponse: Reponse){
+    return await lastValueFrom(this.httpClient.put(this.url+"visite/"+idVisite+"/reponse/", reponse, {headers:{Authorization:this.currentToken}}) ).then(() => console.log("rep post"))
+  }
+
   /*async updateDefi(defi: Defi, token: string): Promise<Defi> {
     const defiPost = {categorie: defi.categorie, titre: defi.titre, description: defi.description, auteur: defi.auteur};
     return await lastValueFrom( this.httpClient.put<Defi>(this.url+'defis/', defiPost,{headers:{Authorization:token}}) );
@@ -135,6 +139,10 @@ export class CyberchamisService {
 
   async updateDefi(defiId: number, defi: Defi): Promise<Defi> {
     return await lastValueFrom(this.httpClient.put<Defi>(this.url+'defis/'+defiId, defi, {headers:{Authorization:this.currentToken}}));
+  }
+
+  async finVisite(visite: Visite){
+    return await lastValueFrom(this.httpClient.get<Visite>(this.url+'visite/fin/'+visite.id, {headers:{Authorization:this.currentToken}}))
   }
 
   async deleteDefi(defiId: number): Promise<unknown> {

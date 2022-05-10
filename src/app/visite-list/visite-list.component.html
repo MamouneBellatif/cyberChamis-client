@@ -22,9 +22,10 @@
               <th class="enCours">En cours</th>
             </li>
             <li
-              class="grid2 clickableLine"
+              class="grid2"
+              [class.clickableLine]="!visite.dateFin"
               *ngFor="let visite of visites"
-              (click)="reprendreVisite(visite.id)"
+              (click)="reprendreVisite(visite)"
             >
               <td class="titre">{{ visite.defi.titre }}</td>
               <td class="date">
