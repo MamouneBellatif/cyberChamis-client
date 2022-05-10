@@ -19,6 +19,10 @@ export class PlayComponent implements OnInit {
 
 
   saveReponse(rep: Partial<Reponse>){
+    const iQ = this.reponses.reduce((i, reponse, irep) => {
+      return reponse.question_id == rep.question_id ? irep : i;
+    }, -1)
+
     const reponse: Reponse = {
       type_reponse: rep.type_reponse!,
       valide: rep.valide!,
@@ -27,7 +31,12 @@ export class PlayComponent implements OnInit {
       visite_id: parseInt(this.visiteId)
     }
 
-    this.reponses.push(reponse)
+    if(iQ === -1){
+      this.reponses.push(reponse)
+    }
+    else{
+      this.reponses[iQ] = reponse;
+    }
   }
 
   ngOnInit(): void {
@@ -40,6 +49,14 @@ export class PlayComponent implements OnInit {
   retour(){
     window.history.back();
     this.router.navigateByUrl("/");
+  }
+
+  fin(){
+    //compile and display final score
+    const maxScore: number = this.visite.defi.etape.reduce<number>((total, etape) => {
+      return total += etape.point;
+    }, 0)
+    //const score: number = 
   }
 
   
