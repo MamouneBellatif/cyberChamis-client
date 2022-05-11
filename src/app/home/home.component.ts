@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { throws } from 'assert';
 import { Subject } from 'rxjs';
 import { Defi } from '../cyberchamis.service';
 import { ListDefisService } from '../list-defis/list-defis.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-home',
@@ -16,17 +18,26 @@ export class HomeComponent implements OnInit {
   taille!:number;
   currentSlide = 0;
 
-  constructor(private ldService: ListDefisService) { }
+  constructor(private ldService: ListDefisService, private eventService: NotificationService) { }
   
   ngOnInit(): void {
-    this.listDefis = this.ldService.getDefisObs();
-    this.listDefis.then(data => this.subj.next(data));
+    this.init();
     this.subj.subscribe(data => this.taille=data.length);
+    this.sub();
   }
+
+  init() {
+    this.ldService.getDefisObs().then(data => this.subj.next(data));
+  }
+
+  sub() {
+    this.eventService.eventSource.onmessage = e => {
+      this.init();
+    }
+  }  
 
   onPreviousClick() {
     const previous = this.currentSlide - 1;
-    // this.currentSlide = previous < 0 ? this.slides.length - 1 : previous;
     this.currentSlide = previous < 0 ? this.taille - 1 : previous;
     console.log("previous clicked, new current slide is: ", this.currentSlide);
   }
