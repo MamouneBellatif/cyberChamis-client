@@ -1,9 +1,30 @@
-pre{
-    font-family: inherit;
+pre {
+  font-family: inherit;
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
 
-    white-space: pre-wrap;       /* Since CSS 2.1 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+.mrgTop {
+  margin-top: 30px;
+}
+
+.defi-card {
+  opacity: 85%;
+}
+
+.jouer {
+  background-color: pink;
+}
+
+.container {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+button{
+  margin-bottom: 5px;
 }

@@ -1,0 +1,54 @@
+.mrgTop {
+  margin-top: 30px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+  height: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  }
+
+.titre {
+  grid-column: 1;
+  text-align: center;
+}
+
+.date {
+  grid-column: 3;
+  text-align: center;
+}
+
+.enCours {
+  grid-column: 8;
+  text-align: center;
+}
+
+.grid2 {
+  display: grid;
+  height: 20px;
+}
+
+.clickableLine:hover {
+  cursor: pointer;
+  background-color: #d3d3e4;
+}
+
+.padd {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+// .reprendre {
+//   grid-column: 6;
+// }
+
+// mat-card-content ul {
+//   padding: 0 20px 0 20px;
+// }
+

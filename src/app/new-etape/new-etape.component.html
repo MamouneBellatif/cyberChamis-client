@@ -1,0 +1,144 @@
+
+<form>
+
+    <mat-form-field class="type-etape" appearance="fill">
+      <mat-label>Type d'étape</mat-label>
+      <mat-select #typeEtape (selectionChange)="questionAlwaysNotIndice(typeEtape.value)">
+        <mat-option [value]="TypeEtape.mere">
+          SIMPLE
+        </mat-option>
+        <mat-option [value]="TypeEtape.media">
+          MEDIA
+        </mat-option>
+        <mat-option [value]="TypeEtape.question">
+          QUESTION
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br/>
+
+    <div *ngIf="typeEtape.value !== 'question'" class="cacher" [class.question] = "typeEtape.value !== 'question'">
+      <label class="example-margin">Est-ce un indice ?</label> &nbsp;
+      <mat-radio-group>
+        <mat-radio-button type="radio" name="estIndice" id="oui" value="Oui" (change)="setIndice(true)">
+          <label for="oui">Oui</label>
+        </mat-radio-button> &nbsp;
+        <mat-radio-button checked type="radio" name="estIndice" id="non" value="non" (change)="setIndice(false)">
+          <label for="non">Non</label>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <br/>
+
+    <mat-form-field class="description-etape" area-disabled appearance="fill" [class.cacher]="isIndice() && typeEtape.value == 'media'">
+      <mat-label >
+        <div *ngIf="typeEtape.value == 'question'; else descEtape">
+          Question
+        </div> 
+        <ng-template #descEtape>
+          Description de l'étape
+        </ng-template>
+      </mat-label>
+      
+      <textarea maxlength="255" #labelEtape matInput placeholder="Description, Question, Autre, etc."></textarea>
+    </mat-form-field>
+    <br/>
+
+      <!--<mat-form-field>
+        <mat-label>Rang</mat-label>
+        <input matInput type="number" [ngModel]="rang" #rangEtape/>
+      </mat-form-field>-->
+
+    <mat-form-field class="cacher type-etape" appearance="fill" [class.media]="typeEtape.value == 'media'">
+      <!-- <mat-label>URL</mat-label> -->
+      <app-upload (urlFichier)="monURL.value=$event"></app-upload>
+      <input disabled matInput type="text" #monURL/>
+    </mat-form-field>
+
+    <div [class.cacher]="typeEtape.value == 'question' || !isIndice()">
+      <mat-form-field class="type-etape" appearance="fill">
+          <mat-label>Coût de l'indice</mat-label>
+          <input matInput type="number" #cout/>
+        </mat-form-field>
+        <br/>
+    </div>
+    
+      <!-- <mat-form-field
+        class="cacher"
+        [class.media] = "typeEtape.value === 'indice'"
+      >
+        <mat-label>Cout</mat-label>
+        <input matInput type="number" #cout/>
+      </mat-form-field> -->
+
+    <div class="divQuestion" class="cacher" [class.question]="typeEtape.value == 'question'">
+      
+      <mat-form-field class="nb-pts" appearance="fill">
+        <mat-label>Nombre de points</mat-label>
+        <input matInput type="number" #point/>
+      </mat-form-field>
+
+      <mat-form-field class="type-reponse" appearance="fill">
+        <mat-label>Type de réponse attendue</mat-label>
+        <mat-select #typeReponse>
+            <mat-option [value]="'STRING'">
+              TEXTE
+            </mat-option>
+            <mat-option [value]="'MEDIA'">
+              MEDIA
+            </mat-option>
+            <mat-option [value]="'INT'">
+              NOMBRE
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field class="description-etape" appearance="fill"
+      [class.cacher]="typeReponse.value=='MEDIA'">
+        <mat-label>Réponse</mat-label>
+        <input maxlength="255" matInput type="text" #reponseAttendue/>
+      </mat-form-field>
+
+      <mat-card class="card-indices">
+        <mat-card-title><h3>Les indices de la question :</h3></mat-card-title>
+        <mat-card-subtitle>Vous pouvez ajouter des indices aux questions pour accompagner le joueur.</mat-card-subtitle>
+        <p>Pour chaque indice que vous souhaitez ajouter à la question, remplissez les informations ci-dessous avant d'appuyer sur "SAUVEGARDER l'indice".</p>
+        <p class="liste-indices" *ngFor="let indice of listeDesIndices; let index = index">{{indice.label}}</p>
+      </mat-card>
+      <br/>
+    
+      <app-indice [defi]="defi" [rang]="rang" (newIndice)="addIndice($event)"></app-indice>
+
+    </div>
+
+    <button mat-stroked-button color="primary"
+    (click)="addNewEtape({
+      type_etape: typeEtape.value,
+      id: 0,
+      label: labelEtape.value,
+      rang: rang,
+      url : monURL.value,
+      point : point.valueAsNumber,
+      reponseAttendu: reponseAttendue.value,
+      cout: 3,
+      typeReponseAttendu: typeReponse.value
+    }); 
+    monURL.value=''; 
+    labelEtape.value=''; 
+    cout.valueAsNumber=0; 
+    point.valueAsNumber=0; 
+    reponseAttendue.value=''">
+    AJOUTER l'étape</button>
+
+      <!--AJOUTER LE COMPOSANT QUESTION AVEC LA CLASS : 
+        [class.question] = "typeEtape.value === 'question'"
+        class="cacher"
+      -->
+
+      <!--<mat-form-field appearance="fill">
+        <mat-label>Rang de l'étape</mat-label>
+        <input matInput placeholder="Rang de l'étape" type="number" #rang/>
+      </mat-form-field>-->
+
+</form>

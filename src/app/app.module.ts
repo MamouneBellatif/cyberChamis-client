@@ -9,7 +9,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideStorage,getStorage} from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from'@angular/fire/compat/auth';
@@ -23,10 +23,35 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatCardModule} from '@angular/material/card';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon'; 
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ListElementChamiComponent } from './list-element-chami/list-element-chami.component';
 import { LocalisationComponent } from './localisation/localisation.component';
+import { NewDefiComponent } from './new-defi/new-defi.component';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { EtapeComponent } from './etape/etape.component';
+import { NotificationComponentComponent } from './notification-component/notification-component.component';
+import { NewEtapeComponent } from './new-etape/new-etape.component';
+import { EditDefiComponent } from './edit-defi/edit-defi.component';
+import { PlayComponent } from './play/play.component';
+import { VisiteListComponent } from './visite-list/visite-list.component';
+import { IndiceComponent } from './indice/indice.component';
+import { UpdDelDefiComponent } from './upd-del-defi/upd-del-defi.component';
+import { UpdateDefiComponent } from './update-defi/update-defi.component';
+
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import { UploadComponent } from './upload/upload.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AfficherImageComponent } from './afficher-image/afficher-image.component';
+import { MatFormFieldModule}from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -36,7 +61,20 @@ import { LocalisationComponent } from './localisation/localisation.component';
     DefiComponent,
     ListDefisComponent,
     ListElementChamiComponent,
-    LocalisationComponent
+    LocalisationComponent,
+    NewDefiComponent,
+    NewEtapeComponent,
+    EtapeComponent,
+    NotificationComponentComponent,
+    EditDefiComponent,
+    PlayComponent,
+    VisiteListComponent,
+    IndiceComponent,
+    UpdDelDefiComponent,
+    UpdateDefiComponent,
+    UploadComponent,
+    AfficherImageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -51,12 +89,25 @@ import { LocalisationComponent } from './localisation/localisation.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireStorageModule,
     MatInputModule,
     MatButtonModule,
     MatTableModule,
     MatCardModule,
     MatToolbarModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatIconModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSnackBarModule,
+    MatFormFieldModule,
+    MatDialogModule,
     BrowserAnimationsModule,
+    provideDatabase(() => getDatabase()),
+    MdbCarouselModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,39 @@
+@media only screen and (max-width: 595px) {
+    #detailEtape{
+
+        width: 330px;
+        margin:auto;
+    }
+    #detailEtape p{
+        text-align: left;
+    }
+
+    .indice{
+        width: 330px;
+        margin: auto;
+    }
+}
+
+@media only screen and (min-width: 595px){
+    #detailEtape{
+        margin-left: 15px;
+    }
+    #detailEtape p{
+        text-align: left;
+    }
+    .indice{
+        margin-right: 15px;
+    }
+}
+
+#detailEtape p{
+    margin-bottom: 8px;
+}
+button{
+    margin-bottom:3px;
+}
+
+.indice{
+    text-align:right;
+    font-style: italic;
+}

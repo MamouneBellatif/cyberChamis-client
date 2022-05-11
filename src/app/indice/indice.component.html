@@ -1,0 +1,47 @@
+<form>
+
+  <mat-form-field class="type-indice" appearance="fill">
+    <mat-label>Type</mat-label>
+    <mat-select #typeEtape>
+      <mat-option [value]="TypeEtape.mere">
+        SIMPLE
+      </mat-option>
+      <mat-option [value]="TypeEtape.media">
+        MEDIA
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field class="cout" appearance="fill">
+    <mat-label>Coût de l'indice</mat-label>
+    <input matInput type="number" #cout/>
+  </mat-form-field>
+  <br/>
+
+  <div *ngIf="typeEtape.value==TypeEtape.media">
+    <mat-form-field class="description-indice" appearance="fill">
+        <!-- <mat-label>URL</mat-label> -->
+        <app-upload (urlFichier)="labelEtape.value=$event"></app-upload>
+        <input disabled matInput type="text"/>
+    </mat-form-field>
+    <br/>
+  </div>
+
+  <mat-form-field class="description-indice" appearance="fill">
+    <mat-label>Indice</mat-label>
+    <input [disabled]="typeEtape.value==TypeEtape.media" type="text" 
+           #labelEtape matInput placeholder="Description de l'indice"/>
+  </mat-form-field>
+  <br/>
+
+  <button mat-stroked-button class="button-sauvegarder"
+  (click)="addNewIndice({
+    type_etape: typeEtape.value,
+    id: 0,
+    label: labelEtape.value,
+    rang: rang,
+    cout: cout.valueAsNumber
+  }); labelEtape.value=''; cout.valueAsNumber=0;">
+  SAUVEGARDER l'indice</button>
+  
+</form>

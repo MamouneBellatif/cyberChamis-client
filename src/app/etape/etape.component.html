@@ -1,0 +1,34 @@
+<section id="detailEtape" [ngSwitch]="etape.type_etape">
+
+    <p *ngSwitchCase="TypeEtape.media">
+        <!-- TODO : gerer différents média-->
+        <mat-card-content>
+            {{etape.label}}<br/>
+            <!-- <img mat-card-image src="{{etape.url}}" alt="{{etape.label}}" /> -->
+            <app-afficher-image [path]="etape.url"></app-afficher-image>
+        </mat-card-content>
+    </p>
+
+    <form *ngSwitchCase="TypeEtape.question" 
+            (submit)="checkReponse(reponse.value); repondu=true">
+        <p>
+            Question : {{etape.label}}<br/>
+            <input [disabled]="repondu"
+                    #reponse/>
+            <input *ngIf="!repondu"
+                    type="submit" value="ok"/>
+        </p>
+    </form>
+
+
+    <p *ngSwitchDefault>{{etape.label}}</p>
+
+</section>
+<form *ngIf="etape.listeIndice!=undefined && etape.listeIndice.length > 0"
+        class="indice">
+    <p  *ngFor="let tip of displayedTips">
+        {{tip.label}}
+    </p>
+    <button mat-raised-button color="accent" *ngIf="nbTips > iTip"
+            (click)="displayTip()">Un indice ? (coût : {{etape.listeIndice[iTip].cout}}pts)</button>
+</form>

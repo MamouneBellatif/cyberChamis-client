@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { combineLatest, map, Observable } from 'rxjs';
-import { Defi } from '../cyberchamis.service';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { combineLatest, map, Observable, from, BehaviorSubject, Subject } from 'rxjs';
+import { Chami, Defi } from '../cyberchamis.service';
+import { NotificationService } from '../notification.service';
 import { ListDefisService } from './list-defis.service';
 
 @Component({
@@ -16,11 +17,15 @@ export class ListDefisComponent implements OnInit {
 
   // La liste des Defis à afficher
   listDefis!: Promise<Defi[]>;
-  //readonly currentDefiObs!: Observable<Defi>;
-  //readonly defisObs!: Observable<{defis: readonly Defi[], currentDefi: Defi}>;
+  subj = new Subject<Defi[]>();
 
-  constructor(private ldService: ListDefisService) { 
+
+  constructor(private ldService: ListDefisService, private eventService: NotificationService ) { 
     this.listDefis = ldService.getDefisObs();
+    // this.listObs = from(this.listDefis);
+    this.listDefis.then(data => this.subj.next(data))
+
+
     /*this.defisObs = combineLatest(
       [this.listDefisObs, this.currentDefiObs]
     ).pipe(
@@ -30,7 +35,27 @@ export class ListDefisComponent implements OnInit {
     );*/
   }
 
-  ngOnInit(): void {
+  onSlideChange(): void {
+    console.log('slide change');
+  }
+
+
+  initialize() {
+		// const eventSource = new EventSource('http://localhost:8080/notification');
+		this.eventService.eventSource.onmessage = e => {
+			const msg = e.data;
+      this.ldService.getDefisObs().then(data => {this.subj.next(data);
+                          });
+      console.log("nv defis");	
+    };
+
+  }
+
+  // firebase.auth().currentUser?.uid
+
+    ngOnInit() {
+    this.initialize();
+
   }
 
   /**
@@ -46,8 +71,11 @@ export class ListDefisComponent implements OnInit {
    * Définit un défi comme étant sélectionné
    */
   selectDefi(defi: Defi) {
-    //console.log("hello");
     this.currentDefi = defi;
+  }
+
+  affiche(c : string){
+    console.log("coordonnées remontées : " + c);
   }
 }
 

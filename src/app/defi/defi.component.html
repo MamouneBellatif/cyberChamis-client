@@ -1,17 +1,51 @@
-<mat-card class="defi-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{defi.titre}}</mat-card-title>
-        <mat-card-subtitle>Créé par {{defi.auteur.login}}, le {{parsedDateToString(defi.dateDeCreation)}}</mat-card-subtitle>
-    </mat-card-header>
-    <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
-    <mat-card-content>
-        <pre>{{defi.description}}</pre>
-    </mat-card-content>
-    <!--
+<mat-card class="mrgTop defi-card">
+  <mat-card-header class="container">
+    <!--<div mat-card-avatar class="example-header-image"></div>--> <!-- Sinon c'est pas centré >_< -->
+    <mat-card-title>{{ defi.titre }}</mat-card-title>
+    <mat-card-subtitle
+      >Créé par {{ defi.auteur.login }}, le
+      {{ parsedDateToString(defi.dateDeCreation) }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <app-afficher-image [path]="defi.image"></app-afficher-image>
+  <mat-card-content class="container mrgTop">
+    <pre>{{ defi.description }}<br/></pre>
+    <!-- <button mat-stroked-button  (click)="newVisite(defi,chami)">jouer</button> -->
+    <button mat-stroked-button class="jouer"
+          (click)="newVisite(defi,csService.currentChami)"
+          *ngIf="!jouer">JOUER</button>
+    <section class="container" *ngIf="this.defi.etape.length > 0">
+      <button mat-stroked-button 
+              *ngIf="jouer && numEtape === 0" 
+              (click)="nextEtape()">
+        Afficher les étapes
+      </button>
+      <section *ngFor="let etape of etapesTmp">
+        <app-etape [etape]="etape"
+                    (reponse)="reponse.emit($event)"
+                    (cout)="indice.emit($event)">
+        </app-etape>
+      </section>
+      <button
+        mat-stroked-button
+        *ngIf="numEtape > 0 && etapeSuivExists()"
+        (click)="nextEtape()"
+      >
+        Etape suivante
+      </button>
+      <button
+        mat-stroked-button
+        *ngIf="numEtape > 0 && !etapeSuivExists()"
+        (click)="fin()"
+      >
+        Voir mon score
+      </button>
+    </section>
+  </mat-card-content>
+  <!--
         <mat-card-actions>
         <button mat-button>J'AIME</button>
         <button mat-button>PARTAGER</button>
         </mat-card-actions>
     -->
-  </mat-card>
+</mat-card>

@@ -1,0 +1,10 @@
+<app-defi *ngIf="!visite.dateFin; else visiteFinie"
+            [defi]="visite.defi" 
+            [jouer]="true"
+            (reponse)="saveReponse($event)"
+            (fini)="fin($event)"
+            (indice)="deduceIndice($event)"></app-defi>
+<ng-template #visiteFinie>
+    <h3>Vous avez déjà terminé cette visite !</h3>
+</ng-template>
+<button mat-stroked-button class="retour" color="primary" (click)="retour()">Retour</button>

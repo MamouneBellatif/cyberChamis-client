@@ -35,7 +35,9 @@
               "src/styles.scss",
               "./node_modules/leaflet/dist/leaflet.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/chart.js/dist/chart.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -113,7 +115,7 @@
           "options": {
             "prerender": false,
             "ssr": false,
-            "browserTarget": "l3m-pi-2022-client:build:production",
+            "browserTarget": "l3m-pi-2022-client:build:development",
             "firebaseProject": "integrateur2022g5",
             "firebaseHostingSite": "integrateur2022g5"
           }

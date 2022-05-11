@@ -16,7 +16,7 @@ export class ListElementChamiComponent implements OnInit {
   constructor(public lecService: ListElementChamiService) { }
 
   ngOnInit(): void {
-    this.defis = this.lecService.getDefis(this.chami.login)
+    this.defis = this.lecService.getDefis(this.chami.id)
   }
 
 }
