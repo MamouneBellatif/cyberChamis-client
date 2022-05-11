@@ -14,7 +14,7 @@ export const environment = {
   },
   production: false,
   // apiUrl: 'http://localhost:8080/api/'
-  apiUrl: 'https://projet-integrateur-g5.herokuapp.com/'
+  apiUrl: 'https://projet-integrateur-g5.herokuapp.com/api/'
 };
 
 /*
