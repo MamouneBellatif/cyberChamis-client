@@ -13,7 +13,8 @@ export const environment = {
     measurementId: 'G-2JV40MWP25',
   },
   production: false,
-  apiUrl: 'http://localhost:8080/api/'
+  // apiUrl: 'http://localhost:8080/api/'
+  apiUrl: 'https://projet-integrateur-g5.herokuapp.com/'
 };
 
 /*
