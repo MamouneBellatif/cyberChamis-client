@@ -66,6 +66,18 @@
       <app-new-etape [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"></app-new-etape>
       <br/>
 
+      <mat-form-field appearance="fill">
+        <mat-label>Coordonnées de départ</mat-label>
+        <input
+          #coordonnes
+          matInput
+          type="text"
+          placeholder="Lat,Long"
+          [ngModel]="coordonnesDefi"
+          name="coordonnees"
+        />
+      </mat-form-field>
+
       <button mat-raised-button color="primary" 
       (click)="addDefi({ 
         categorie: getCategorieString(categorie.value),
@@ -89,3 +101,5 @@
     </div>
 
   </form>
+
+  <app-localisation [listeDefis]="[]" (coordonnees)="changeCoordonnees($event)"></app-localisation>

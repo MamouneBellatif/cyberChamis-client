@@ -1,74 +1,24 @@
-
 // .max-taille {
 //   max-width: 936px;
 // }
 
-// // @media only screen and (min-width: 768px) {
-//   .mrgTop {
-//     margin-top: 10px;
-//   }
+// @media only screen and (min-width: 768px) {
+//   
 
-//   .container {
-//     display: block;
-//     align-items: center;
-//     justify-content: center;
-//     background: none;
+//   .text-carousel {
+//     position: absolute;
+//     bottom: 0px;
+//     background-color: transparent;
 //     width: 100%;
-//     max-width: 936px;
+//     margin-bottom: 10px;
 //   }
-
-//   // .text-carousel {
-// //     position: absolute;
-// //     bottom: 0px;
-// //     background-color: transparent;
-// //     width: 100%;
-// //     margin-bottom: 10px;
-// //   }
-// // }
-
-// // @media only screen and (max-width:768) {
-// //   .text-carousel {
-// //     width: 100%;
-// //   }
-// // }
-
-// mat-card-content ul{
-//   padding:0 20px 0 20px;
 // }
 
-// .grid {
-//   display: grid;
-//   height: 20px;
-//   grid-template-columns: repeat(3, 1fr);
-//   max-width: 310px;
+// @media only screen and (max-width:768) {
+//   .text-carousel {
+//     width: 100%;
+//   }
 // }
-
-// .defiId {
-//   grid-column: 1;
-// }
-
-// .grid2 {
-//   display: grid;
-//   height: 20px;
-//   max-width: 310px;
-// }
-
-// .clickableLine:hover {
-//   cursor: pointer;
-//   background-color: #d3d3e4;
-// }
-
-// .titre {
-//   grid-column: 2;
-// }
-
-// .titre2 {
-//   grid-column: 3/span 4;
-// }
-
-mat-card-content ul{
-  padding:0 20px 0 20px;
-}
 
 .grid {
   display: grid;
@@ -79,6 +29,10 @@ mat-card-content ul{
 
 .defiId {
   grid-column: 1;
+}
+
+.mrgTop {
+  margin-top: 20px;
 }
 
 .grid2 {
@@ -97,11 +51,7 @@ mat-card-content ul{
 }
 
 .titre2 {
-  grid-column: 3/span 4;
-}
-
-.mrgTop {
-  margin-top: 30px;
+  grid-column: 3 / span 4;
 }
 
 .container {

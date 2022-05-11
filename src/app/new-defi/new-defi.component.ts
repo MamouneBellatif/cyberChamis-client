@@ -17,6 +17,8 @@ export class NewDefiComponent implements OnInit {
 
   listEtape: Etape[] = [];
 
+  coordonnesDefi : string = "";
+
   // @Input() chami!:Chami;
   chami!:Chami;
 
@@ -95,5 +97,9 @@ export class NewDefiComponent implements OnInit {
 
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action);
+  }
+
+  changeCoordonnees(c : string){
+    this.coordonnesDefi = c;
   }
 }
