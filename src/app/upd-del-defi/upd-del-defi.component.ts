@@ -35,8 +35,4 @@ export class UpdDelDefiComponent implements OnInit {
     this.router.navigateByUrl("modifierDefi/"+this.defi.id);
   }
 
-  refresh() {
-    window.location.reload();
-  }
-
 }
