@@ -47,4 +47,11 @@
       </ul>
     </mat-card-content>
   </mat-card>
+
+
+
 </section>
+
+<div *ngIf="subj | async as lDefi">
+  <app-localisation [listeDefis]="lDefi"></app-localisation>
+</div>
