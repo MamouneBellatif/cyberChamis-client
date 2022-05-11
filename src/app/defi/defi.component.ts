@@ -77,9 +77,16 @@ export class DefiComponent implements OnChanges, OnInit {
     if(!this.etapesTmp[currEtapeId].listeIndice){
       this.etapesTmp[currEtapeId].listeIndice = [];
     }
-    while(this.defi.etape[this.numEtape].type_etape === TypeEtape.indice){
-      this.etapesTmp[currEtapeId].listeIndice?.push(this.defi.etape[this.numEtape]);
-      this.numEtape++;
+
+    if(this.etapesTmp[currEtapeId].listeIndice!.length == 0){
+      while(this.defi.etape[this.numEtape].type_etape === TypeEtape.indice){
+        this.etapesTmp[currEtapeId].listeIndice?.push(this.defi.etape[this.numEtape]);
+        this.numEtape++;
+      }
+    }else{
+      while(this.defi.etape[this.numEtape].type_etape === TypeEtape.indice){
+        this.numEtape++;
+      }
     }
   }
 
