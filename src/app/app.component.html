@@ -40,7 +40,7 @@
         <h2 class="bienvenue">Bienvenue {{ chami.login }} chez les chamis !</h2>
 
         <div class="container">
-          <app-home></app-home>
+          <app-home *ngIf="getMode() === ''"></app-home>
         </div>
         <!-- Navigation -->
         <!-- <div class="example-button-row">
