@@ -1,6 +1,7 @@
 <button mat-stroked-button class="retour" color="primary" (click)="retour()">
   Retour
 </button>
+
 <mat-card>
   <mat-card-header class="container">
     <mat-card-title>Espace modification</mat-card-title>
@@ -10,68 +11,76 @@
     >
   </mat-card-header>
 </mat-card>
-<div style="padding-top: 20px">
-  <form
-    (submit)="
-      updateDefi({
-        id: defi.id,
-        categorie: getCategorieString(categorie.value),
-        titre: titre.value,
-        dateDeCreation: '',
-        etape: [],
-        description: description.value,
-        auteur: defi.auteur,
-        image: defi.image,
-        coordonnees: defi.coordonnees
-      });
-      titre.value = '';
-      description.value = '';
-      coordonnes.value = '';
-      openSnackBar('Défi modifié avec succès !', 'OK')
-    "
-  >
-    <div class="update-defi-form">
-      <mat-form-field class="titre" appearance="fill">
-        <mat-label>Titre</mat-label>
-        <input
-          #titre
-          matInput
-          type="text"
-          name="titreDefi"
-          [ngModel]="defi.titre"
-        />
-      </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Coordonnées de départ</mat-label>
-        <input #coordonnes matInput type="text" placeholder="Lat, long" [ngModel]="defi.coordonnees" />
-      </mat-form-field>
+<form style="padding-top: 20px"
+  (submit)="
+    updateDefi({
+      id: defi.id,
+      categorie: getCategorieString(categorie.value),
+      titre: titre.value,
+      dateDeCreation: '',
+      etape: [],
+      description: description.value,
+      auteur: defi.auteur,
+      image: defi.image,
+      coordonnees: defi.coordonnees
+    });
+    titre.value = '';
+    description.value = '';
+    coordonnes.value = ''">
 
-      <mat-form-field class="categorie" appearance="fill">
-        <mat-label>Categorie</mat-label>
-        <mat-select #categorie>
-          <mat-option
-            *ngFor="let categories of getCategorie()"
-            [value]="categories"
-          >
-            {{ categories }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+  <div class="update-defi-form">
 
-      <br />
-      <mat-form-field class="description-defi" appearance="fill">
-        <mat-label>Description</mat-label>
-        <textarea #description matInput maxlength="255">{{
-          defi.description
-        }}</textarea>
-      </mat-form-field>
+    <mat-form-field class="titre" appearance="fill">
+      <mat-label>Titre</mat-label>
+      <input
+        #titre
+        matInput
+        type="text"
+        name="titreDefi"
+        [ngModel]="defi.titre"
+      />
+    </mat-form-field>
 
-      <mat-form-field class="desctiption-defi" appearance="fill">
-        <!-- <mat-label>URL</mat-label> -->
-        <app-upload (urlFichier)="monURL.value = $event"></app-upload>
-        <input disabled matInput type="text" #monURL />
-      </mat-form-field>
+    <mat-form-field class="categorie" appearance="fill">
+      <mat-label>Categorie</mat-label>
+      <mat-select #categorie>
+        <mat-option *ngFor="let categories of getCategorie()" [value]="categories">
+          {{categories}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card class="card-etapes">
+      <mat-card-subtitle>Pour calculer les coordonnées de départ du défi, référez-vous à la carte ci-dessous 
+        et pointez sur le lieu de départ.
+      </mat-card-subtitle>
+    </mat-card>
+
+    <mat-form-field class="description-defi" appearance="fill">
+      <mat-label>Coordonnées de départ</mat-label>
+      <input
+        #coordonnes
+        matInput
+        type="text"
+        placeholder="Latitude, Longitude"
+        [ngModel]="defi.coordonnees"
+        name="coordonnees"
+      />
+    </mat-form-field>
+    <br/>
+    
+    <mat-form-field class="description-defi" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea #description matInput maxlength="255">{{defi.description}}</textarea>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field class="description-defi" appearance="fill">
+      <!-- <mat-label>URL</mat-label> -->
+      <app-upload (urlFichier)="monURL.value=$event"></app-upload>
+      <input disabled matInput type="text" #monURL/>
+    </mat-form-field>
 
       <!-- <p *ngFor="let etapes of listEtape; let index = index">
         {{ etapes.label }} - rang : {{ etapes.rang }}
@@ -83,8 +92,11 @@
         (newEtape)="addEtape($event)"
       ></app-new-etape> -->
 
-      <br />
-      <button mat-raised-button color="primary" type="submit" >Valider</button>
-    </div>
-  </form>
-</div>
+    <br />
+    <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Défi modifié avec succès !', 'OK')" >Valider</button>
+
+  </div>  
+</form>
+
+<app-localisation [listeDefis]="[]" (coordonnees)="changeCoordonnees($event)"></app-localisation>
+
