@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { map, Observable, Subject } from 'rxjs';
 import { Chami, Defi } from '../cyberchamis.service';
 import { ListElementChamiService } from '../list-element-chami/list-element-chami.service';
@@ -13,6 +13,7 @@ import { ListChamisService } from './list-chamis.service';
 })
 export class ListChamisComponent implements OnInit {
 
+  @Output() getChamis = new EventEmitter<Chami>();
   // Chami sélectionné
   public currentChami: Chami| undefined;
 
@@ -59,6 +60,7 @@ export class ListChamisComponent implements OnInit {
    */
    selectChami(chami: Chami) {
     this.currentChami = chami;
+    this.getChamis.emit(chami);
     // this.currentChami.defis = 
 
     this.getDefis(this.currentChami.id).then(data => {

@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Chami, CyberchamisService, Defi, Etape, Reponse, TypeEtape } from '../cyberchamis.service';
+import { Subject } from 'rxjs';
+import { Chami, CyberchamisService, Defi, Etape, Reponse, TypeEtape, Visite } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-defi',
@@ -18,14 +19,20 @@ export class DefiComponent implements OnChanges, OnInit {
 
   private etape1: boolean = false;
 
+  joueurs : Chami[] = [];
+  
   numEtape: number = 0;
 
   etapesTmp: Etape[] = [];
 
+  visiteCree : Boolean;
+
   // chami!:Chami;
 
   // constructor(public csService: CyberchamisService) { }
-  constructor(public csService: CyberchamisService, private router: Router) { }
+  constructor(public csService: CyberchamisService, private router: Router) {
+    this.visiteCree = false;
+   }
 
   ngOnChanges(): void {
     this.numEtape = 0;
@@ -34,6 +41,7 @@ export class DefiComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     console.log("defi.component.ts: ngOnInit()");
+    this.joueurs.push(this.csService.currentChami);
     // this.csService.
   }
 
@@ -46,10 +54,9 @@ export class DefiComponent implements OnChanges, OnInit {
     return new Date(stringDate).toLocaleString();
   }
 
-  newVisite(defi: Defi, chami: Chami){
-    console.log("new visite("+defi.id+","+chami.id+")");
-    this.csService.addVisite(chami, defi).then((visite) => {
-      this.router.navigateByUrl("play/visite/"+visite.id+"/"+chami.id);
+  newVisite(defi: Defi){
+    this.csService.addVisiteComplete(this.joueurs, defi).then((visite) => {
+      this.router.navigateByUrl("play/visite/"+visite.id+"/"+this.csService.currentChami.id);
     });
   }
 
@@ -92,5 +99,17 @@ export class DefiComponent implements OnChanges, OnInit {
 
   fin(){
     this.fini.emit(true);
+  }
+
+  ajouterChami(chami : Chami){
+    let trouve = false;
+    this.joueurs.forEach(j => {
+      if(j.id == chami.id || j.login == chami.login){
+        trouve = true;
+      }
+    })
+    if(trouve == false){
+      this.joueurs.push(chami);
+    }
   }
 }
