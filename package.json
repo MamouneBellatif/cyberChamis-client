@@ -30,7 +30,6 @@
     "firebase-tools": "^10.7.2",
     "leaflet": "^1.8.0",
     "mdb-angular-ui-kit": "^2.1.0",
-    "ng-simple-slideshow": "^1.2.9",
     "ngx-device-detector": "^3.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
