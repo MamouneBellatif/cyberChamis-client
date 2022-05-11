@@ -1,13 +1,16 @@
-<button mat-stroked-button class="retour" color="primary" (click)="retour()">Retour</button>
+<button mat-stroked-button class="retour" color="primary" (click)="retour()">
+  Retour
+</button>
 <mat-card>
   <mat-card-header class="container">
     <mat-card-title>Espace modification</mat-card-title>
     <mat-card-subtitle
-      >Changez directement dans les champs les informations que vous souhaitez modifier.</mat-card-subtitle
+      >Changez directement dans les champs les informations que vous souhaitez
+      modifier.</mat-card-subtitle
     >
   </mat-card-header>
 </mat-card>
-<div style="padding-top: 20px;">
+<div style="padding-top: 20px">
   <form
     (submit)="
       updateDefi({
@@ -18,12 +21,13 @@
         etape: [],
         description: description.value,
         auteur: defi.auteur,
-        image: '',
-        coordonnees: ''
+        image: defi.image,
+        coordonnees: defi.coordonnees
       });
       titre.value = '';
       description.value = '';
-      openSnackBar('Modification du défi enregistrée', 'OK')
+      coordonnes.value = '';
+      openSnackBar('Défi modifié avec succès !', 'OK')
     "
   >
     <div class="update-defi-form">
@@ -38,23 +42,35 @@
         />
       </mat-form-field>
 
+      <mat-form-field appearance="fill">
+        <mat-label>Coordonnées de départ</mat-label>
+        <input #coordonnes matInput type="text" placeholder="Lat, long" [ngModel]="defi.coordonnees" />
+      </mat-form-field>
+
       <mat-form-field class="categorie" appearance="fill">
         <mat-label>Categorie</mat-label>
         <mat-select #categorie>
-          <mat-option *ngFor="let categories of getCategorie()" [value]="categories">
+          <mat-option
+            *ngFor="let categories of getCategorie()"
+            [value]="categories"
+          >
             {{ categories }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <br/>
+      <br />
       <mat-form-field class="description-defi" appearance="fill">
         <mat-label>Description</mat-label>
-        <textarea
-          #description
-          matInput
-          maxlength="255"
-        >{{ defi.description }}</textarea>
+        <textarea #description matInput maxlength="255">{{
+          defi.description
+        }}</textarea>
+      </mat-form-field>
+
+      <mat-form-field class="desctiption-defi" appearance="fill">
+        <!-- <mat-label>URL</mat-label> -->
+        <app-upload (urlFichier)="monURL.value = $event"></app-upload>
+        <input disabled matInput type="text" #monURL />
       </mat-form-field>
 
       <!-- <p *ngFor="let etapes of listEtape; let index = index">
@@ -67,9 +83,8 @@
         (newEtape)="addEtape($event)"
       ></app-new-etape> -->
 
-      <br/>
-      <button mat-raised-button color="primary" type="submit">Valider</button>
-
+      <br />
+      <button mat-raised-button color="primary" type="submit" >Valider</button>
     </div>
   </form>
 </div>
