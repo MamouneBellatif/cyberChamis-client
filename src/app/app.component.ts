@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
   // chamiSubj = new Subject<Chami[]>();
 
   // Fonctionnalité en cours : VISUALISER [Chamis], JOUER, AJOUTER [Defi], MODIFIER [Defi]
-  private mode: string = '';
+  private mode: string = 'ACCUEIL';
 
   getMode(): string {
     return this.mode;

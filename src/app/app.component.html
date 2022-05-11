@@ -8,13 +8,14 @@
     <span class="spacer-pic-nom"></span>
     <span class="smaller">{{ user.displayName }}</span>
     <span class="example-spacer"></span>
-    <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Menu</button>
+    <button mat-stroked-button class="espace" color="primary" (click)="setMode('ACCUEIL')">Accueil</button>
+    <button mat-stroked-button class="espace" color="primary" [matMenuTriggerFor]="menu">Menu</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="setMode('AJOUTER')">Ajouter des défis</button>
       <button mat-menu-item (click)="setMode('JOUER')">Jouer aux défis</button>
       <button mat-menu-item (click)="setMode('VISUALISER')">Visualiser les chamis</button>
     </mat-menu>
-    <button mat-stroked-button color="primary" [matMenuTriggerFor]="profil">Profil</button>
+    <button mat-stroked-button class="espace" color="primary" [matMenuTriggerFor]="profil">Profil</button>
     <mat-menu #profil="matMenu">
       <button mat-menu-item (click)="setMode('MODIFIER')">Gérer mes défis</button>
       <button mat-menu-item (click)="setMode('VISITES')">Mes Visites</button>
@@ -39,8 +40,8 @@
 
         <h2 class="bienvenue">Bienvenue {{ chami.login }} chez les chamis !</h2>
 
-        <div class="container">
-          <app-home *ngIf="getMode() === ''"></app-home>
+        <div *ngIf="getMode() === 'ACCUEIL'" class="container">
+          <app-home ></app-home>
         </div>
         <!-- Navigation -->
         <!-- <div class="example-button-row">
@@ -65,6 +66,7 @@
         <!-- Vous pouvez recuperer le chami courant dans le service, vous pouvez enlever 
       les input
      -->
+
         <!-- Mode ajout de défis -->
         <section *ngIf="getMode() === 'AJOUTER'">
           <!-- <app-new-defi [chami]="chami"  ></app-new-defi> -->
