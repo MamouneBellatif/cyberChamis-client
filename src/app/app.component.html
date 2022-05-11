@@ -3,7 +3,7 @@
 
 <section *ngIf="auth.user | async as user; else showLogin">
   <!-- Barre d'entête menu déroulant -->
-  <mat-toolbar>
+  <mat-toolbar *ngIf="currentChami | async as chami">
     <img src="{{ user.photoURL }}" class="profile-image" />
     <span class="spacer-pic-nom"></span>
     <span class="smaller">{{ user.displayName }}</span>
