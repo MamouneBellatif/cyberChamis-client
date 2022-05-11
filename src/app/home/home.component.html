@@ -1,10 +1,13 @@
-<p>home works!</p>
-
 <!-- carousel -->
 <div class="carousel">
   <ng-container *ngFor="let defi of subj | async as lDefis; let i = index">
-      <img *ngIf="i === currentSlide" [src]="defi.image | getDownloadURL" class="slide" />
+    <img
+      *ngIf="i === currentSlide"
+      [src]="defi.image | getDownloadURL"
+      class="slide"  
+    />
   </ng-container>
+  
 
   <!-- controls -->
   <button class="control prev" (click)="onPreviousClick()">
@@ -13,4 +16,16 @@
   <button class="control next" (click)="onNextClick()">
     <span class="arrow right"></span>
   </button>
+</div>
+
+<div *ngFor="let defi of subj | async as lDefis; let i = index" class="under">
+  <mat-card *ngIf="i === currentSlide">
+    <mat-card-header>
+      <mat-card-title>{{ defi.titre }}</mat-card-title>
+      <mat-card-subtitle>Créé par {{ defi.auteur.login }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <pre>{{ defi.description }}<br/></pre>
+    </mat-card-content>
+  </mat-card>
 </div>
