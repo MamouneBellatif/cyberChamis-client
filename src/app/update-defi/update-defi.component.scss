@@ -25,6 +25,11 @@
   .categorie {
       width: 280px;
   }
+  .card-etapes {
+      width: 250px;
+      align-items: center;
+      margin:auto;
+  }
 }
 
 @media only screen and (min-width: 475px) {
@@ -41,6 +46,11 @@
   }
   .categorie {
       width: 195px;
+  }
+  .card-etapes {
+    width: 400px;
+    align-items: center;
+    margin:auto;
   }
 }
 

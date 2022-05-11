@@ -58,4 +58,8 @@ export class UpdateDefiComponent implements OnInit {
   openSnackBar(message: string, action: string) {
     this.snackBar.open(message, action);
   }
+
+  changeCoordonnees(c : string){
+    this.defi.coordonnees = c;
+  }
 }
