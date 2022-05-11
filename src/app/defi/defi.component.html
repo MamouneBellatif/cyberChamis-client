@@ -1,5 +1,8 @@
 <mat-card class="mrgTop defi-card">
   <mat-card-header class="container">
+
+    <!-- ___________________________ -->
+    <app-list-chamis (getChamis)="ajouterChami($event)"></app-list-chamis>
     <!--<div mat-card-avatar class="example-header-image"></div>--> <!-- Sinon c'est pas centré >_< -->
     <mat-card-title>{{ defi.titre }}</mat-card-title>
     <mat-card-subtitle
@@ -12,7 +15,7 @@
     <pre>{{ defi.description }}<br/></pre>
     <!-- <button mat-stroked-button  (click)="newVisite(defi,chami)">jouer</button> -->
     <button mat-stroked-button class="jouer"
-          (click)="newVisite(defi,csService.currentChami)"
+          (click)="newVisite(defi); this.visiteCree = false;"
           *ngIf="!jouer">JOUER</button>
     <section class="container" *ngIf="this.defi.etape.length > 0">
       <button mat-stroked-button 
