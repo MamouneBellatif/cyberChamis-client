@@ -27,7 +27,8 @@ export class LocalisationComponent implements OnInit {
       center: [45.18680056764414, 5.736371520710951],
       zoom: 16
     });
-    let osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    //
+    let osmLayer = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors',
       maxZoom: 25
   });
