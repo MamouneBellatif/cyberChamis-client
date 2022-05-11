@@ -25,12 +25,11 @@ export class LocalisationComponent implements OnInit {
 
       this.map = L.map('map', {
       center: [45.18680056764414, 5.736371520710951],
-      zoom: 16
+      zoom: 15
     });
-    //
-    let osmLayer = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {
+    let osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors',
-      maxZoom: 25
+      maxZoom: 30
   });
 
   this.map.addLayer(osmLayer);
@@ -45,7 +44,7 @@ export class LocalisationComponent implements OnInit {
         
     
     this.map.locate({setView: true, 
-                 maxZoom: 20, 
+                 maxZoom: 30, 
                  watch:true
                });
     
@@ -61,7 +60,13 @@ export class LocalisationComponent implements OnInit {
     });
     const onLocationFound = (e: { accuracy: number; latlng: L.LatLngExpression; }) => {
         this.map.removeLayer(this.marker);
-        this.marker = new L.Marker(e.latlng, {draggable:true}).setIcon(this.icon).bindPopup("MOI");
+        let iconChami = new L.Icon({
+          iconSize: [ 30, 41 ],
+          iconAnchor: [ 13, 0 ],
+          iconUrl: 'assets/images/markerOrange.png',
+          shadowUrl: 'assets/images/marker-shadow.png'
+        })
+        this.marker = new L.Marker(e.latlng, {draggable:true}).setIcon(iconChami).bindPopup("MOI");
         this.map.addLayer(this.marker);
     }
     
