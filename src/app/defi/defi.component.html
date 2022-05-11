@@ -2,7 +2,11 @@
   <mat-card-header class="container">
 
     <!-- ___________________________ -->
-    <app-list-chamis (getChamis)="ajouterChami($event)"></app-list-chamis>
+    <div *ngIf="!jouer">
+      <h2>Ajouter des amis</h2>
+      <app-list-chamis (getChamis)="ajouterChami($event);
+      openSnackBar('Ami ajouté', 'OK')" *ngIf="!jouer"></app-list-chamis>
+    </div>
     <!--<div mat-card-avatar class="example-header-image"></div>--> <!-- Sinon c'est pas centré >_< -->
     <mat-card-title>{{ defi.titre }}</mat-card-title>
     <mat-card-subtitle

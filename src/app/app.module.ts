@@ -54,7 +54,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AfficherImageComponent } from './afficher-image/afficher-image.component';
 import { MatFormFieldModule }from '@angular/material/form-field';
 import { HomeComponent } from './home/home.component';
-import { SlideshowModule } from 'ng-simple-slideshow';
 
 @NgModule({
   declarations: [
@@ -113,7 +112,6 @@ import { SlideshowModule } from 'ng-simple-slideshow';
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
     NoopAnimationsModule,
-    SlideshowModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

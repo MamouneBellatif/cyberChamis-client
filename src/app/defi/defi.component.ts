@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, OnChanges, OnInit, Output, EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Chami, CyberchamisService, Defi, Etape, Reponse, TypeEtape, Visite } from '../cyberchamis.service';
@@ -30,7 +31,7 @@ export class DefiComponent implements OnChanges, OnInit {
   // chami!:Chami;
 
   // constructor(public csService: CyberchamisService) { }
-  constructor(public csService: CyberchamisService, private router: Router) {
+  constructor(public csService: CyberchamisService, private router: Router, private snackBar: MatSnackBar) {
     this.visiteCree = false;
    }
 
@@ -111,5 +112,8 @@ export class DefiComponent implements OnChanges, OnInit {
     if(trouve == false){
       this.joueurs.push(chami);
     }
+  }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
   }
 }
