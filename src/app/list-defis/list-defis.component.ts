@@ -48,12 +48,14 @@ export class ListDefisComponent implements OnInit {
                           });
       console.log("nv defis");	
     };
+
   }
 
   // firebase.auth().currentUser?.uid
 
-  ngOnInit(): void {
+    ngOnInit() {
     this.initialize();
+
   }
 
   /**

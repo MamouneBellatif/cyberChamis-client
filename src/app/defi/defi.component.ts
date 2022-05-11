@@ -14,6 +14,7 @@ export class DefiComponent implements OnChanges, OnInit {
   @Input() jouer: boolean = false;
   @Output() reponse = new EventEmitter<Partial<Reponse>>();
   @Output() fini = new EventEmitter<boolean>();
+  @Output() indice = new EventEmitter<number>();
 
   private etape1: boolean = false;
 
@@ -32,6 +33,7 @@ export class DefiComponent implements OnChanges, OnInit {
   }
 
   ngOnInit(): void {
+    console.log("defi.component.ts: ngOnInit()");
     // this.csService.
   }
 

@@ -7,6 +7,7 @@
       {{ parsedDateToString(defi.dateDeCreation) }}</mat-card-subtitle
     >
   </mat-card-header>
+  <app-afficher-image [path]="defi.image"></app-afficher-image>
   <mat-card-content class="container">
     <pre>{{ defi.description }}<br/></pre>
     <!-- <button mat-stroked-button  (click)="newVisite(defi,chami)">jouer</button> -->
@@ -21,7 +22,8 @@
       </button>
       <section *ngFor="let etape of etapesTmp">
         <app-etape [etape]="etape"
-                    (reponse)="reponse.emit($event)">
+                    (reponse)="reponse.emit($event)"
+                    (cout)="indice.emit($event)">
         </app-etape>
       </section>
       <button

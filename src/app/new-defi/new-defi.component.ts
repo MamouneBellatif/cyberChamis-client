@@ -67,6 +67,7 @@ export class NewDefiComponent implements OnInit {
   }
 
   addDefi(defi: DefiDTO) :Promise<unknown>{
+    console.log("img save "+defi.image);
     console.log("envoie du defi");
     defi.etape = this.listEtape;
     console.log('addDefi', defi);

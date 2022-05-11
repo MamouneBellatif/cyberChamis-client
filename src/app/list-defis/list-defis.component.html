@@ -1,4 +1,4 @@
-
+<!-- 
 <section class="container ListDefis mrgTop" *ngIf="subj | async as lDefis">
   <mdb-carousel [controls]="true" (slideChange)="onSlideChange()">
     <mdb-carousel-item *ngFor="let defi of lDefis">
@@ -13,7 +13,7 @@
       </div>
     </mdb-carousel-item>
   </mdb-carousel>
-</section>
+</section> -->
 
 <!-- Détail du défi sélectionné -->
 <!-- <app-defi *ngIf="currentDefi" [defi]="currentDefi" [chami]="chami"> </app-defi> -->
@@ -21,15 +21,15 @@
 
 <!-- <section class="ListDefis" *ngIf="listDefis | async as lDefis"> -->
 <!-- <section class="ListDefis" *ngIf="listObs | async as lDefis"> -->
-
-<!-- <section class="container ListDefis mrgTop" *ngIf="subj | async as lDefis">
+<!-- 
+ <section class="container ListDefis mrgTop" *ngIf="subj | async as lDefis"> 
   <mat-card class="defi-card">
     <mat-card-header>
       <mat-card-title>Défis</mat-card-title>
       <mat-card-subtitle
         >Choisissez le défi que vous allez relever !</mat-card-subtitle
       >
-    </mat-card-header> -->
+    </mat-card-header> --> 
 
 <!-- Liste des défis -->
 <!-- <mat-card-content>
@@ -45,11 +45,76 @@
         >
           <td class="defiId">{{ defi.id }}</td>
           <td class="titre2">{{ defi.titre }}</td>
-        </li> -->
-<!--<app-defi class="grid2 clickableLine" *ngFor="let defi of lDefis" (click)="selectDefi(defi)"></app-defi>-->
-<!-- </ul>
+        </li>
+<app-defi class="grid2 clickableLine" *ngFor="let defi of lDefis" (click)="selectDefi(defi)"></app-defi>
+</ul>
     </mat-card-content>
   </mat-card>
 </section> -->
 
 <!-- Détail du défi sélectionné -->
+<!-- <app-defi *ngIf="currentDefi" [defi]="currentDefi"> </app-defi>
+
+<section class="container ListDefis mrgTop" *ngIf="subj | async as lDefis">
+  <mdb-carousel [controls]="true" (slideChange)="onSlideChange()">
+    <mdb-carousel-item *ngFor="let defi of lDefis" (click)="selectDefi(defi)">
+      <div class="item-carousel">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp"
+          class="d-block w-100"
+        />
+        <div class="text-carousel">
+          <mat-card class="defi-card">
+            <mat-card-header class="container">
+              <mat-card-title>{{ defi.titre }}</mat-card-title>
+              <mat-card-subtitle
+                >Créé par {{ defi.auteur.login }}, le
+                {{ parsedDateToString(defi.dateDeCreation) }}</mat-card-subtitle
+              >
+            </mat-card-header>
+          </mat-card>
+        </div>
+      </div>
+    </mdb-carousel-item>
+  </mdb-carousel> -->
+
+  <!-- <app-localisation [listeDefis]="lDefis"></app-localisation> -->
+
+<!-- </section> -->
+
+<!-- Détail du défi sélectionné -->
+<!-- <app-defi *ngIf="currentDefi" [defi]="currentDefi" [chami]="chami"> </app-defi> -->
+<app-defi *ngIf="currentDefi" [defi]="currentDefi"> </app-defi>
+
+<!-- <section class="ListDefis" *ngIf="listDefis | async as lDefis"> -->
+<!-- <section class="ListDefis" *ngIf="listObs | async as lDefis"> -->
+
+<section class="container ListDefis mrgTop" *ngIf="subj | async as lDefis">
+  <mat-card class="defi-card">
+    <mat-card-header>
+      <mat-card-title>Défis</mat-card-title>
+      <mat-card-subtitle
+        >Choisissez le défi que vous allez relever !</mat-card-subtitle
+      >
+    </mat-card-header>
+
+    <!-- Liste des défis -->
+    <mat-card-content>
+      <ul>
+        <li class="grid">
+          <th class="defiId">Défi</th>
+          <th class="titre">Titre</th>
+        </li>
+        <li
+          class="grid2 clickableLine"
+          *ngFor="let defi of lDefis"
+          (click)="selectDefi(defi)"
+        >
+          <td class="defiId">{{ defi.id }}</td>
+          <td class="titre2">{{ defi.titre }}</td>
+        </li>
+        <!--<app-defi class="grid2 clickableLine" *ngFor="let defi of lDefis" (click)="selectDefi(defi)"></app-defi>-->
+      </ul>
+    </mat-card-content>
+  </mat-card>
+</section>
