@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { throws } from 'assert';
+import { getDownloadURL } from 'firebase/storage';
 import { Subject } from 'rxjs';
 import { Defi } from '../cyberchamis.service';
 import { ListDefisService } from '../list-defis/list-defis.service';
