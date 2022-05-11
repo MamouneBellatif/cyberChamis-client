@@ -2,83 +2,103 @@
 <app-notification-component></app-notification-component>
 
 <section *ngIf="auth.user | async as user; else showLogin">
-
-  <!-- Barre d'entête -->
+  <!-- Barre d'entête menu déroulant -->
   <mat-toolbar>
-    <img src="{{ user.photoURL }}" class="profile-image"/>
+    <img src="{{ user.photoURL }}" class="profile-image" />
     <span class="spacer-pic-nom"></span>
     <span class="smaller">{{ user.displayName }}</span>
     <span class="example-spacer"></span>
-    <button mat-stroked-button color="primary" (click)="logout()">Sign out</button>
+    <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="setMode('AJOUTER')">Ajouter des défis</button>
+      <button mat-menu-item (click)="setMode('JOUER')">Jouer aux défis</button>
+      <button mat-menu-item (click)="setMode('VISUALISER')">Visualiser les chamis</button>
+    </mat-menu>
+    <button mat-stroked-button color="primary" [matMenuTriggerFor]="profil">Profil</button>
+    <mat-menu #profil="matMenu">
+      <button mat-menu-item (click)="setMode('MODIFIER')">Gérer mes défis</button>
+      <button mat-menu-item (click)="setMode('VISITES')">Mes Visites</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">Déconnexion</button>
+    </mat-menu>
   </mat-toolbar>
 
   <!-- route pour une visite (partie) -->
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
-<div *ngIf="router.url==='/'">
+  <div *ngIf="router.url === '/'">
+    <!-- Titre appli -->
+    <div class="align-center">
+      <img style="width: 20%;" src="../assets/images/logoCyberChamis.png" />
+    </div>
 
+    <!-- Connecté comme Chami -->
+    <section *ngIf="user.email !== null">
+      <section *ngIf="currentChami | async as chami; else chamiInexistant">
+        <!-- <section *ngIf="chamiSubj| async as chami ; else chamiInexistant"> -->
 
-  <!-- Titre appli -->
-  <div class="align-center">
-    <h1>CyberChamis.xyz</h1>
-  </div>
+        <h2 class="bienvenue">Bienvenue {{ chami.login }} chez les chamis !</h2>
 
-  <!-- Connecté comme Chami -->
-  <section *ngIf="user.email !== null"> 
-    <section *ngIf="currentChami| async as chami ; else chamiInexistant">
-    <!-- <section *ngIf="chamiSubj| async as chami ; else chamiInexistant"> -->
+        <div class="container">
+          <app-home></app-home>
+        </div>
+        <!-- Navigation -->
+        <!-- <div class="example-button-row">
+          <button mat-raised-button (click)="setMode('AJOUTER')">
+            Ajouter des défis
+          </button>
+          <button mat-raised-button (click)="setMode('JOUER')">
+            Jouer aux défis
+          </button>
+          <button mat-raised-button (click)="setMode('VISUALISER')">
+            Visualiser les chamis
+          </button>
+          <button mat-raised-button (click)="setMode('MODIFIER')">
+            Gérer mes défis
+          </button>
+          <button mat-raised-button (click)="setMode('VISITES')">
+            Mes Visites
+          </button>
+        </div> -->
+        &nbsp;
 
-      <h2 class="bienvenue">Bienvenue {{chami.login}} chez les chamis !</h2>
-
-      <!-- Navigation -->
-      <div class="example-button-row">
-        <button mat-raised-button (click)="setMode('AJOUTER')">Ajouter des défis</button>
-        <button mat-raised-button (click)="setMode('JOUER')">Jouer aux défis</button>
-        <button mat-raised-button (click)="setMode('VISUALISER')">Visualiser les chamis</button>
-        <button mat-raised-button (click)="setMode('MODIFIER')">Gérer mes défis</button>
-        <button mat-raised-button (click)="setMode('VISITES')">Mes Visites</button>
-      </div>
-      &nbsp;
-        
-
-      <!-- Vous pouvez recuperer le chami courant dans le service, vous pouvez enlever 
+        <!-- Vous pouvez recuperer le chami courant dans le service, vous pouvez enlever 
       les input
      -->
-      <!-- Mode ajout de défis -->
-      <section *ngIf="getMode() === 'AJOUTER'">
-        <!-- <app-new-defi [chami]="chami"  ></app-new-defi> -->
-        <app-new-defi></app-new-defi>
-      </section>
+        <!-- Mode ajout de défis -->
+        <section *ngIf="getMode() === 'AJOUTER'">
+          <!-- <app-new-defi [chami]="chami"  ></app-new-defi> -->
+          <app-new-defi></app-new-defi>
+        </section>
 
-      <!-- Mode jeu -->
-      <section *ngIf="getMode() === 'JOUER'">
-        <!-- Choix du défi -->
-        <!-- <app-list-defis [chami]="currentChami"></app-list-defis> -->
-        <app-list-defis></app-list-defis>
-      </section>
+        <!-- Mode jeu -->
+        <section *ngIf="getMode() === 'JOUER'">
+          <!-- Choix du défi -->
+          <!-- <app-list-defis [chami]="currentChami"></app-list-defis> -->
+          <app-list-defis></app-list-defis>
+        </section>
 
-      <!-- Consultation liste Chamis -->
-      <section *ngIf="getMode() === 'VISUALISER'">
-        <app-list-chamis></app-list-chamis>
-      </section>
+        <!-- Consultation liste Chamis -->
+        <section *ngIf="getMode() === 'VISUALISER'">
+          <app-list-chamis></app-list-chamis>
+        </section>
 
-      <!-- Modification défis Chamis -->
-      <section *ngIf="getMode() === 'MODIFIER'">
-        <!-- <app-edit-defi [chami]="chami"></app-edit-defi> -->
-        <app-edit-defi></app-edit-defi>
-      </section>
+        <!-- Modification défis Chamis -->
+        <section *ngIf="getMode() === 'MODIFIER'">
+          <!-- <app-edit-defi [chami]="chami"></app-edit-defi> -->
+          <app-edit-defi></app-edit-defi>
+        </section>
 
-      <!-- Les Visites -->
-      <section *ngIf="getMode() === 'VISITES'">
-        <app-visite-list></app-visite-list>
-      </section>
+        <!-- Les Visites -->
+        <section *ngIf="getMode() === 'VISITES'">
+          <app-visite-list></app-visite-list>
+        </section>
 
-      <!-- <app-afficher-image [path]="'uploads/lGeYVomWjSVotS1w4riM6CPaJmv1/748tl0jcy5e'"></app-afficher-image> -->
+        <!-- <app-afficher-image [path]="'uploads/lGeYVomWjSVotS1w4riM6CPaJmv1/748tl0jcy5e'"></app-afficher-image> -->
 
-      <!-- Afficher la carte -->
+        <!-- Afficher la carte -->
 
-
-      <!--
+        <!--
       <label>
         Afficher le cercle
         <input type="checkbox" [(ngModel)]="displayCircle" />
@@ -91,51 +111,64 @@
 
           <div *ngIf="displayCircle" [leafletLayer]="layerCircle"></div>
       </div>
-      -->
-      
+      --></section>
     </section>
-  </section>
 
-  <!-- Création du profil de Chami -->
-  <ng-template #chamiInexistant>
-    <h2 class="align-center">Bienvenue chez les chamis !</h2>
-    <mat-card>
-      <mat-card-subtitle>Créez votre profil de Chami pour pouvoir ajouter des défis, jouer aux défis et visualiser les membres de la communauté !</mat-card-subtitle> 
-      <section *ngIf="user.email !== null">
-        <form (submit)="addChami({
-                                  id: user.uid,
-                                  login: loginChami.value,
-                                  age: parseAge(ageChami.value),
-                                  defis: [],
-                                  email: user.email
-                                }); loginChami.value=''; ageChami.value=''">
-          <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Login</mat-label>
-            <input matInput #loginChami
-                            type="text"
-                            name="loginChami"
-                            placeholder="Votre login">
-          </mat-form-field>
-          &nbsp;
-          <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Age</mat-label>
-            <input matInput #ageChami
-                            type="number"
-                            min="0"
-                            max="123"
-                            step="1"
-                            name="age"
-                            placeholder="Votre âge">
-          </mat-form-field>
-          <br/>
-          <button mat-raised-button color="primary" type="submit">Valider</button>
-        </form>
-      </section>
-    </mat-card>
-  </ng-template>
-
-</div>
-
+    <!-- Création du profil de Chami -->
+    <ng-template #chamiInexistant>
+      <h2 class="align-center">Bienvenue chez les chamis !</h2>
+      <mat-card>
+        <mat-card-subtitle
+          >Créez votre profil de Chami pour pouvoir ajouter des défis, jouer aux
+          défis et visualiser les membres de la communauté !</mat-card-subtitle
+        >
+        <section *ngIf="user.email !== null">
+          <form
+            (submit)="
+              addChami({
+                id: user.uid,
+                login: loginChami.value,
+                age: parseAge(ageChami.value),
+                defis: [],
+                email: user.email
+              });
+              loginChami.value = '';
+              ageChami.value = ''
+            "
+          >
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Login</mat-label>
+              <input
+                matInput
+                #loginChami
+                type="text"
+                name="loginChami"
+                placeholder="Votre login"
+              />
+            </mat-form-field>
+            &nbsp;
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Age</mat-label>
+              <input
+                matInput
+                #ageChami
+                type="number"
+                min="0"
+                max="123"
+                step="1"
+                name="age"
+                placeholder="Votre âge"
+              />
+            </mat-form-field>
+            <br />
+            <button mat-raised-button color="primary" type="submit">
+              Valider
+            </button>
+          </form>
+        </section>
+      </mat-card>
+    </ng-template>
+  </div>
 </section>
 
 <!-- Page d'accueil - invite de connexion -->
@@ -144,14 +177,13 @@
     <span class="smaller">Veuillez vous authentifier.</span>
     <span class="example-spacer"></span>
     <button mat-stroked-button color="primary" (click)="login()">
-      <img src="assets/images/google-logo.png" class="google-logo"/>
-      Sign in</button>
+      <img src="assets/images/google-logo.png" class="google-logo" />
+      Connexion
+    </button>
   </mat-toolbar>
 
   <div class="align-center">
-    <img src="assets/images/pngegg.png" class="main-logo"/>
+    <img src="assets/images/pngegg.png" class="main-logo" />
     <h1 class="main-title">CyberChaMis</h1>
   </div>
-
 </ng-template>
-
