@@ -20,16 +20,6 @@
                   />
                 </mat-form-field>
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Coordonnées de départ</mat-label>
-                    <input
-                      #coordonnes
-                      matInput
-                      type="text"
-                      placeholder="Lat,Long"
-                    />
-                  </mat-form-field>
-
                 <mat-form-field class="categorie" appearance="fill">
                     <mat-label>Categorie</mat-label>
                     <mat-select #categorie>
@@ -49,7 +39,7 @@
                     <!-- <mat-label>URL</mat-label> -->
                     <app-upload (urlFichier)="monURL.value=$event"></app-upload>
                     <input disabled matInput type="text" #monURL/>
-                  </mat-form-field>
+                </mat-form-field>
             
 
                 <mat-card class="card-etapes">
@@ -63,6 +53,18 @@
                 <app-new-etape [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"></app-new-etape>
                 <br/>
 
+                <mat-form-field appearance="fill">
+                    <mat-label>Coordonnées de départ</mat-label>
+                    <input
+                      #coordonnes
+                      matInput
+                      type="text"
+                      placeholder="Lat,Long"
+                      [ngModel]="coordonnesDefi"
+                      name="coordonnees"
+                    />
+                  </mat-form-field>
+
                 <button mat-raised-button color="primary" (click)="addDefi({ categorie: getCategorieString(categorie.value),
                   titre: titre.value,
                   dateDeCreation: '',
@@ -71,13 +73,16 @@
                   auteur:chami,
                   image: monURL.value,
                   coordonnees: coordonnes.value}); 
-          titre.value=''; 
-          description.value=''; 
-          listEtape = [];
-          coordonnes.value='';
+                    titre.value=''; 
+                    description.value=''; 
+                    listEtape = [];
+                    coordonnes.value='';
           openSnackBar('Défi créé avec succès', 'OK')">Créer défi</button>
                 <br/>
             </div>
        
     </form>
+
+    <app-localisation [listeDefis]="[]" (coordonnees)="changeCoordonnees($event)"></app-localisation>
+
 </div>

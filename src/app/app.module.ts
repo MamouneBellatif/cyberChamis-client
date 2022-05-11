@@ -51,6 +51,7 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AfficherImageComponent } from './afficher-image/afficher-image.component';
+import { MatFormFieldModule}from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { AfficherImageComponent } from './afficher-image/afficher-image.componen
     MatCheckboxModule,
     MatRadioModule,
     MatSnackBarModule,
+    MatFormFieldModule,
     MatDialogModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),

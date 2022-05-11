@@ -73,5 +73,9 @@ export class ListDefisComponent implements OnInit {
   selectDefi(defi: Defi) {
     this.currentDefi = defi;
   }
+
+  affiche(c : string){
+    console.log("coordonnées remontées : " + c);
+  }
 }
 
