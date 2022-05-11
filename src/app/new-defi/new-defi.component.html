@@ -1,83 +1,91 @@
 <!-- Faire une route a part, id automatique ? , pourquoi le chami est dasns un tableau-->
 
-<div>
-    <form >
+  <form>
 
-        <!-- <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>id du defi</mat-label>   
-            <input #id matInput type="text" name="idDefi" placeholder="id du défi">
-        </mat-form-field> -->
-        
-            <div class="add-defi-form">
-                <mat-form-field class="titre" appearance="fill">
-                  <mat-label>Titre</mat-label>
-                  <input
-                    #titre
-                    matInput
-                    type="text"
-                    name="titreDefi"
-                    placeholder="Titre du défi"
-                  />
-                </mat-form-field>
+      <!-- <mat-form-field class="example-form-field" appearance="fill">
+          <mat-label>id du defi</mat-label>   
+          <input #id matInput type="text" name="idDefi" placeholder="id du défi">
+      </mat-form-field> -->
+      
+    <div class="add-defi-form">
 
-                <mat-form-field appearance="fill">
-                    <mat-label>Coordonnées de départ</mat-label>
-                    <input
-                      #coordonnes
-                      matInput
-                      type="text"
-                      placeholder="Lat,Long"
-                    />
-                  </mat-form-field>
+      <mat-form-field class="titre" appearance="fill">
+        <mat-label>Titre</mat-label>
+        <input
+          #titre
+          matInput
+          type="text"
+          name="titreDefi"
+          placeholder="Titre du défi"
+        />
+      </mat-form-field>
 
-                <mat-form-field class="categorie" appearance="fill">
-                    <mat-label>Categorie</mat-label>
-                    <mat-select #categorie>
-                        <mat-option *ngFor="let cat of getCategorie()" [value]="cat">
-                            {{cat}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <br/>
+      <mat-form-field class="categorie" appearance="fill">
+          <mat-label>Categorie</mat-label>
+          <mat-select #categorie>
+              <mat-option *ngFor="let cat of getCategorie()" [value]="cat">
+                  {{cat}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <br/>
 
-                <mat-form-field class="description-defi" appearance="fill">
-                    <mat-label>Description</mat-label>
-                    <textarea maxlength="255" #description matInput placeholder="Description générale du défi"></textarea>
-                </mat-form-field>
+      <mat-form-field class="description-defi" appearance="fill">
+        <mat-label>Coordonnées de départ</mat-label>
+        <input
+          #coordonnes
+          matInput
+          type="text"
+          placeholder="Lat,Long"
+        />
+      </mat-form-field>
+      <br/>
 
-                <mat-form-field class="desctiption-defi" appearance="fill">
-                    <!-- <mat-label>URL</mat-label> -->
-                    <app-upload (urlFichier)="monURL.value=$event"></app-upload>
-                    <input disabled matInput type="text" #monURL/>
-                </mat-form-field>
-            
+      <mat-form-field class="description-defi" appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea maxlength="255" #description matInput placeholder="Description générale du défi"></textarea>
+      </mat-form-field>
+      <br/>
 
-                <mat-card class="card-etapes">
-                    <mat-card-title><h3>Les étapes du défi :</h3></mat-card-title>
-                    <mat-card-subtitle>Pour chaque étape que vous souhaitez ajouter au défi, remplissez les informations ci-dessous avant d'appuyer sur "AJOUTER"</mat-card-subtitle>
-                    <p class="liste-etapes" *ngFor="let etape of listEtape; let index = index">{{etape.rang}} - {{etape.label}}</p>
-                </mat-card>
-                <br/>
-                
+      <mat-form-field class="description-defi" appearance="fill">
+          <!-- <mat-label>URL</mat-label> -->
+          <app-upload (urlFichier)="monURL.value=$event"></app-upload>
+          <input disabled matInput type="text" #monURL/>
+      </mat-form-field>
+          
 
-                <app-new-etape [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"></app-new-etape>
-                <br/>
+      <mat-card class="card-etapes">
+        <mat-card-title><h3>Les étapes du défi :</h3></mat-card-title>
+        <mat-card-subtitle>Pour chaque étape que vous souhaitez ajouter au défi, remplissez les informations ci-dessous avant d'appuyer sur "AJOUTER".</mat-card-subtitle>
+        <p>Des étapes de type SIMPLE ou MEDIA peuvent constituer des indices indépendants.</p>
+        <p>Une QUESTION ne peut être un indice. Cependant, vous pourrez ajouter des indices relatifs à cette question une fois le type QUESTION saisi.</p>
+        <p class="liste-etapes" *ngFor="let etape of listEtape; let index = index">{{etape.rang}} - {{etape.label}}</p>
+      </mat-card>
+      <br/>
 
-                <button mat-raised-button color="primary" (click)="addDefi({ categorie: getCategorieString(categorie.value),
-                  titre: titre.value,
-                  dateDeCreation: '',
-                  etape:listEtape,
-                  description: description.value,
-                  auteur:chami,
-                  image: monURL.value,
-                  coordonnees: coordonnes.value}); 
-                    titre.value=''; 
-                    description.value=''; 
-                    listEtape = [];
-                    coordonnes.value='';
-          openSnackBar('Défi créé avec succès', 'OK')">Créer défi</button>
-                <br/>
-            </div>
-       
-    </form>
-</div>
+      <app-new-etape [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"></app-new-etape>
+      <br/>
+
+      <button mat-raised-button color="primary" 
+      (click)="addDefi({ 
+        categorie: getCategorieString(categorie.value),
+        titre: titre.value,
+        dateDeCreation: '',
+        etape:listEtape,
+        description: description.value,
+        auteur:chami,
+        image: monURL.value,
+        coordonnees: coordonnes.value
+      }); 
+          titre.value=''; 
+          description.value=''; 
+          listEtape = [];
+          coordonnes.value='';
+          openSnackBar('Défi créé avec succès', 'OK')">
+        CRÉER LE DÉFI
+      </button>
+      <br/>
+
+    </div>
+
+  </form>

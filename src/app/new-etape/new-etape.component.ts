@@ -17,7 +17,7 @@ export class NewEtapeComponent implements OnInit {
   reponse : string = '';
   TypeEtape = TypeEtape;
 
-  private listeDesIndices : Indice[] = []
+  listeDesIndices : Indice[] = []
   constructor(private ccService: CyberchamisService) { }
 
   ngOnInit(): void {
@@ -36,6 +36,7 @@ export class NewEtapeComponent implements OnInit {
 
   setIndice(ok : boolean){
     this.estIndice = ok;
+    console.log(this.estIndice);
   }
 
   isIndice(){
@@ -52,13 +53,12 @@ export class NewEtapeComponent implements OnInit {
     console.log("modif reponse attendue");
   }
 
-  questionAlwaysNotIndice() {
-    if (this.estIndice){
+  questionAlwaysNotIndice(type_etape: TypeEtape) {
+    if(type_etape == TypeEtape.question) {  
+      if (this.estIndice) {
       this.setIndice(false);
-      return this.estIndice;
-    }
-    else {
-      return this.estIndice;
-    }
+      console.log("question"+this.estIndice);
+    }}
+    return this.estIndice;
   }
 }

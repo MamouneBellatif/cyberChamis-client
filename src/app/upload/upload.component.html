@@ -3,7 +3,6 @@
 
 </div> -->
 
-
 <!-- <label>
     <input
       type="file"
@@ -12,10 +11,9 @@
     />
   </label> -->
 
-  <input #Input hidden="true" type="file" onclick="this.value=null" (change)="selectFile($event)" accept=".png, .jpg"/>
-  <button mat-flat-button color="primary" (click)="Input.click();">Téleverser une image</button>
-  
-
+    <input #Input hidden="true" type="file" onclick="this.value=null" (change)="selectFile($event)" accept=".png, .jpg"/>
+    <button mat-stroked-button color="primary" (click)="Input.click();">Téléverser une image</button>
+    <p>Accepte uniquement des fichiers de type .png ou .jpg</p>
 
   <!-- <button mat-raised-button
     [disabled]="!selectedFiles"
