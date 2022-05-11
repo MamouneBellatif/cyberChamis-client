@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CyberchamisService, Defi } from '../cyberchamis.service';
 
@@ -10,8 +11,10 @@ import { CyberchamisService, Defi } from '../cyberchamis.service';
 export class UpdDelDefiComponent implements OnInit {
 
   @Input() defi!: Defi;
+  // @Output() evenement = new EventEmitter<"supression">();
+  @Output() evenement = new EventEmitter<number>();
 
-  constructor(public csService: CyberchamisService, public router: Router) { }
+  constructor(public csService: CyberchamisService, public router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -25,16 +28,17 @@ export class UpdDelDefiComponent implements OnInit {
     return new Date(stringDate).toLocaleString();
   }
 
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action);
+  }
+
   supprimerDefi(defi: Defi) {
-    this.csService.deleteDefi(defi.id);
+    this.csService.deleteDefi(defi.id).then(()=>this.evenement.emit(defi.id));
+    this.openSnackBar('Défi supprimé avec succès !', 'OK');
   }
 
   rediriger() {
     this.router.navigateByUrl("modifierDefi/"+this.defi.id);
-  }
-
-  refresh() {
-    window.location.reload();
   }
 
 }

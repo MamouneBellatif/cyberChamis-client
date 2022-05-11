@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UploadService } from '../upload.service';
 import firebase from 'firebase/compat/app'; 
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-afficher-image',
@@ -11,7 +12,7 @@ export class AfficherImageComponent implements OnInit {
 
   @Input() path!: string;
 
-  test='uploads/lGeYVomWjSVotS1w4riM6CPaJmv1/b0fyjgack3m';
+  test='uploads/LMJ0twN8C3dwitTIHIarWaKV10F3/nhv6nry3uo';
   constructor(private uploadService: UploadService) { }
 
   ngOnInit(): void {
