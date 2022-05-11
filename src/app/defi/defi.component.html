@@ -7,6 +7,7 @@
       {{ parsedDateToString(defi.dateDeCreation) }}</mat-card-subtitle
     >
   </mat-card-header>
+  <app-afficher-image [path]="defi.image"></app-afficher-image>
   <mat-card-content class="container">
     <app-afficher-image [path]="defi.image"></app-afficher-image>
     <pre>{{ defi.description }}<br/></pre>

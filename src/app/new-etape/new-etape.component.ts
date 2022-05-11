@@ -52,4 +52,13 @@ export class NewEtapeComponent implements OnInit {
     console.log("modif reponse attendue");
   }
 
+  questionAlwaysNotIndice() {
+    if (this.estIndice){
+      this.setIndice(false);
+      return this.estIndice;
+    }
+    else {
+      return this.estIndice;
+    }
+  }
 }

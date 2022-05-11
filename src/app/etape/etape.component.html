@@ -4,7 +4,8 @@
         <!-- TODO : gerer différents média-->
         <mat-card-content>
             {{etape.label}}<br/>
-            <img mat-card-image src="{{etape.url}}" alt="{{etape.label}}" />
+            <!-- <img mat-card-image src="{{etape.url}}" alt="{{etape.label}}" /> -->
+            <app-afficher-image [path]="etape.url"></app-afficher-image>
         </mat-card-content>
     </p>
 

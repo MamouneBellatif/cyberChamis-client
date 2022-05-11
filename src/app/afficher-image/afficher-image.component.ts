@@ -16,6 +16,7 @@ export class AfficherImageComponent implements OnInit {
   constructor(private uploadService: UploadService) { }
 
   ngOnInit(): void {
+    console.log("affichage de"+this.path);
   }
 
 }
