@@ -13,7 +13,7 @@ export class NewEtapeComponent implements OnInit {
   @Input() rang! : number;
   @Input() defi! : Defi;
 
-  private estIndice : Boolean = false;
+  private estIndice : boolean = false;
   reponse : string = '';
   TypeEtape = TypeEtape;
 

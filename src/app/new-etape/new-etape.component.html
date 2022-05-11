@@ -55,16 +55,14 @@
       <input disabled matInput type="text" #monURL/>
     </mat-form-field>
 
-      <!-- <mat-form-field>
-        <app-upload></app-upload>
-      </mat-form-field> -->
-
-    <mat-form-field class="cacher type-etape" appearance="fill" [class.indice]="isIndice()"
-    [class.question] = "typeEtape.value !== 'question'">
-      <mat-label>Coût de l'indice</mat-label>
-      <input matInput type="number" #cout/>
-    </mat-form-field>
-
+    <div [class.cacher]="typeEtape.value == 'question' || !isIndice()">
+      <mat-form-field class="type-etape" appearance="fill">
+          <mat-label>Coût de l'indice</mat-label>
+          <input matInput type="number" #cout/>
+        </mat-form-field>
+        <br/>
+    </div>
+    
       <!-- <mat-form-field
         class="cacher"
         [class.media] = "typeEtape.value === 'indice'"
@@ -106,7 +104,7 @@
         <mat-card-title><h3>Les indices de la question :</h3></mat-card-title>
         <mat-card-subtitle>Vous pouvez ajouter des indices aux questions pour accompagner le joueur.</mat-card-subtitle>
         <p>Pour chaque indice que vous souhaitez ajouter à la question, remplissez les informations ci-dessous avant d'appuyer sur "SAUVEGARDER l'indice".</p>
-        <p class="liste-indices" *ngFor="let indice of listeDesIndices; let index = index">{{indice.id}} - {{indice.label}}</p>
+        <p class="liste-indices" *ngFor="let indice of listeDesIndices; let index = index">{{indice.label}}</p>
       </mat-card>
       <br/>
     
@@ -125,7 +123,12 @@
       reponseAttendu: reponseAttendue.value,
       cout: 3,
       typeReponseAttendu: typeReponse.value
-    }); monURL.value=''; labelEtape.value=''; cout.valueAsNumber=0; point.valueAsNumber=0">
+    }); 
+    monURL.value=''; 
+    labelEtape.value=''; 
+    cout.valueAsNumber=0; 
+    point.valueAsNumber=0; 
+    reponseAttendue.value=''">
     AJOUTER l'étape</button>
 
       <!--AJOUTER LE COMPOSANT QUESTION AVEC LA CLASS : 
