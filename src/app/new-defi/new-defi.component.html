@@ -30,17 +30,25 @@
       </mat-form-field>
       <br/>
 
+      <mat-card class="card-etapes">
+      <mat-card-subtitle>Pour calculer les coordonnées de départ du défi, référez-vous à la carte ci-dessous 
+        et pointez sur le lieu de départ.
+      </mat-card-subtitle>
+      </mat-card>
+
       <mat-form-field class="description-defi" appearance="fill">
         <mat-label>Coordonnées de départ</mat-label>
         <input
           #coordonnes
           matInput
           type="text"
-          placeholder="Lat,Long"
+          placeholder="Latitude, Longitude"
+          [ngModel]="coordonnesDefi"
+          name="coordonnees"
         />
       </mat-form-field>
       <br/>
-
+      
       <mat-form-field class="description-defi" appearance="fill">
           <mat-label>Description</mat-label>
           <textarea maxlength="255" #description matInput placeholder="Description générale du défi"></textarea>
@@ -65,18 +73,6 @@
 
       <app-new-etape [defi]="defi" [rang]="listEtape.length+1" (newEtape)="addEtape($event)"></app-new-etape>
       <br/>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Coordonnées de départ</mat-label>
-        <input
-          #coordonnes
-          matInput
-          type="text"
-          placeholder="Lat,Long"
-          [ngModel]="coordonnesDefi"
-          name="coordonnees"
-        />
-      </mat-form-field>
 
       <button mat-raised-button color="primary" 
       (click)="addDefi({ 
