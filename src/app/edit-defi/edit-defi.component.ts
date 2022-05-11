@@ -1,6 +1,8 @@
 import { Component, Input, OnInit,ChangeDetectionStrategy } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Chami, CyberchamisService, Defi } from '../cyberchamis.service';
 import { ListChamisService } from '../list-chamis/list-chamis.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-edit-defi',
@@ -14,15 +16,26 @@ export class EditDefiComponent implements OnInit {
 
   // Liste des défis à afficher
   listDefisByChami!: Promise<Defi[]>;
+  subj =new Subject<Defi[]>();
+
 
   // Le défi sélectionné
   public currentDefi: Defi | undefined;
 
-  constructor(private lsSrvice: ListChamisService, private ccService: CyberchamisService) {}
+  constructor(private lsSrvice: ListChamisService, private ccService: CyberchamisService, private nService: NotificationService) {}
 
   ngOnInit(): void {
     this.chami = this.ccService.currentChami;
-    this.listDefisByChami = this.getDefisByChami(this.chami.id);
+    // this.listDefisByChami = this.getDefisByChami(this.chami.id);
+    this.getDefisByChami(this.chami.id).then(data => this.subj.next(data));
+    // this.listDefisByChami
+    this.initialize();
+  }
+
+  initialize() {
+    this.nService.eventSource.onmessage = e => {
+      this.getDefisByChami(this.chami.id).then(data => {this.subj.next(data)});
+    }
   }
 
   /**
@@ -56,5 +69,10 @@ export class EditDefiComponent implements OnInit {
     return this.ccService.deleteDefi(
       defi.id,
     );
+  }
+
+  maj(id: number){
+    console.log("maj")
+    this.getDefisByChami(this.chami.id).then(data => {this.subj.next(data)});
   }
 }

@@ -1,9 +1,14 @@
-<app-upd-del-defi *ngIf="currentDefi" [defi]="currentDefi"> </app-upd-del-defi>
+<app-upd-del-defi *ngIf="currentDefi" [defi]="currentDefi" (evenement)="maj($event)"> </app-upd-del-defi>
 
 <section
   class="container ListDefis mrgTop"
-  *ngIf="listDefisByChami | async as lDefis"
+  *ngIf="subj | async as lDefis"
 >
+
+<!-- <section
+  class="container ListDefis mrgTop"
+  *ngIf="listDefisByChami | async as lDefis"
+> -->
   <p *ngIf="lDefis.length == 0; else afficher">Vous n'avez créé aucun défi !</p>
   <ng-template #afficher>
     <mat-card>

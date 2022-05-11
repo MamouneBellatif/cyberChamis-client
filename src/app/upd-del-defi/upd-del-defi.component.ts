@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { CyberchamisService, Defi } from '../cyberchamis.service';
 
@@ -10,6 +10,8 @@ import { CyberchamisService, Defi } from '../cyberchamis.service';
 export class UpdDelDefiComponent implements OnInit {
 
   @Input() defi!: Defi;
+  // @Output() evenement = new EventEmitter<"supression">();
+  @Output() evenement = new EventEmitter<number>();
 
   constructor(public csService: CyberchamisService, public router: Router) { }
 
@@ -26,7 +28,7 @@ export class UpdDelDefiComponent implements OnInit {
   }
 
   supprimerDefi(defi: Defi) {
-    this.csService.deleteDefi(defi.id);
+    this.csService.deleteDefi(defi.id).then(()=>this.evenement.emit(defi.id));
   }
 
   rediriger() {
