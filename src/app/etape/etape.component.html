@@ -27,8 +27,12 @@
 <form *ngIf="etape.listeIndice!=undefined && etape.listeIndice.length > 0"
         class="indice">
     <p  *ngFor="let tip of displayedTips">
-        {{tip.label}}
+       <span *ngIf="!isMedia(tip.label); else media">aaa{{tip.label}}</span> 
+       <ng-template #media>
+           <app-afficher-image [path]="parseUrl(tip.label)"></app-afficher-image>
+       </ng-template>
     </p>
+
     <button mat-raised-button color="accent" *ngIf="nbTips > iTip"
             (click)="displayTip()">Un indice ? (coût : {{etape.listeIndice[iTip].cout}}pts)</button>
 </form>
