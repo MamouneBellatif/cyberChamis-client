@@ -9,16 +9,29 @@
         </mat-card-content>
     </p>
 
-    <form *ngSwitchCase="TypeEtape.question" 
-            (submit)="checkReponse(reponse.value); repondu=true">
-        <p>
+    <div *ngSwitchCase="TypeEtape.question" >
+        <!-- <p> -->
             Question : {{etape.label}}<br/>
-            <input [disabled]="repondu"
-                    #reponse/>
-            <input *ngIf="!repondu"
-                    type="submit" value="ok"/>
-        </p>
-    </form>
+        <mat-form-field *ngIf="etape.typeReponseAttendu.toUpperCase() == TypeReponse.media.toUpperCase();else simple">
+                <app-upload (urlFichier)="monURL.value=$event"></app-upload>
+                <input disabled matInput type="text" #monURL />
+                <button mat-raised-button (click)="checkReponse(monURL.value)"> Envoyer l'image  </button>
+            <!-- </mat-form-field> -->
+        </mat-form-field>
+
+        <ng-template #simple>
+            <form (submit)="checkReponse(reponse.value); repondu=true">
+                    <input [disabled]="repondu"
+                        #reponse
+                        [class.cache]="etape.typeReponseAttendu == TypeReponse.media.toUpperCase()" />
+                <input *ngIf="!repondu"
+                type="submit" value="ok"/>
+            </form>
+        </ng-template>
+            
+           
+        <!-- </p> -->
+        </div>
 
 
     <p *ngSwitchDefault>
