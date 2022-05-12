@@ -61,7 +61,6 @@ export class EtapeComponent implements OnInit {
   }
 
   urle(url: string) {
-    console.log("TA MERE L'URL : "+url);
     this.url = url;
   }
 
