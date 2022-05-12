@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { max } from 'rxjs';
 import { CyberchamisService, Etape, Reponse, TypeEtape, Visite } from '../cyberchamis.service';
@@ -24,8 +25,12 @@ export class PlayComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private router: Router, 
-    public ccService: CyberchamisService, private dialog: MatDialog) { }
+    public ccService: CyberchamisService, private dialog: MatDialog,    private snackBar: MatSnackBar
+    ) { }
 
+    openSnackBar(message: string, action: string) {
+      this.snackBar.open(message, action);
+    }
 
   saveReponse(rep: Partial<Reponse>){
     const iQ = this.reponses.reduce((i, reponse, irep) => {
@@ -42,7 +47,7 @@ export class PlayComponent implements OnInit {
 
     if(iQ === -1){
       this.reponses.push(reponse)
-      this.ccService.addReponse(this.visiteId, reponse);
+      this.ccService.addReponse(this.visiteId, reponse).then(() => this.openSnackBar("Réponse ajoutée avec succès", "OK"));
     }
     else{
       this.reponses[iQ] = reponse;
