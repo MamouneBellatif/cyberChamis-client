@@ -8,20 +8,22 @@
     <span class="spacer-pic-nom"></span>
     <span class="smaller">{{ user.displayName }}</span>
     <span class="example-spacer"></span>
-    <button mat-stroked-button class="espace" color="primary" (click)="setMode('ACCUEIL')">Accueil</button>
-    <button mat-stroked-button class="espace" color="primary" [matMenuTriggerFor]="menu">Menu</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="setMode('AJOUTER')">Ajouter des défis</button>
-      <button mat-menu-item (click)="setMode('JOUER')">Jouer aux défis</button>
-      <button mat-menu-item (click)="setMode('VISUALISER')">Visualiser les chamis</button>
-    </mat-menu>
-    <button mat-stroked-button class="espace" color="primary" [matMenuTriggerFor]="profil">Profil</button>
-    <mat-menu #profil="matMenu">
-      <button mat-menu-item (click)="setMode('MODIFIER')">Gérer mes défis</button>
-      <button mat-menu-item (click)="setMode('VISITES')">Mes Visites</button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item (click)="logout()">Déconnexion</button>
-    </mat-menu>
+    <div *ngIf="!router.url.includes('modifierDefi/')">
+      <button mat-stroked-button class="espace" color="primary" (click)="setMode('ACCUEIL')">Accueil</button>
+      <button mat-stroked-button class="espace" color="primary" [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="setMode('AJOUTER')">Ajouter des défis</button>
+        <button mat-menu-item (click)="setMode('JOUER')">Jouer aux défis</button>
+        <button mat-menu-item (click)="setMode('VISUALISER')">Visualiser les chamis</button>
+      </mat-menu>
+      <button mat-stroked-button class="espace" color="primary" [matMenuTriggerFor]="profil">Profil</button>
+      <mat-menu #profil="matMenu">
+        <button mat-menu-item (click)="setMode('MODIFIER')">Gérer mes défis</button>
+        <button mat-menu-item (click)="setMode('VISITES')">Mes Visites</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">Déconnexion</button>
+      </mat-menu>
+    </div>
   </mat-toolbar>
 
   <!-- route pour une visite (partie) -->

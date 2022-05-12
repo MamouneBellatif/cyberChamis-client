@@ -17,6 +17,7 @@ export class DefiComponent implements OnChanges, OnInit {
   @Output() reponse = new EventEmitter<Partial<Reponse>>();
   @Output() fini = new EventEmitter<boolean>();
   @Output() indice = new EventEmitter<number>();
+  multipleGame: boolean = false;
 
   private etape1: boolean = false;
 

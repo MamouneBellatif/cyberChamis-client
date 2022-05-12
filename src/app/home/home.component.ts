@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { throws } from 'assert';
 import { getDownloadURL } from 'firebase/storage';
 import { Subject } from 'rxjs';
-import { Defi } from '../cyberchamis.service';
+import { Chami, CyberchamisService, Defi } from '../cyberchamis.service';
 import { ListDefisService } from '../list-defis/list-defis.service';
 import { NotificationService } from '../notification.service';
 
@@ -13,13 +14,18 @@ import { NotificationService } from '../notification.service';
 })
 export class HomeComponent implements OnInit {
 
+  @Input() jouer: boolean = false;
   // La liste des Defis à afficher
   listDefis!: Promise<Defi[]>;
   subj = new Subject<Defi[]>();
+  joueurs : Chami[] = [];
   taille!:number;
   currentSlide = 0;
+  visiteCree : Boolean;
 
-  constructor(private ldService: ListDefisService, private eventService: NotificationService) { }
+  constructor(public csService: CyberchamisService, private router: Router, private ldService: ListDefisService, private eventService: NotificationService) {
+    this.visiteCree = false;
+  }
   
   ngOnInit(): void {
     this.init();
@@ -29,6 +35,12 @@ export class HomeComponent implements OnInit {
 
   init() {
     this.ldService.getDefisObs().then(data => this.subj.next(data));
+  }
+
+  newVisite(defi: Defi){
+    this.csService.addVisiteComplete(this.joueurs, defi).then((visite) => {
+      this.router.navigateByUrl("play/visite/"+visite.id+"/"+this.csService.currentChami.id);
+    });
   }
 
   sub() {
