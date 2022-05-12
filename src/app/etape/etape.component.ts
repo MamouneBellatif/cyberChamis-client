@@ -41,4 +41,12 @@ export class EtapeComponent implements OnInit {
       this.nbTips = this.etape.listeIndice.length;
   }
 
+  isMedia(tip: string | undefined){
+    return tip?.includes('URL');
+  }
+
+  parseUrl(label: string | undefined):string{
+    return label?.replace('URL:','') || '';
+  }
+
 }

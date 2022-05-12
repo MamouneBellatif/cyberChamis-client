@@ -1,11 +1,15 @@
 <!-- carousel -->
 <div class="carousel">
   <ng-container *ngFor="let defi of subj | async as lDefis; let i = index">
-    <img
+    <!-- <img
       *ngIf="i === currentSlide"
       [src]="defi.image | getDownloadURL"
       class="slide"
-    />
+    /> -->
+    <!-- <div > -->
+      <app-defi *ngIf="i === currentSlide" class="slide" [defi]="defi" ></app-defi>
+    <!-- </div> -->
+    
   </ng-container>
   
 
@@ -18,9 +22,9 @@
   </button>
 </div>
 
-<div *ngFor="let defi of subj | async as lDefis; let i = index" class="under">
+<!-- <div *ngFor="let defi of subj | async as lDefis; let i = index" class="under">
   <mat-card *ngIf="i === currentSlide">
-    <app-defi [defi]="defi"></app-defi>
+    <app-defi [defi]="defi" ></app-defi> -->
     <!-- <mat-card-header class="container">
       <mat-card-title>{{ defi.titre }}</mat-card-title>
       <mat-card-subtitle>Créé par {{ defi.auteur.login }}</mat-card-subtitle>
@@ -31,5 +35,5 @@
           (click)="newVisite(defi); this.visiteCree = false;"
           *ngIf="!jouer">JOUER</button>
     </mat-card-content> -->
-  </mat-card>
-</div>
+  <!-- </mat-card>
+</div> -->

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { throws } from 'assert';
 import { getDownloadURL } from 'firebase/storage';
@@ -15,6 +15,7 @@ import { NotificationService } from '../notification.service';
 export class HomeComponent implements OnInit {
 
   @Input() jouer: boolean = false;
+  @Output() eventAffPhoto = new EventEmitter<boolean>();
   // La liste des Defis à afficher
   listDefis!: Promise<Defi[]>;
   subj = new Subject<Defi[]>();
@@ -35,6 +36,10 @@ export class HomeComponent implements OnInit {
 
   init() {
     this.ldService.getDefisObs().then(data => this.subj.next(data));
+  }
+
+  affichagePhoto() {
+    this.eventAffPhoto.emit(false);
   }
 
   newVisite(defi: Defi){
