@@ -15,7 +15,8 @@ export class NotificationComponentComponent implements OnInit {
   constructor() { }
 
   initialize() {
-		const eventSource = new EventSource('http://localhost:8080/notification');
+		// const eventSource = new EventSource('http://localhost:8080/notification');
+		const eventSource = new EventSource('https://projet-integrateur-g5.herokuapp.com/');
 		eventSource.onmessage = e => {
 			const msg = e.data;
     console.log("msg: " + msg)		
