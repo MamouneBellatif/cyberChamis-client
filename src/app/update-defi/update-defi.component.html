@@ -13,21 +13,7 @@
 </mat-card>
 
 <form style="padding-top: 20px"
-  (submit)="
-    updateDefi({
-      id: defi.id,
-      categorie: getCategorieString(categorie.value),
-      titre: titre.value,
-      dateDeCreation: '',
-      etape: [],
-      description: description.value,
-      auteur: defi.auteur,
-      image: defi.image,
-      coordonnees: defi.coordonnees
-    });
-    titre.value = '';
-    description.value = '';
-    coordonnes.value = ''">
+  >
 
   <div class="update-defi-form">
 
@@ -93,7 +79,20 @@
       ></app-new-etape> -->
 
     <br />
-    <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Défi modifié avec succès !', 'OK')" >Valider</button>
+    <button mat-raised-button color="primary" type="submit" (click)="updateDefi({
+      id: defi.id,
+      categorie: getCategorieString(categorie.value),
+      titre: titre.value,
+      dateDeCreation: '',
+      etape: [],
+      description: description.value,
+      auteur: defi.auteur,
+      image: defi.image,
+      coordonnees: defi.coordonnees
+    });titre.value = '';
+    description.value = '';
+    coordonnes.value = '';
+    " >Valider</button>
 
   </div>  
 </form>
