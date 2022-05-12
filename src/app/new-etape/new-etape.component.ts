@@ -28,8 +28,10 @@ export class NewEtapeComponent implements OnInit {
     console.log(etape.reponseAttendu);
     etape.listeIndice = this.listeDesIndices;
     if(this.estIndice){
+      if(etape.type_etape==TypeEtape.media){
+        etape.label = "URL:" + etape.url;
+      }
       etape.type_etape = TypeEtape.indice;
-      etape.label = "URL:" + etape.url;
     }
     this.newEtape.emit(etape);
   }
