@@ -21,7 +21,13 @@
     </form>
 
 
-    <p *ngSwitchDefault>{{etape.label}}</p>
+    <p *ngSwitchDefault>
+        <span *ngIf="!isMedia(etape.label); else media1"> {{etape.label}}
+        </span>
+        <ng-template #media1>
+            <app-afficher-image [path]="parseUrl(etape.label)"></app-afficher-image>
+        </ng-template>
+    </p>
 
 </section>
 <form *ngIf="etape.listeIndice!=undefined && etape.listeIndice.length > 0"
