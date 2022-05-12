@@ -27,7 +27,7 @@
 <form *ngIf="etape.listeIndice!=undefined && etape.listeIndice.length > 0"
         class="indice">
     <p  *ngFor="let tip of displayedTips">
-       <span *ngIf="!isMedia(tip.label); else media">aaa{{tip.label}}</span> 
+       <span *ngIf="!isMedia(tip.label); else media">{{tip.label}}</span> 
        <ng-template #media>
            <app-afficher-image [path]="parseUrl(tip.label)"></app-afficher-image>
        </ng-template>
