@@ -51,6 +51,10 @@ export class NewEtapeComponent implements OnInit {
     console.log(indice);
   }
 
+  flushIndices() {
+    this.listeDesIndices=[];
+  }
+
   modifReponseAttendue(){
     console.log("modif reponse attendue");
   }
