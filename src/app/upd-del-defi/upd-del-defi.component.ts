@@ -13,6 +13,8 @@ export class UpdDelDefiComponent implements OnInit {
   @Input() defi!: Defi;
   // @Output() evenement = new EventEmitter<"supression">();
   @Output() evenement = new EventEmitter<number>();
+  // @Output() eventAff = new EventEmitter<Defi>();
+  @Output() eventAff = new EventEmitter<boolean>();
 
   constructor(public csService: CyberchamisService, public router: Router, private snackBar: MatSnackBar) { }
 
@@ -34,11 +36,17 @@ export class UpdDelDefiComponent implements OnInit {
 
   supprimerDefi(defi: Defi) {
     this.csService.deleteDefi(defi.id).then(()=>this.evenement.emit(defi.id));
+    // this.addNewItem(defi);
     this.openSnackBar('Défi supprimé avec succès !', 'OK');
+    this.eventAff.emit(true);
   }
 
   rediriger() {
     this.router.navigateByUrl("modifierDefi/"+this.defi.id);
   }
+
+  // addNewItem(defi: Defi) {
+  //   this.eventAff.emit(defi);
+  // }
 
 }

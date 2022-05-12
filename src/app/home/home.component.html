@@ -20,11 +20,11 @@
 
 <div *ngFor="let defi of subj | async as lDefis; let i = index" class="under">
   <mat-card *ngIf="i === currentSlide">
-    <mat-card-header>
+    <mat-card-header class="container">
       <mat-card-title>{{ defi.titre }}</mat-card-title>
       <mat-card-subtitle>Créé par {{ defi.auteur.login }}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class="container">
       <pre>{{ defi.description }}<br/></pre>
     </mat-card-content>
   </mat-card>

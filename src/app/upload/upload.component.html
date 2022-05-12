@@ -10,19 +10,28 @@
       (change)="selectFile($event)"
     />
   </label> -->
+<div style="text-align: center">
+  <input
+    #Input
+    hidden="true"
+    type="file"
+    onclick="this.value=null"
+    (change)="selectFile($event)"
+    accept=".png, .jpg"
+  />
+  <button mat-stroked-button color="primary" (click)="Input.click()">
+    Téléverser une image
+  </button>
+  <p>Accepte uniquement des fichiers de type .png ou .jpg</p>
+</div>
 
-    <input #Input hidden="true" type="file" onclick="this.value=null" (change)="selectFile($event)" accept=".png, .jpg"/>
-    <button mat-stroked-button color="primary" (click)="Input.click();">Téléverser une image</button>
-    <p>Accepte uniquement des fichiers de type .png ou .jpg</p>
-
-  <!-- <button mat-raised-button
+<!-- <button mat-raised-button
     [disabled]="!selectedFiles"
     (click)="upload()"
   >
     Upload
   </button> -->
-  <!-- <div *ngIf="currentFileUpload">
+<!-- <div *ngIf="currentFileUpload">
     <a href="{{ currentFileUpload.url }}">{{currentFileUpload.name}}</a>
     <p>this.uploadService</p>
   </div> -->
-  
