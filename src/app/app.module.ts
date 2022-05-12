@@ -19,10 +19,10 @@ import { DefiComponent } from './defi/defi.component';
 import { ListDefisComponent } from './list-defis/list-defis.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-import {MatCardModule} from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -43,15 +43,17 @@ import { IndiceComponent } from './indice/indice.component';
 import { UpdDelDefiComponent } from './upd-del-defi/upd-del-defi.component';
 import { UpdateDefiComponent } from './update-defi/update-defi.component';
 
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 import { UploadComponent } from './upload/upload.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AfficherImageComponent } from './afficher-image/afficher-image.component';
-import { MatFormFieldModule}from '@angular/material/form-field';
+import { MatFormFieldModule }from '@angular/material/form-field';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,7 @@ import { MatFormFieldModule}from '@angular/material/form-field';
     UpdateDefiComponent,
     UploadComponent,
     AfficherImageComponent,
+    HomeComponent,
 
   ],
   imports: [
@@ -97,8 +100,10 @@ import { MatFormFieldModule}from '@angular/material/form-field';
     MatToolbarModule,
     MatOptionModule,
     MatSelectModule,
+    MatMenuModule,
     MatIconModule,
     MatTabsModule,
+    MatDividerModule,
     MatCheckboxModule,
     MatRadioModule,
     MatSnackBarModule,
@@ -106,7 +111,6 @@ import { MatFormFieldModule}from '@angular/material/form-field';
     MatDialogModule,
     BrowserAnimationsModule,
     provideDatabase(() => getDatabase()),
-    MdbCarouselModule,
     NoopAnimationsModule,
   ],
   providers: [],

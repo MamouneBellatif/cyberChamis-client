@@ -1,0 +1,39 @@
+<!-- carousel -->
+<div class="carousel">
+  <ng-container *ngFor="let defi of subj | async as lDefis; let i = index">
+    <!-- <img
+      *ngIf="i === currentSlide"
+      [src]="defi.image | getDownloadURL"
+      class="slide"
+    /> -->
+    <!-- <div > -->
+      <app-defi *ngIf="i === currentSlide" class="slide" [defi]="defi" ></app-defi>
+    <!-- </div> -->
+    
+  </ng-container>
+  
+
+  <!-- controls -->
+  <button class="control prev" (click)="onPreviousClick()">
+    <span class="arrow left"></span>
+  </button>
+  <button class="control next" (click)="onNextClick()">
+    <span class="arrow right"></span>
+  </button>
+</div>
+
+<!-- <div *ngFor="let defi of subj | async as lDefis; let i = index" class="under">
+  <mat-card *ngIf="i === currentSlide">
+    <app-defi [defi]="defi" ></app-defi> -->
+    <!-- <mat-card-header class="container">
+      <mat-card-title>{{ defi.titre }}</mat-card-title>
+      <mat-card-subtitle>Créé par {{ defi.auteur.login }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="container">
+      <pre>{{ defi.description }}<br/></pre>
+      <button mat-stroked-button
+          (click)="newVisite(defi); this.visiteCree = false;"
+          *ngIf="!jouer">JOUER</button>
+    </mat-card-content> -->
+  <!-- </mat-card>
+</div> -->

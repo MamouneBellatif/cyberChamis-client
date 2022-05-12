@@ -38,6 +38,14 @@ export class EditDefiComponent implements OnInit {
     }
   }
 
+  suppression(event: boolean){
+    this.currentDefi=undefined;
+  }
+
+  // addItem(defi: Defi) {
+  //   this.currentDefi.push(newItem);
+  // }
+
   /**
    * Charge tous les défis créés par un Chami
    * @param id l'id du Chami

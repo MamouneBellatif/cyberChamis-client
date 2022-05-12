@@ -42,17 +42,11 @@ export class EtapeComponent implements OnInit {
   }
 
   isMedia(tip: string | undefined){
-    console.log("isMedia: "+tip?.includes('URL'));
     return tip?.includes('URL');
   }
 
   parseUrl(label: string | undefined):string{
-    // return label?.split('URL:')[1] || '';
-    console.log("parsed url"+  label?.replace('URL:','') || '');
     return label?.replace('URL:','') || '';
   }
-  // parseTip(tip: string){
-  //   if (tip.contai)
-  // }
 
 }

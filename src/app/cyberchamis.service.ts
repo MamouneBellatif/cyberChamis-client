@@ -177,6 +177,10 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.post<Visite>(this.url+'visite/', {joueur:chami.id, defi:defi.id, rang:0}, {headers:{Authorization:this.currentToken}}));
   }
 
+  async addVisiteComplete(chamis: Chami[], defi: Defi):Promise<Visite>{
+    return await lastValueFrom(this.httpClient.post<Visite>(this.url+'visite/complet/', {joueurs:chamis, defi:defi, rang:0, reponses:[]}, {headers:{Authorization:this.currentToken}}));
+  }
+
   async getVisitesByChami(chamiId: string): Promise<Visite[]> {
     return await lastValueFrom(this.httpClient.get<Visite[]>(this.url+'visite/'+chamiId, {headers: new HttpHeaders({Authorization: this.currentToken})}));
   }
@@ -185,6 +189,9 @@ export class CyberchamisService {
     return await lastValueFrom(this.httpClient.get<VisiteDTO[]>(this.url+'visite/DTO/'+chamiId,{headers: new HttpHeaders({Authorization: this.currentToken})}));
   }
 
+  async addChamiToVisite(idVisite:number, idChami : string) {
+    return await lastValueFrom(this.httpClient.put<Visite>(this.url+idVisite+"/ajouterJoueur/"+idChami, {headers: new HttpHeaders({Authorization: this.currentToken})}));
+  }
 
   getCategorie() {
     return Object.values(Categorie);

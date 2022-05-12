@@ -35,10 +35,6 @@ export class ListDefisComponent implements OnInit {
     );*/
   }
 
-  onSlideChange(): void {
-    console.log('slide change');
-  }
-
 
   initialize() {
 		// const eventSource = new EventSource('http://localhost:8080/notification');

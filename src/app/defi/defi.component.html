@@ -10,9 +10,16 @@
   <app-afficher-image [path]="defi.image"></app-afficher-image>
   <mat-card-content class="container mrgTop">
     <pre>{{ defi.description }}<br/></pre>
+    <!-- Jeu collaboratif -->
+    <!-- <button mat-stroked-button *ngIf="!multipleGame" (click)="multipleGame = true" >Jouer avec des amis</button><br/>
+    <div *ngIf="!jouer && multipleGame" style="margin-bottom: 30px;">
+      <h2>Choisissez le(s) joueur(s) avec qui vous souhaitez jouer</h2>
+      <app-list-chamis (getChamis)="ajouterChami($event);
+      openSnackBar('Ami ajouté', 'OK')" *ngIf="!jouer"></app-list-chamis>
+    </div> -->
     <!-- <button mat-stroked-button  (click)="newVisite(defi,chami)">jouer</button> -->
     <button mat-stroked-button class="jouer"
-          (click)="newVisite(defi,csService.currentChami)"
+          (click)="newVisite(defi); this.visiteCree = false;"
           *ngIf="!jouer">JOUER</button>
     <section class="container" *ngIf="this.defi.etape.length > 0">
       <button mat-stroked-button 
