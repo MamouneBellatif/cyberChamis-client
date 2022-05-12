@@ -73,7 +73,9 @@ export class NewDefiComponent implements OnInit {
     console.log("envoie du defi");
     defi.etape = this.listEtape;
     console.log('addDefi', defi);
-    return this.ccService.addDefi(defi);
+    return this.ccService.addDefi(defi).then(()=>{ 
+      this.openSnackBar('Défi créé avec succès', 'OK');
+    });
   }
 
   updateDefi(defi : Defi) : Promise<unknown>{

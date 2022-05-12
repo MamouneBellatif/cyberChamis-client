@@ -35,9 +35,12 @@ export class UpdDelDefiComponent implements OnInit {
   }
 
   supprimerDefi(defi: Defi) {
-    this.csService.deleteDefi(defi.id).then(()=>this.evenement.emit(defi.id));
+    this.csService.deleteDefi(defi.id).then(()=>{
+      this.evenement.emit(defi.id)
+      this.openSnackBar('Défi supprimé avec succès !', 'OK');
+    });
     // this.addNewItem(defi);
-    this.openSnackBar('Défi supprimé avec succès !', 'OK');
+    
     this.eventAff.emit(true);
   }
 
