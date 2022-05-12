@@ -30,15 +30,20 @@
   <router-outlet></router-outlet>
 
   <div *ngIf="router.url === '/'">
-    <!-- Titre appli -->
-    <div class="align-center">
-      <img style="width: 20%;" src="../assets/images/logoCyberChamis.png" />
-    </div>
+    <!-- Titre appli 
+      <div class="align-center">
+        <img style="width: 20%;" src="../assets/images/logoCyberChamis.png" />
+      </div>
+    -->
 
     <!-- Connecté comme Chami -->
     <section *ngIf="user.email !== null">
       <section *ngIf="currentChami | async as chami; else chamiInexistant">
         <!-- <section *ngIf="chamiSubj| async as chami ; else chamiInexistant"> -->
+
+        <div class="align-center">
+          <img style="width: 20%;" src="../assets/images/logoCyberChamis.png" />
+        </div>
 
         <h2 class="bienvenue">Bienvenue {{ chami.login }} chez les chamis !</h2>
 
@@ -120,6 +125,19 @@
 
     <!-- Création du profil de Chami -->
     <ng-template #chamiInexistant>
+
+      <mat-toolbar>
+        <img src="{{ user.photoURL }}" class="profile-image" />
+        <span class="spacer-pic-nom"></span>
+        <span class="smaller">{{ user.displayName }}</span>
+        <span class="example-spacer"></span>
+            <button mat-stroked-button color="primary" (click)="logout()">Déconnexion</button>
+      </mat-toolbar>
+
+      <div class="align-center">
+        <img style="width: 20%;" src="../assets/images/logoCyberChamis.png" />
+      </div>
+      
       <h2 class="align-center">Bienvenue chez les chamis !</h2>
       <mat-card>
         <mat-card-subtitle
