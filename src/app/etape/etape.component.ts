@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Etape, Reponse, TypeEtape } from '../cyberchamis.service';
+import { Etape, Reponse, TypeEtape, TypeReponse } from '../cyberchamis.service';
 
 @Component({
   selector: 'app-etape',
@@ -8,6 +8,7 @@ import { Etape, Reponse, TypeEtape } from '../cyberchamis.service';
 })
 export class EtapeComponent implements OnInit {
   TypeEtape = TypeEtape;
+  TypeReponse = TypeReponse;
   displayedTips: Partial<Etape>[] = []; 
   @Input() etape!: Etape;
   iTip:number = 0;
@@ -15,8 +16,10 @@ export class EtapeComponent implements OnInit {
   repondu = false;
   @Output() reponse = new EventEmitter<Partial<Reponse>>();
   @Output() cout = new EventEmitter<number>()
+  url: string;
 
   constructor() { 
+    this.url = ""; 
   }
 
   displayTip(){
@@ -27,7 +30,15 @@ export class EtapeComponent implements OnInit {
     }
   }
 
-  checkReponse(valReponse:string){
+  checkReponse(valReponse:string) {
+    // let res: string;
+    // if(valReponse == "") {
+    //     res = this.url;
+    //     console.log("MEDIAAAAAAAAAAAAAAAAAAA :"+res);
+    // } else {
+    //   res = valReponse;
+    //   console.log("INPUUUUUUUUUUUUUUUT :"+res);
+    // }
     this.reponse.emit({
       type_reponse: this.etape.typeReponseAttendu,
       valide: valReponse === this.etape.reponseAttendu,
@@ -47,6 +58,10 @@ export class EtapeComponent implements OnInit {
 
   parseUrl(label: string | undefined):string{
     return label?.replace('URL:','') || '';
+  }
+
+  urle(url: string) {
+    this.url = url;
   }
 
 }
