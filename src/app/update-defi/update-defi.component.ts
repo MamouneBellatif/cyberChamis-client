@@ -41,7 +41,7 @@ export class UpdateDefiComponent implements OnInit {
   }
 
   updateDefi(defi: Defi) {
-    return this.ccService.updateDefi(defi.id, defi);
+    return this.ccService.updateDefi(defi.id, defi).then(() => {this.openSnackBar('Défi modifié avec succès !', 'OK');});
   }
 
   getCategorie() {

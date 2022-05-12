@@ -60,7 +60,7 @@ export class PlayComponent implements OnInit {
   }
 
   retour(){
-    window.history.back();
+    // window.history.back();
     this.router.navigateByUrl("/");
   }
 
