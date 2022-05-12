@@ -27,9 +27,11 @@ export class UploadComponent implements OnInit {
   selectedFiles?: FileList;
   currentFileUpload?: FileUpload;
   percentage = 0;
+
   constructor(public uploadService: UploadService) { }
-  ngOnInit(): void {
-  }
+
+  ngOnInit(): void { }
+  
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
     this.upload();
