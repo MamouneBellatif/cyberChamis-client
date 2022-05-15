@@ -10,16 +10,16 @@ import { Subject } from 'rxjs';
 })
 export class NotificationComponentComponent implements OnInit {
 
-  
+
 
   constructor() { }
 
   initialize() {
 		// const eventSource = new EventSource('http://localhost:8080/notification');
-		const eventSource = new EventSource('https://projet-integrateur-g5.herokuapp.com/');
+		const eventSource = new EventSource('https://projet-integrateur-g5.herokuapp.com/notification');
 		eventSource.onmessage = e => {
 			const msg = e.data;
-    console.log("msg: " + msg)		
+    console.log("msg: " + msg)
     };
 		eventSource.onopen = e => console.log('open');
 		eventSource.onerror = e => {

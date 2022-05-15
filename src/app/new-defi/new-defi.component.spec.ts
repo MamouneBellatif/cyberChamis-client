@@ -15,7 +15,7 @@ describe('NewDefiComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewDefiComponent);
-    component = fixture.componentInstance;
+    component = fixture.componentInstance;//
     fixture.detectChanges();
   });
 
