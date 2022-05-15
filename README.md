@@ -1,6 +1,3 @@
-# Groupe 5
-
-## "Version stable sans home/avec buttons à l'accueil qui fonctionne et qui peut constituer la version à présenter en démo : cette version est déjà au-delà de la MVP"
 
 ## Routes
 
@@ -75,32 +72,7 @@ Les services web externes utilisés sont :
 - Leaflet pour afficher la carte et en retirer des coordonnées en pointant dessus, ainsi que pour localiser l'utilisateur.
 
 
-_____________________
 
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7711869&assignment_repo_type=AssignmentRepo)
-# L3mPi2022Client
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 
